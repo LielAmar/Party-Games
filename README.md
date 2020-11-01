@@ -19,7 +19,9 @@ For more information contact support at https://support.hypixel.net
 ## Using Liel's Party Games
 Using this plugin, taking its code or using it for anything other than learning is disallowed.
 <br>However, if you want to test the plugin for yourself you can download a copy from [My Website](https://lielamar.com/other/PartyGames.jar).
-<br>* As been said before, this plugin is a complete copy of Hypixel's Party Games and therefore can be used with Hypixel's permission only!
+<br>* This plugin only works for Paper/Spigot version 1.8.8 (v1_8_R3)
+
+* As been said before, this plugin is a complete copy of Hypixel's Party Games and therefore can be used with Hypixel's permission only!
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.

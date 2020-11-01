@@ -11,7 +11,7 @@ Party Games is a Spigot plugin, a fork of Hypixel's original Party Games Minigam
 For more information contact support at https://support.hypixel.net
 
 ## Features
-* 26 different minigames (including the msot famous Trampolinio, Chicken Rings, Workshop and many others!)
+* 26 different minigames (including the most famous Trampolinio, Chicken Rings, Workshop and many others!)
 * Using [Liel's PacketManager](https://github.com/LielAmar/PacketManager) & [Liel's Utils](https://github.com/LielAmar/LielsUtils) for Bossbar, Scoreboard and Custom Entity Support.
 * Map rollback
 * Admin commands

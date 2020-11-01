@@ -6,7 +6,8 @@
 ## Information
 Party Games is a Spigot plugin, a fork of Hypixel's original Party Games Minigame.
 <br>This plugin includes all 26 different games, as well as some small changes and improvements.
-<br>* This plugin was developed from scratch and is not related to Hypixel, however, using this plugin in your server is not allowed without clear permissions from Hypixel.
+
+* This plugin was developed from scratch and is not related to Hypixel, however, using this plugin in your server is not allowed without clear permission from Hypixel.
 For more information contact support at https://support.hypixel.net
 
 ## Features

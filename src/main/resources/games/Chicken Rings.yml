@@ -1,0 +1,185 @@
+middle:
+  world: "partygames"
+  x: -1000.5
+  y: 100
+  z: 1000.5
+  yaw: 90
+  pitch: 0
+
+rings:
+  0:
+    world: "partygames"
+    x: -1013.0
+    y: 99.0
+    z: 997.0
+  1:
+    world: "partygames"
+    x: -1029.0
+    y: 97.0
+    z: 1002.0
+  2:
+    world: "partygames"
+    x: -1045.0
+    y: 98.0
+    z: 996.0
+  3:
+    world: "partygames"
+    x: -1060.0
+    y: 99.0
+    z: 1000.0
+  4:
+    world: "partygames"
+    x: -1074.0
+    y: 98.0
+    z: 1002.0
+  5:
+    world: "partygames"
+    x: -1091.0
+    y: 94.0
+    z: 995.0
+  6:
+    world: "partygames"
+    x: -1111.0
+    y: 97.0
+    z: 1005.0
+  7:
+    world: "partygames"
+    x: -1128.0
+    y: 102.0
+    z: 999.0
+  8:
+    world: "partygames"
+    x: -1144.0
+    y: 102.0
+    z: 1007.0
+  9:
+    world: "partygames"
+    x: -1163.0
+    y: 102.0
+    z: 999.0
+  10:
+    world: "partygames"
+    x: -1181.0
+    y: 99.0
+    z: 1008.0
+  11:
+    world: "partygames"
+    x: -1194.0
+    y: 96.0
+    z: 999.0
+  12:
+    world: "partygames"
+    x: -1208.0
+    y: 93.0
+    z: 1007.0
+  13:
+    world: "partygames"
+    x: -1227.0
+    y: 97.0
+    z: 1002.0
+  14:
+    world: "partygames"
+    x: -1245.0
+    y: 100.0
+    z: 999.0
+  15:
+    world: "partygames"
+    x: -1263.0
+    y: 99.0
+    z: 1007.0
+  16:
+    world: "partygames"
+    x: -1276.0
+    y: 97.0
+    z: 1005.0
+  17:
+    world: "partygames"
+    x: -1290.0
+    y: 95.0
+    z: 1003.0
+  18:
+    world: "partygames"
+    x: -1306.0
+    y: 101.0
+    z: 1011.0
+  19:
+    world: "partygames"
+    x: -1317.0
+    y: 102.0
+    z: 1004.0
+  20:
+    world: "partygames"
+    x: -1330.0
+    y: 105.0
+    z: 1011.0
+  21:
+    world: "partygames"
+    x: -1339.0
+    y: 105.0
+    z: 1007.0
+  22:
+    world: "partygames"
+    x: -1352.0
+    y: 106.0
+    z: 1013.0
+  23:
+    world: "partygames"
+    x: -1360.0
+    y: 106.0
+    z: 1008.0
+  24:
+    world: "partygames"
+    x: -1372.0
+    y: 105.0
+    z: 1014.0
+  25:
+    world: "partygames"
+    x: -1380.0
+    y: 105.0
+    z: 1009.0
+  26:
+    world: "partygames"
+    x: -1393.0
+    y: 105.0
+    z: 1014.0
+  27:
+    world: "partygames"
+    x: -1412.0
+    y: 105.0
+    z: 1013.0
+  28:
+    world: "partygames"
+    x: -1424.0
+    y: 102.0
+    z: 1009.0
+  29:
+    world: "partygames"
+    x: -1440.0
+    y: 101.0
+    z: 1002.0
+  30:
+    world: "partygames"
+    x: -1462.0
+    y: 100.0
+    z: 1003.0
+
+scoreboard:
+  - "&7%date%"
+  - " "
+  - "Game: "
+  - "&a%game%"
+  - "  "
+  - "%minigamefirst%"
+  - "%minigamesecond%"
+  - "%minigamethird%"
+  - "%threedots%"
+  - "%minigameplayer%"
+  - "   "
+  - "Games: &a%currentgameid%/%amountofgames%"
+  - "Stars: &a%stars%&e✯"
+  - "     "
+  - "&ewww.lielamar.com"
+
+parameters:
+  axis: 'x'
+  constant_movement: false

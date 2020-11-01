@@ -1,0 +1,30 @@
+middle:
+  world: "partygames"
+  x: 250.5
+  y: 100.0
+  z: 250.5
+  yaw: 0
+  pitch: 0
+
+scoreboard:
+  - "&7%date%"
+  - " "
+  - "Game: "
+  - "&a%game%"
+  - "  "
+  - "Current Wave: &a%wave%"
+  - "Players Left: &a%playersleft%"
+  - "Elapsed Time: &a%elapsedtime%"
+  - "   "
+  - "    "
+  - "     "
+  - "Games: &a%currentgameid%/%amountofgames%"
+  - "Stars: &a%stars%&e✯"
+  - "       "
+  - "&ewww.lielamar.com"
+
+parameters:
+  radius: 11
+  amount_of_waves: 15
+  wave_countdown: 5
+  pvp_wave: 10

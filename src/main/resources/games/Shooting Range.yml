@@ -1,0 +1,125 @@
+middle:
+  world: "partygames"
+  x: -3000.5
+  y: 100
+  z: 3000.5
+  yaw: 0
+  pitch: 0
+
+locations:
+  0:
+    world: "partygames"
+    x: -2989.5
+    y: 104.0
+    z: 2981.5
+    yaw: 0
+    pitch: 0
+  1:
+    world: "partygames"
+    x: -2992.5
+    y: 104.0
+    z: 2981.5
+    yaw: 0
+    pitch: 0
+  2:
+    world: "partygames"
+    x: -2995.5
+    y: 104.0
+    z: 2981.5
+    yaw: 0
+    pitch: 0
+  3:
+    world: "partygames"
+    x: -2998.5
+    y: 104.0
+    z: 2981.5
+    yaw: 0
+    pitch: 0
+  4:
+    world: "partygames"
+    x: -3002.5
+    y: 104.0
+    z: 2981.5
+    yaw: 0
+    pitch: 0
+  5:
+    world: "partygames"
+    x: -3005.5
+    y: 104.0
+    z: 2981.5
+    yaw: 0
+    pitch: 0
+  6:
+    world: "partygames"
+    x: -3008.5
+    y: 104.0
+    z: 2981.5
+    yaw: 0
+    pitch: 0
+  7:
+    world: "partygames"
+    x: -3011.5
+    y: 104.0
+    z: 2981.5
+    yaw: 0
+    pitch: 0
+
+mobSpawnLocations:
+  0:
+    start:
+      world: "partygames"
+      x: -3019.5
+      y: 101.0
+      z: 2993.5
+    end:
+      world: "partygames"
+      x: -2979.5
+      y: 101.0
+      z: 2993.5
+  1:
+    start:
+      world: "partygames"
+      x: -3019.5
+      y: 102.0
+      z: 3001.5
+    end:
+      world: "partygames"
+      x: -2979.5
+      y: 102.0
+      z: 3001.5
+  2:
+    start:
+      world: "partygames"
+      x: -3019.5
+      y: 103.0
+      z: 3009.5
+    end:
+      world: "partygames"
+      x: -2979.5
+      y: 103.0
+      z: 3009.5
+
+scoreboard:
+  - "&7%date%"
+  - " "
+  - "Game: "
+  - "&a%game%"
+  - "  "
+  - "%minigamefirst%"
+  - "%minigamesecond%"
+  - "%minigamethird%"
+  - "%threedots%"
+  - "%minigameplayer%"
+  - "   "
+  - "Games: &a%currentgameid%/%amountofgames%"
+  - "Stars: &a%stars%&e✯"
+  - "     "
+  - "&ewww.lielamar.com"
+
+parameters:
+  amount_of_runners: 10
+  normal_zombie_percentage: 40
+  normal_skeleton_percentage: 32
+  golden_zombie_percentage: 16
+  tnt_zombie_percentage: 12
+

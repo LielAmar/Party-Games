@@ -1,0 +1,95 @@
+middle:
+  world: "partygames"
+  x: 3000.5
+  y: 100.0
+  z: -3000.5
+  yaw: 0
+  pitch: 0
+
+locations:
+  0:
+    world: "partygames"
+    x: 3028.5
+    y: 100.0
+    z: -2948.5
+    yaw: -115
+    pitch: 0
+  1:
+    world: "partygames"
+    x: 2977.5
+    y: 100.0
+    z: -2948.5
+    yaw: 115
+    pitch: 0
+  2:
+    world: "partygames"
+    x: 2949.5
+    y: 100.0
+    z: -2963.5
+    yaw: -150
+    pitch: 0
+  3:
+    world: "partygames"
+    x: 2949.5
+    y: 100.0
+    z: -3035.5
+    yaw: -20
+    pitch: 0
+  4:
+    world: "partygames"
+    x: 2968.5
+    y: 100.0
+    z: -3050.5
+    yaw: -15
+    pitch: 0
+  5:
+    world: "partygames"
+    x: 3019.5
+    y: 100.0
+    z: -3050.5
+    yaw: 0
+    pitch: 0
+
+  6:
+    world: "partygames"
+    x: 3052.5
+    y: 100.0
+    z: -3034.5
+    yaw: 15
+    pitch: 0
+  7:
+    world: "partygames"
+    x: 3052.5
+    y: 100.0
+    z: -2986.5
+    yaw: 55
+    pitch: 0
+
+finishpoint:
+  start:
+    world: "partygames"
+    x: 3001.0
+    y: 99.0
+    z: -3002.0
+  end:
+    world: "partygames"
+    x: 2999.0
+    y: 99.0
+    z: -3000.0
+
+scoreboard:
+  - "&7%date%"
+  - " "
+  - "Game: "
+  - "&a%game%"
+  - "  "
+  - "%gamefirst%"
+  - "%gamesecond%"
+  - "%gamethird%"
+  - "%threedots%"
+  - "%gameplayer%"
+  - "   "
+  - "Games: &a%currentgameid%/%amountofgames%"
+  - "Stars: &a%stars%&e✯"
+  - "     "
+  - "&ewww.lielamar.com"

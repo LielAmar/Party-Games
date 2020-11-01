@@ -1,0 +1,208 @@
+middle:
+  world: "partygames"
+  x: -2000.5
+  y: 100
+  z: -2000.5
+  yaw: -90
+  pitch: 0
+
+finish:
+  world: "partygames"
+  x: -1600.5
+  y: 100
+  z: -2000.5
+  yaw: -90
+  pitch: 0
+
+locations:
+  0:
+    world: "partygames"
+    x: -2000.5
+    y: 101.0
+    z: -2007.5
+    yaw: -90
+    pitch: 0
+  1:
+    world: "partygames"
+    x: -2000.5
+    y: 101.0
+    z: -2005.5
+    yaw: -90
+    pitch: 0
+  2:
+    world: "partygames"
+    x: -2000.5
+    y: 101.0
+    z: -2003.5
+    yaw: -90
+    pitch: 0
+  3:
+    world: "partygames"
+    x: -2000.5
+    y: 101.0
+    z: -2001.5
+    yaw: -90
+    pitch: 0
+  4:
+    world: "partygames"
+    x: -2000.5
+    y: 101.0
+    z: -1999.5
+    yaw: -90
+    pitch: 0
+  5:
+    world: "partygames"
+    x: -2000.5
+    y: 101.0
+    z: -1997.5
+    yaw: -90
+    pitch: 0
+  6:
+    world: "partygames"
+    x: -2000.5
+    y: 101.0
+    z: -1995.5
+    yaw: -90
+    pitch: 0
+  7:
+    world: "partygames"
+    x: -2000.5
+    y: 101.0
+    z: -1993.5
+    yaw: -90
+    pitch: 0
+
+rails:
+  0:
+    world: "partygames"
+    x: -1999.5
+    y: 100.0
+    z: -2007.5
+    yaw: -90
+    pitch: 0
+  1:
+    world: "partygames"
+    x: -1999.5
+    y: 100.0
+    z: -2005.5
+    yaw: -90
+    pitch: 0
+  2:
+    world: "partygames"
+    x: -1999.5
+    y: 100.0
+    z: -2003.5
+    yaw: -90
+    pitch: 0
+  3:
+    world: "partygames"
+    x: -1999.5
+    y: 100.0
+    z: -2001.5
+    yaw: -90
+    pitch: 0
+  4:
+    world: "partygames"
+    x: -1999.5
+    y: 100.0
+    z: -1999.5
+    yaw: -90
+    pitch: 0
+  5:
+    world: "partygames"
+    x: -1999.5
+    y: 100.0
+    z: -1997.5
+    yaw: -90
+    pitch: 0
+  6:
+    world: "partygames"
+    x: -1999.5
+    y: 100.0
+    z: -1995.5
+    yaw: -90
+    pitch: 0
+  7:
+    world: "partygames"
+    x: -1999.5
+    y: 100.0
+    z: -1993.5
+    yaw: -90
+    pitch: 0
+
+boards:
+  distance: 20
+  endpoint: -1610
+  0:
+    start:
+      world: "partygames"
+      x: -1990
+      y: 106
+      z: -1994
+    end:
+      world: "partygames"
+      x: -1990
+      y: 107
+      z: -1997
+  1:
+    start:
+      world: "partygames"
+      x: -1990
+      y: 107
+      z: -1999
+    end:
+      world: "partygames"
+      x: -1990
+      y: 108
+      z: -2000
+  2:
+    start:
+      world: "partygames"
+      x: -1990
+      y: 107
+      z: -2002
+    end:
+      world: "partygames"
+      x: -1990
+      y: 108
+      z: -2003
+  3:
+    start:
+      world: "partygames"
+      x: -1990
+      y: 106
+      z: -2005
+    end:
+      world: "partygames"
+      x: -1990
+      y: 107
+      z: -2008
+
+scoreboard:
+  - "&7%date%"
+  - " "
+  - "Game: "
+  - "&a%game%"
+  - "  "
+  - "%minigamefirst%"
+  - "%minigamesecond%"
+  - "%minigamethird%"
+  - "%threedots%"
+  - "%minigameplayer%"
+  - "   "
+  - "Games: &a%currentgameid%/%amountofgames%"
+  - "Stars: &a%stars%&e✯"
+  - "     "
+  - "&ewww.lielamar.com"
+
+parameters:
+  axis: 'x'
+  wool_colors:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 14

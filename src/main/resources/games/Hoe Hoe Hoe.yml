@@ -1,0 +1,97 @@
+middle:
+  world: "partygames"
+  x: 1500.5
+  y: 100
+  z: 1500.5
+  yaw: 0
+  pitch: 0
+
+locations:
+  0:
+    world: "partygames"
+    x: 1515.5
+    y: 100
+    z: 1500.5
+    yaw: 90
+    pitch: 0
+  1:
+    world: "partygames"
+    x: 1485.5
+    y: 100
+    z: 1500.5
+    yaw: -90
+    pitch: 0
+  2:
+    world: "partygames"
+    x: 1500.5
+    y: 100
+    z: 1515.5
+    yaw: 180
+    pitch: 0
+  3:
+    world: "partygames"
+    x: 1500.5
+    y: 100
+    z: 1485.5
+    yaw: 0
+    pitch: 0
+  4:
+    world: "partygames"
+    x: 1510.5
+    y: 100
+    z: 1490.5
+    yaw: 45
+    pitch: 0
+  5:
+    world: "partygames"
+    x: 1510.5
+    y: 100
+    z: 1510.5
+    yaw: 135
+    pitch: 0
+  6:
+    world: "partygames"
+    x: 1490.5
+    y: 100
+    z: 1510.5
+    yaw: -135
+    pitch: 0
+  7:
+    world: "partygames"
+    x: 1490.5
+    y: 100
+    z: 1490.5
+    yaw: -45
+    pitch: 0
+
+scoreboard:
+  - "&7%date%"
+  - " "
+  - "Game: "
+  - "&a%game%"
+  - "  "
+  - "%minigamefirst%"
+  - "%minigamesecond%"
+  - "%minigamethird%"
+  - "%threedots%"
+  - "%minigameplayer%"
+  - "   "
+  - "Games: &a%currentgameid%/%amountofgames%"
+  - "Stars: &a%stars%&e✯"
+  - "     "
+  - "&ewww.lielamar.com"
+
+parameters:
+  item: "STONE_HOE"
+  block_types:
+    - "GRASS"
+    - "MYCEL"
+  wool_colors:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 14

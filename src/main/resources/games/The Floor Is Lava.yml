@@ -1,0 +1,63 @@
+middle:
+  world: "partygames"
+  x: 3500.5
+  y: 100
+  z: -3380.5
+  yaw: -180
+  pitch: 0
+
+wall:
+  start:
+    world: "partygames"
+    x: 3499.0
+    y: 99.0
+    z: -3384.0
+  end:
+    world: "partygames"
+    x: 3501.0
+    y: 99.0
+    z: -3384.0
+
+checkpoint:
+  start:
+    world: "partygames"
+    x: 3498.0
+    y: 97.0
+    z: -3429.0
+  end:
+    world: "partygames"
+    x: 3502.0
+    y: 97.0
+    z: -3429.0
+
+endpoint:
+  start:
+    world: "partygames"
+    x: 3498.0
+    y: 111.0
+    z: -3507.0
+  end:
+    world: "partygames"
+    x: 3502.0
+    y: 111.0
+    z: -3507.0
+
+scoreboard:
+  - "&7%date%"
+  - " "
+  - "Game: "
+  - "&a%game%"
+  - "  "
+  - "%minigamefirst%"
+  - "%minigamesecond%"
+  - "%minigamethird%"
+  - "%threedots%"
+  - "%minigameplayer%"
+  - "   "
+  - "Games: &a%currentgameid%/%amountofgames%"
+  - "Stars: &a%stars%&e✯"
+  - "     "
+  - "&ewww.lielamar.com"
+
+parameters:
+  minimum_y: 95.0

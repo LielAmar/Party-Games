@@ -1,0 +1,35 @@
+middle:
+  world: "partygames"
+  x: -3500.5
+  y: 90.0
+  z: -3500.5
+  yaw: 0
+  pitch: 0
+
+scoreboard:
+  - "&7%date%"
+  - " "
+  - "Game: "
+  - "&a%game%"
+  - "  "
+  - "%minigamefirst%"
+  - "%minigamesecond%"
+  - "%minigamethird%"
+  - "%threedots%"
+  - "%minigameplayer%"
+  - "   "
+  - "Games: &a%currentgameid%/%amountofgames%"
+  - "Stars: &a%stars%&e✯"
+  - "     "
+  - "&ewww.lielamar.com"
+
+parameters:
+  radius: 12
+  amount_of_boosts: 2
+  amount_of_points: 12
+  one_score_percentage: 45
+  three_score_percentage: 45
+  ten_score_percentage: 10
+  block_types:
+    - "STAINED_GLASS"
+    - "WOOL"

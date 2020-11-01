@@ -1,0 +1,88 @@
+middle:
+  world: "partygames"
+  x: -250.5
+  y: 100
+  z: 0.5
+  yaw: 90
+  pitch: 0
+
+locations:
+  0:
+    world: "partygames"
+    x: -226.5
+    y: 97
+    z: 4.5
+    yaw: 90
+    pitch: 0
+  1:
+    world: "partygames"
+    x: -236.5
+    y: 97
+    z: 18.5
+    yaw: 140
+    pitch: 0
+  2:
+    world: "partygames"
+    x: -248.5
+    y: 97
+    z: 24.5
+    yaw: 176
+    pitch: 0
+  3:
+    world: "partygames"
+    x: -263.5
+    y: 97
+    z: 16.5
+    yaw: -142
+    pitch: 0
+  4:
+    world: "partygames"
+    x: -270.5
+    y: 97
+    z: 5.5
+    yaw: -105
+    pitch: 0
+  5:
+    world: "partygames"
+    x: -267.5
+    y: 97
+    z: -8.5
+    yaw: -60
+    pitch: 0
+  6:
+    world: "partygames"
+    x: -260.5
+    y: 96
+    z: -18.5
+    yaw: -29
+    pitch: 0
+  7:
+    world: "partygames"
+    x: -240.5
+    y: 97
+    z: -19.5
+    yaw: -21
+    pitch: 0
+
+scoreboard:
+  - "&7%date%"
+  - " "
+  - "Game: "
+  - "&a%game%"
+  - "  "
+  - "%minigamefirst%"
+  - "%minigamesecond%"
+  - "%minigamethird%"
+  - "%threedots%"
+  - "%minigameplayer%"
+  - "   "
+  - "Games: &a%currentgameid%/%amountofgames%"
+  - "Stars: &a%stars%&e✯"
+  - "     "
+  - "&ewww.lielamar.com"
+
+parameters:
+  ticks_per_point: 20
+  minimum_y: 90.0
+  item: "RAW_FISH"
+  block_type: "WOOL"

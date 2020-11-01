@@ -1,0 +1,31 @@
+middle:
+  world: "partygames"
+  x: -250.5
+  y: 100
+  z: 250.5
+  yaw: 0
+  pitch: 0
+
+scoreboard:
+  - "&7%date%"
+  - " "
+  - "Game: "
+  - "&a%game%"
+  - "  "
+  - "%gamefirst%"
+  - "%gamesecond%"
+  - "%gamethird%"
+  - "%threedots%"
+  - "%gameplayer%"
+  - "   "
+  - "Games: &a%currentgameid%/%amountofgames%"
+  - "Stars: &a%stars%&e✯"
+  - "     "
+  - "&ewww.lielamar.com"
+
+parameters:
+  radius: 15
+  minimum_y: 90.0
+  max_distance_from_middle: 30.0
+  amount_of_anvils: 8
+  player_spleef_delay: 4

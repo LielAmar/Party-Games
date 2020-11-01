@@ -1,0 +1,73 @@
+name: PartyGames
+author: Liel Amar
+version: 1.0
+description: A Hypixel Party Games Fork
+main: com.lielamar.partygames.Main
+website: lielamar.com
+
+commands:
+  partygames:
+    description: The party games admin command
+    aliases: [pg, game]
+    permission: partygames.admin
+    permission-message: You don't have enough permissions to do that!
+    usage: /<command> [Add|Remove|Start|End|SetNext|EndCurrent|SetScore|SetMGScore]
+
+permissions:
+  partygames.*:
+    description: Gives permissions to all partygames aspects
+    default: op
+    children:
+      partygames.admin.*: true
+      partygames.spectate: true
+      partygames.seespectators: true
+  partygames.spectate:
+    description: Allow players to join and spectate already started games
+    default: op
+  partygames.seespectators:
+    description: Allow players to see spectators if they are not in the game
+    default: op
+  partygames.admin.*:
+    description: Gives permissions to all admin commands
+    default: op
+    children:
+      partygames.admin: true
+      partygames.admin.addplayer: true
+      partygames.admin.removeplayer: true
+      partygames.admin.endcurrentminigame: true
+      partygames.admin.endgame: true
+      partygames.admin.forcestart: true
+      partygames.admin.help: true
+      partygames.admin.setminigamescore: true
+      partygames.admin.setscore: true
+      partygames.admin.setnextminigame: true
+  partygames.admin:
+    description: Gives access to the /PartyGames command and to bypass certain limits such as block placing and breaking
+    default: op
+  partygames.admin.addplayer:
+    description: Gives access to the /PartyGames AddPlayer command
+    default: op
+  partygames.admin.removeplayer:
+    description: Gives access to the /PartyGames RemovePlayer command
+    default: op
+  partygames.admin.endcurrentminigame:
+    description: Gives access to the /PartyGames EndCurrentMinigame command
+    default: op
+  partygames.admin.endgame:
+    description: Gives access to the /PartyGames EndGame command
+    default: op
+  partygames.admin.forcestart:
+    description: Gives access to the /PartyGames ForceStart command
+    default: op
+  partygames.admin.help:
+    description: Gives access to the /PartyGames Help command
+    default: op
+  partygames.admin.setminigamescore:
+    description: Gives access to the /PartyGames SetMinigameScore command
+    default: op
+  partygames.admin.setscore:
+    description: Gives access to the /PartyGames SetScore command
+    default: op
+  partygames.admin.setnextminigame:
+    description: Gives access to the /PartyGames SetNextMinigame command
+    default: op

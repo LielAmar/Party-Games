@@ -1,0 +1,36 @@
+middle:
+  world: "partygames"
+  x: 250.5
+  y: 100
+  z: -250.5
+  yaw: 0
+  pitch: 0
+
+scoreboard:
+  - "&7%date%"
+  - " "
+  - "Game: "
+  - "&a%game%"
+  - "  "
+  - "%minigamefirst%"
+  - "%minigamesecond%"
+  - "%minigamethird%"
+  - "%threedots%"
+  - "%minigameplayer%"
+  - "   "
+  - "Games: &a%currentgameid%/%amountofgames%"
+  - "Stars: &a%stars%&e✯"
+  - "     "
+  - "&ewww.lielamar.com"
+
+parameters:
+  radius: 11
+  maximum_amount_of_animals: 35
+  minimum_amount_of_animals: 25
+  negative_animals_percentage: 20
+  negative_points_loss_percentage: 50
+  item: "WOOD_SWORD"
+  animals:
+    CHICKEN: 1
+    PIG: 3
+    COW: 5

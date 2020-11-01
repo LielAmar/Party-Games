@@ -1,0 +1,184 @@
+middle:
+  world: "partygames"
+  x: -1500.5
+  y: 100
+  z: 1500.5
+  yaw: 0
+  pitch: 0
+
+locations:
+  0:
+    world: "partygames"
+    x: -1512.5
+    y: 100
+    z: 1507.5
+    yaw: 180
+    pitch: 0
+  1:
+    world: "partygames"
+    x: -1506.5
+    y: 100
+    z: 1507.5
+    yaw: 180
+    pitch: 0
+  2:
+    world: "partygames"
+    x: -1500.5
+    y: 100
+    z: 1507.5
+    yaw: 180
+    pitch: 0
+  3:
+    world: "partygames"
+    x: -1494.5
+    y: 100
+    z: 1507.5
+    yaw: 180
+    pitch: 0
+  4:
+    world: "partygames"
+    x: -1488.5
+    y: 100
+    z: 1507.5
+    yaw: 180
+    pitch: 0
+  5:
+    world: "partygames"
+    x: -1488.5
+    y: 100
+    z: 1493.5
+    yaw: 0
+    pitch: 0
+  6:
+    world: "partygames"
+    x: -1494.5
+    y: 100
+    z: 1493.5
+    yaw: 0
+    pitch: 0
+  7:
+    world: "partygames"
+    x: -1500.5
+    y: 100
+    z: 1493.5
+    yaw: 0
+    pitch: 0
+  8:
+    world: "partygames"
+    x: -1506.5
+    y: 100
+    z: 1493.5
+    yaw: 0
+    pitch: 0
+  9:
+    world: "partygames"
+    x: -1512.5
+    y: 100
+    z: 1493.5
+    yaw: 0
+    pitch: 0
+
+canvases:
+  0:
+    world: "partygames"
+    x: -1513.0
+    y: 102.0
+    z: 1511.0
+  1:
+    world: "partygames"
+    x: -1507.0
+    y: 102.0
+    z: 1511.0
+  2:
+    world: "partygames"
+    x: -1501.0
+    y: 102.0
+    z: 1511.0
+  3:
+    world: "partygames"
+    x: -1495.0
+    y: 102.0
+    z: 1511.0
+  4:
+    world: "partygames"
+    x: -1489.0
+    y: 102.0
+    z: 1511.0
+  5:
+    world: "partygames"
+    x: -1489.0
+    y: 102.0
+    z: 1489.0
+  6:
+    world: "partygames"
+    x: -1495.0
+    y: 102.0
+    z: 1489.0
+  7:
+    world: "partygames"
+    x: -1501.0
+    y: 102.0
+    z: 1489.0
+  8:
+    world: "partygames"
+    x: -1507.0
+    y: 102.0
+    z: 1489.0
+  9:
+    world: "partygames"
+    x: -1513.0
+    y: 102.0
+    z: 1489.0
+
+bigcanvases:
+  0:
+    start:
+      world: "partygames"
+      x: -1479.0
+      y: 112.0
+      z: 1496.0
+    end:
+      world: "partygames"
+      x: -1479.0
+      y: 104.0
+      z: 1504.0
+  1:
+    start:
+      world: "partygames"
+      x: -1523.0
+      y: 112.0
+      z: 1504.0
+    end:
+      world: "partygames"
+      x: -1523.0
+      y: 104.0
+      z: 1496.0
+
+scoreboard:
+  - "&7%date%"
+  - " "
+  - "Game: "
+  - "&a%game%"
+  - "  "
+  - "%gamefirst%"
+  - "%gamesecond%"
+  - "%gamethird%"
+  - "%threedots%"
+  - "%gameplayer%"
+  - "   "
+  - "Games: &a%currentgameid%/%amountofgames%"
+  - "Stars: &a%stars%&e✯"
+  - "     "
+  - "&ewww.lielamar.com"
+
+parameters:
+  block_types:
+    0: "DIRT"
+    1: "STONE"
+    2: "COBBLESTONE"
+    3: "LOG"
+    4: "WOOD"
+    5: "SMOOTH_BRICK"
+    6: "GOLD_BLOCK"
+    7: "NETHERRACK"
+    8: "ENDER_STONE"

@@ -1,0 +1,54 @@
+lobby:
+  world: "partygames"
+  x: 0.5
+  y: 100
+  z: 0.5
+  yaw: -180
+  pitch: 0
+
+parameters:
+  allow_duplicate_games: false
+  countdown_time: 30
+  minimum_players: 6
+  maximum_players: 8
+  amount_of_games: 8
+  minigames_config_dir: "games/"
+  map_backup_dir: "backups/"
+  minigame_start_time: 5
+  minigame_end_time: 5
+
+scoreboardtitle: "PARTY GAMES"
+waitscoreboard:
+  - "&7%date%"
+  - ""
+  - "Map: &a%map%"
+  - "Players: &a%players%/%maxplayers%"
+  - ""
+  - "&ewww.lielamar.com"
+countdownscoreboard:
+  - "&7%date%"
+  - ""
+  - "Map: &a%map%"
+  - "Players: &a%players%/%maxplayers%"
+  - ""
+  - "Starting in &a%remainingtime% &rto"
+  - "allow time for"
+  - "additional players"
+  - ""
+  - "&ewww.lielamar.com"
+gamestatsscoreboard:
+  - "&7%date%"
+  - " "
+  - "Game: "
+  - "&a%game%"
+  - "  "
+  - "%gamefirst%"
+  - "%gamesecond%"
+  - "%gamethird%"
+  - "%threedots%"
+  - "%gameplayer%"
+  - "   "
+  - "Games: &a%currentgameid%/%amountofgames%"
+  - "Stars: &a%stars%&e✯"
+  - "     "
+  - "&ewww.lielamar.com"

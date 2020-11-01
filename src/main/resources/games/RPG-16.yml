@@ -1,0 +1,119 @@
+item: "IRON_BARDING"
+type: "PIG"
+
+middle:
+  world: "partygames"
+  x: -2500.5
+  y: 100
+  z: -2500.5
+  yaw: 0
+  pitch: 0
+
+locations:
+  0:
+    world: "partygames"
+    x: -2502.5
+    y: 101.0
+    z: -2519.5
+    yaw: -20
+    pitch: 0
+  1:
+    world: "partygames"
+    x: -2488.5
+    y: 102.0
+    z: -2529.5
+    yaw: 15
+    pitch: 0
+  2:
+    world: "partygames"
+    x: -2470.5
+    y: 102.0
+    z: -2511.5
+    yaw: 90
+    pitch: 0
+  3:
+    world: "partygames"
+    x: -2469.5
+    y: 102.0
+    z: -2489.5
+    yaw: 120
+    pitch: 0
+  4:
+    world: "partygames"
+    x: -2487.5
+    y: 102.0
+    z: -2477.5
+    yaw: -130
+    pitch: 0
+  5:
+    world: "partygames"
+    x: -2500.5
+    y: 102.0
+    z: -2466.5
+    yaw: 180
+    pitch: 0
+  6:
+    world: "partygames"
+    x: -2516.5
+    y: 102.0
+    z: -2476.5
+    yaw: -130
+    pitch: 0
+  7:
+    world: "partygames"
+    x: -2529.5
+    y: 102.0
+    z: -2493.5
+    yaw: -140
+    pitch: 0
+  8:
+    world: "partygames"
+    x: -2529.5
+    y: 102.0
+    z: -2512.5
+    yaw: -30
+    pitch: 0
+  9:
+    world: "partygames"
+    x: -2520.5
+    y: 101.0
+    z: -2503.5
+    yaw: 0
+    pitch: 0
+  10:
+    world: "partygames"
+    x: -2508.5
+    y: 101.0
+    z: -2507.5
+    yaw: -140
+    pitch: 0
+  11:
+    world: "partygames"
+    x: -2490.5
+    y: 101.0
+    z: -2510.5
+    yaw: 31
+    pitch: 0
+
+scoreboard:
+  - "&7%date%"
+  - " "
+  - "Game: "
+  - "&a%game%"
+  - "  "
+  - "%minigamefirst%"
+  - "%minigamesecond%"
+  - "%minigamethird%"
+  - "%threedots%"
+  - "%minigameplayer%"
+  - "   "
+  - "Games: &a%currentgameid%/%amountofgames%"
+  - "Stars: &a%stars%&e✯"
+  - "     "
+  - "&ewww.lielamar.com"
+
+parameters:
+  rpg_cooldown: 3
+  doublejump_cooldown: 3
+  item: "IRON_BARDING"
+  rpg_type: "PIG"

@@ -1,0 +1,38 @@
+middle:
+  world: "partygames"
+  x: -1500.5
+  y: 100
+  z: -1500.5
+  yaw: 90
+  pitch: 0
+
+particles:
+  minX: -1521.0
+  maxX: -1497.0
+  Y: 100.0
+  minZ: -1491.0
+  maxZ: -1509.0
+  distance: 0.3
+
+scoreboard:
+  - "&7%date%"
+  - " "
+  - "Game: "
+  - "&a%game%"
+  - "  "
+  - "%minigamefirst%"
+  - "%minigamesecond%"
+  - "%minigamethird%"
+  - "%threedots%"
+  - "%minigameplayer%"
+  - "   "
+  - "Games: &a%currentgameid%/%amountofgames%"
+  - "Stars: &a%stars%&e✯"
+  - "     "
+  - "&ewww.lielamar.com"
+
+parameters:
+  axis: 'x'
+  start_difficulty: 0
+  default_distance: 20
+  particles_per_square: 4

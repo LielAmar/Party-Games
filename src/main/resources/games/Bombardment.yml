@@ -1,0 +1,58 @@
+middle:
+  world: "partygames"
+  x: -500.5
+  y: 102.5
+  z: 250.5
+  yaw: 0
+  pitch: 0
+
+shoot:
+  minX: -514.5
+  maxX: -487.5
+  Y: 100
+  minZ: 241.5
+  maxZ: 265.5
+  distance: 2.0
+
+cannons:
+  0:
+    world: "partygames"
+    x: -501.0
+    y: 121.0
+    z: 322.0
+  1:
+    world: "partygames"
+    x: -505.0
+    y: 121.0
+    z: 322.0
+  2:
+    world: "partygames"
+    x: -509.0
+    y: 121.0
+    z: 322.0
+  3:
+    world: "partygames"
+    x: -513.0
+    y: 121.0
+    z: 322.0
+
+scoreboard:
+  - "&7%date%"
+  - " "
+  - "Game: "
+  - "&a%game%"
+  - "  "
+  - "Current Wave: &a%wave%"
+  - "Players Left: &a%playersleft%"
+  - "Elapsed Time: &a%elapsedtime%"
+  - "   "
+  - "    "
+  - "     "
+  - "Games: &a%currentgameid%/%amountofgames%"
+  - "Stars: &a%stars%&e✯"
+  - "       "
+  - "&ewww.lielamar.com"
+
+parameters:
+  max_distance_from_middle: 30.0
+  bomb_type: "COAL_BLOCK"

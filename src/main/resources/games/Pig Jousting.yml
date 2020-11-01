@@ -1,0 +1,252 @@
+middle:
+  world: "partygames"
+  x: 2500.5
+  y: 100
+  z: -2500.5
+  yaw: 0
+  pitch: 0
+
+locations:
+  0:
+    world: "partygames"
+    x: 2482.5
+    y: 100.0
+    z: -2509.5
+    yaw: -90
+    pitch: 0
+  1:
+    world: "partygames"
+    x: 2482.5
+    y: 100.0
+    z: -2500.5
+    yaw: -90
+    pitch: 0
+  2:
+    world: "partygames"
+    x: 2482.5
+    y: 100.0
+    z: -2491.5
+    yaw: -90
+    pitch: 0
+  3:
+    world: "partygames"
+    x: 2491.5
+    y: 100.0
+    z: -2482.5
+    yaw: 180
+    pitch: 0
+  4:
+    world: "partygames"
+    x: 2500.5
+    y: 100.0
+    z: -2482.5
+    yaw: 180
+    pitch: 0
+  5:
+    world: "partygames"
+    x: 2509.5
+    y: 100.0
+    z: -2482.5
+    yaw: 180
+    pitch: 0
+  6:
+    world: "partygames"
+    x: 2518.5
+    y: 100.0
+    z: -2491.5
+    yaw: 90
+    pitch: 0
+  7:
+    world: "partygames"
+    x: 2518.5
+    y: 100.0
+    z: -2500.5
+    yaw: 90
+    pitch: 0
+  8:
+    world: "partygames"
+    x: 2518.5
+    y: 100.0
+    z: -2509.5
+    yaw: 90
+    pitch: 0
+  9:
+    world: "partygames"
+    x: 2509.5
+    y: 100.0
+    z: -2518.5
+    yaw: 0
+    pitch: 0
+  10:
+    world: "partygames"
+    x: 2500.5
+    y: 100.0
+    z: -2518.5
+    yaw: 0
+    pitch: 0
+  11:
+    world: "partygames"
+    x: 2491.5
+    y: 100.0
+    z: -2518.5
+    yaw: 0
+    pitch: 0
+
+fences:
+  0:
+    start:
+      world: "partygames"
+      x: 2489.0
+      y: 100.0
+      z: -2517.0
+    end:
+      world: "partygames"
+      x: 2493.0
+      y: 100.0
+      z: -2517.0
+  1:
+    start:
+      world: "partygames"
+      x: 2498.0
+      y: 100.0
+      z: -2517.0
+    end:
+      world: "partygames"
+      x: 2502.0
+      y: 100.0
+      z: -2517.0
+  2:
+    start:
+      world: "partygames"
+      x: 2507.0
+      y: 100.0
+      z: -2517.0
+    end:
+      world: "partygames"
+      x: 2511.0
+      y: 100.0
+      z: -2517.0
+  3:
+    start:
+      world: "partygames"
+      x: 2516.0
+      y: 100.0
+      z: -2512.0
+    end:
+      world: "partygames"
+      x: 2516.0
+      y: 100.0
+      z: -2508.0
+  4:
+    start:
+      world: "partygames"
+      x: 2516.0
+      y: 100.0
+      z: -2503.0
+    end:
+      world: "partygames"
+      x: 2516.0
+      y: 100.0
+      z: -2499.0
+  5:
+    start:
+      world: "partygames"
+      x: 2516.0
+      y: 100.0
+      z: -2494.0
+    end:
+      world: "partygames"
+      x: 2516.0
+      y: 100.0
+      z: -2490.0
+  6:
+    start:
+      world: "partygames"
+      x: 2511.0
+      y: 100.0
+      z: -2485.0
+    end:
+      world: "partygames"
+      x: 2507.0
+      y: 100.0
+      z: -2485.0
+  7:
+    start:
+      world: "partygames"
+      x: 2502.0
+      y: 100.0
+      z: -2485.0
+    end:
+      world: "partygames"
+      x: 2498.0
+      y: 100.0
+      z: -2485.0
+  8:
+    start:
+      world: "partygames"
+      x: 2493.0
+      y: 100.0
+      z: -2485.0
+    end:
+      world: "partygames"
+      x: 2489.0
+      y: 100.0
+      z: -2485.0
+  9:
+    start:
+      world: "partygames"
+      x: 2484.0
+      y: 100.0
+      z: -2490.0
+    end:
+      world: "partygames"
+      x: 2484.0
+      y: 100.0
+      z: -2494.0
+  10:
+    start:
+      world: "partygames"
+      x: 2484.0
+      y: 100.0
+      z: -2499.0
+    end:
+      world: "partygames"
+      x: 2484.0
+      y: 100.0
+      z: -2503.0
+  11:
+    start:
+      world: "partygames"
+      x: 2484.0
+      y: 100.0
+      z: -2508.0
+    end:
+      world: "partygames"
+      x: 2484.0
+      y: 100.0
+      z: -2512.0
+
+scoreboard:
+  - "&7%date%"
+  - " "
+  - "Game: "
+  - "&a%game%"
+  - "  "
+  - "%gamefirst%"
+  - "%gamesecond%"
+  - "%gamethird%"
+  - "%threedots%"
+  - "%gameplayer%"
+  - "   "
+  - "Games: &a%currentgameid%/%amountofgames%"
+  - "Stars: &a%stars%&e✯"
+  - "     "
+  - "&ewww.lielamar.com"
+
+parameters:
+  constant_movement: false
+  helmet: "IRON_HELMET"
+  chestplate: "IRON_CHESTPLATE"
+  leggings: "IRON_LEGGINGS"
+  boots: "IRON_BOOTS"
+  sword: "IRON_SWORD"

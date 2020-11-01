@@ -1,0 +1,2042 @@
+middle:
+  world: "partygames"
+  x: 4000.5
+  y: 100.5
+  z: 4000.5
+  yaw: 0
+  pitch: 0
+
+locations:
+  0:
+    world: "partygames"
+    x: 4018.5
+    y: 101.0
+    z: 3944.5
+    yaw: -90
+    pitch: 0
+  1:
+    world: "partygames"
+    x: 4018.5
+    y: 101.0
+    z: 3968.5
+    yaw: -90
+    pitch: 0
+  2:
+    world: "partygames"
+    x: 4018.5
+    y: 101.0
+    z: 3992.5
+    yaw: -90
+    pitch: 0
+  3:
+    world: "partygames"
+    x: 4018.5
+    y: 101.0
+    z: 4016.5
+    yaw: -90
+    pitch: 0
+  4:
+    world: "partygames"
+    x: 4018.5
+    y: 101.0
+    z: 4040.5
+    yaw: -90
+    pitch: 0
+  5:
+    world: "partygames"
+    x: 4018.5
+    y: 101.0
+    z: 4064.5
+    yaw: -90
+    pitch: 0
+  6:
+    world: "partygames"
+    x: 3982.5
+    y: 101.0
+    z: 4064.5
+    yaw: 90
+    pitch: 0
+  7:
+    world: "partygames"
+    x: 3982.5
+    y: 101.0
+    z: 4032.5
+    yaw: 90
+    pitch: 0
+
+workshops:
+  0:
+    recipeStart:
+      world: "partygames"
+      x: 4020.0
+      y: 103.0
+      z: 3939.0
+    recipeEnd:
+      world: "partygames"
+      x: 4020.0
+      y: 101.0
+      z: 3941.0
+    recipeProduct:
+      world: "partygames"
+      x: 4020.0
+      y: 100.0
+      z: 3940.0
+    npc:
+      world: "partygames"
+      x: 4023.5
+      y: 100.0
+      z: 3944.5
+      yaw: 90
+      pitch: 0
+    materials:
+      0:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 103.0
+          z: 3932.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 103.0
+          z: 3932.0
+      1:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 101.0
+          z: 3932.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 101.0
+          z: 3932.0
+      2:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 103.0
+          z: 3932.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 103.0
+          z: 3932.0
+      3:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 101.0
+          z: 3932.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 101.0
+          z: 3932.0
+      4:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 103.0
+          z: 3948.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 103.0
+          z: 3948.0
+      5:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 101.0
+          z: 3948.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 101.0
+          z: 3948.0
+      6:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 103.0
+          z: 3948.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 103.0
+          z: 3948.0
+      7:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 101.0
+          z: 3948.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 101.0
+          z: 3948.0
+      8:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 109.0
+          z: 3932.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 109.0
+          z: 3932.0
+      9:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 107.0
+          z: 3932.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 107.0
+          z: 3932.0
+      10:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 109.0
+          z: 3932.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 109.0
+          z: 3932.0
+      11:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 107.0
+          z: 3932.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 107.0
+          z: 3932.0
+      12:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 109.0
+          z: 3948.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 109.0
+          z: 3948.0
+      13:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 107.0
+          z: 3948.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 107.0
+          z: 3948.0
+      14:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 109.0
+          z: 3948.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 109.0
+          z: 3948.0
+      15:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 107.0
+          z: 3948.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 107.0
+          z: 3948.0
+      16:
+        start:
+          world: "partygames"
+          x: 4021.0
+          y: 109.0
+          z: 3946.0
+        end:
+          world: "partygames"
+          x: 4021.0
+          y: 109.0
+          z: 3942.0
+      17:
+        start:
+          world: "partygames"
+          x: 4021.0
+          y: 107.0
+          z: 3946.0
+        end:
+          world: "partygames"
+          x: 4021.0
+          y: 107.0
+          z: 3942.0
+      18:
+        start:
+          world: "partygames"
+          x: 4021.0
+          y: 109.0
+          z: 3938.0
+        end:
+          world: "partygames"
+          x: 4021.0
+          y: 109.0
+          z: 3934.0
+      19:
+        start:
+          world: "partygames"
+          x: 4021.0
+          y: 107.0
+          z: 3938.0
+        end:
+          world: "partygames"
+          x: 4021.0
+          y: 107.0
+          z: 3934.0
+  1:
+    recipeStart:
+      world: "partygames"
+      x: 4020.0
+      y: 103.0
+      z: 3963.0
+    recipeEnd:
+      world: "partygames"
+      x: 4020.0
+      y: 101.0
+      z: 3965.0
+    recipeProduct:
+      world: "partygames"
+      x: 4020.0
+      y: 100.0
+      z: 3964.0
+    npc:
+      world: "partygames"
+      x: 4023.5
+      y: 100.0
+      z: 3968.5
+      yaw: 90
+      pitch: 0
+    materials:
+      0:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 103.0
+          z: 3956.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 103.0
+          z: 3956.0
+      1:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 101.0
+          z: 3956.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 101.0
+          z: 3956.0
+      2:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 103.0
+          z: 3956.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 103.0
+          z: 3956.0
+      3:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 101.0
+          z: 3956.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 101.0
+          z: 3956.0
+      4:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 103.0
+          z: 3972.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 103.0
+          z: 3972.0
+      5:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 101.0
+          z: 3972.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 101.0
+          z: 3972.0
+      6:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 103.0
+          z: 3972.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 103.0
+          z: 3972.0
+      7:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 101.0
+          z: 3972.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 101.0
+          z: 3972.0
+      8:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 109.0
+          z: 3956.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 109.0
+          z: 3956.0
+      9:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 107.0
+          z: 3956.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 107.0
+          z: 3956.0
+      10:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 109.0
+          z: 3956.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 109.0
+          z: 3956.0
+      11:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 107.0
+          z: 3956.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 107.0
+          z: 3956.0
+      12:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 109.0
+          z: 3972.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 109.0
+          z: 3972.0
+      13:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 107.0
+          z: 3972.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 107.0
+          z: 3972.0
+      14:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 109.0
+          z: 3972.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 109.0
+          z: 3972.0
+      15:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 107.0
+          z: 3972.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 107.0
+          z: 3972.0
+      16:
+        start:
+          world: "partygames"
+          x: 4021.0
+          y: 109.0
+          z: 3970.0
+        end:
+          world: "partygames"
+          x: 4021.0
+          y: 109.0
+          z: 3966.0
+      17:
+        start:
+          world: "partygames"
+          x: 4021.0
+          y: 107.0
+          z: 3970.0
+        end:
+          world: "partygames"
+          x: 4021.0
+          y: 107.0
+          z: 3966.0
+      18:
+        start:
+          world: "partygames"
+          x: 4021.0
+          y: 109.0
+          z: 3962.0
+        end:
+          world: "partygames"
+          x: 4021.0
+          y: 109.0
+          z: 3958.0
+      19:
+        start:
+          world: "partygames"
+          x: 4021.0
+          y: 107.0
+          z: 3962.0
+        end:
+          world: "partygames"
+          x: 4021.0
+          y: 107.0
+          z: 3958.0
+  2:
+    recipeStart:
+      world: "partygames"
+      x: 4020.0
+      y: 103.0
+      z: 3987.0
+    recipeEnd:
+      world: "partygames"
+      x: 4020.0
+      y: 101.0
+      z: 3989.0
+    recipeProduct:
+      world: "partygames"
+      x: 4020.0
+      y: 100.0
+      z: 3988.0
+    npc:
+      world: "partygames"
+      x: 4023.5
+      y: 100.0
+      z: 3992.5
+      yaw: 90
+      pitch: 0
+    materials:
+      0:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 103.0
+          z: 3980.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 103.0
+          z: 3980.0
+      1:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 101.0
+          z: 3980.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 101.0
+          z: 3980.0
+      2:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 103.0
+          z: 3980.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 103.0
+          z: 3980.0
+      3:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 101.0
+          z: 3980.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 101.0
+          z: 3980.0
+      4:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 103.0
+          z: 3996.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 103.0
+          z: 3996.0
+      5:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 101.0
+          z: 3996.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 101.0
+          z: 3996.0
+      6:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 103.0
+          z: 3996.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 103.0
+          z: 3996.0
+      7:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 101.0
+          z: 3996.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 101.0
+          z: 3996.0
+      8:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 109.0
+          z: 3980.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 109.0
+          z: 3980.0
+      9:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 107.0
+          z: 3980.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 107.0
+          z: 3980.0
+      10:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 109.0
+          z: 3980.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 109.0
+          z: 3980.0
+      11:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 107.0
+          z: 3980.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 107.0
+          z: 3980.0
+      12:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 109.0
+          z: 3996.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 109.0
+          z: 3996.0
+      13:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 107.0
+          z: 3996.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 107.0
+          z: 3996.0
+      14:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 109.0
+          z: 3996.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 109.0
+          z: 3996.0
+      15:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 107.0
+          z: 3996.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 107.0
+          z: 3996.0
+      16:
+        start:
+          world: "partygames"
+          x: 4021.0
+          y: 109.0
+          z: 3994.0
+        end:
+          world: "partygames"
+          x: 4021.0
+          y: 109.0
+          z: 3990.0
+      17:
+        start:
+          world: "partygames"
+          x: 4021.0
+          y: 107.0
+          z: 3994.0
+        end:
+          world: "partygames"
+          x: 4021.0
+          y: 107.0
+          z: 3990.0
+      18:
+        start:
+          world: "partygames"
+          x: 4021.0
+          y: 109.0
+          z: 3986.0
+        end:
+          world: "partygames"
+          x: 4021.0
+          y: 109.0
+          z: 3982.0
+      19:
+        start:
+          world: "partygames"
+          x: 4021.0
+          y: 107.0
+          z: 3986.0
+        end:
+          world: "partygames"
+          x: 4021.0
+          y: 107.0
+          z: 3982.0
+  3:
+    recipeStart:
+      world: "partygames"
+      x: 4020.0
+      y: 103.0
+      z: 4011.0
+    recipeEnd:
+      world: "partygames"
+      x: 4020.0
+      y: 101.0
+      z: 4013.0
+    recipeProduct:
+      world: "partygames"
+      x: 4020.0
+      y: 100.0
+      z: 4012.0
+    npc:
+      world: "partygames"
+      x: 4023.5
+      y: 100.0
+      z: 4016.5
+      yaw: 90
+      pitch: 0
+    materials:
+      0:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 103.0
+          z: 4004.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 103.0
+          z: 4004.0
+      1:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 101.0
+          z: 4004.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 101.0
+          z: 4004.0
+      2:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 103.0
+          z: 4004.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 103.0
+          z: 4004.0
+      3:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 101.0
+          z: 4004.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 101.0
+          z: 4004.0
+      4:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 103.0
+          z: 4020.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 103.0
+          z: 4020.0
+      5:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 101.0
+          z: 4020.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 101.0
+          z: 4020.0
+      6:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 103.0
+          z: 4020.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 103.0
+          z: 4020.0
+      7:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 101.0
+          z: 4020.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 101.0
+          z: 4020.0
+      8:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 109.0
+          z: 4004.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 109.0
+          z: 4004.0
+      9:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 107.0
+          z: 4004.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 107.0
+          z: 4004.0
+      10:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 109.0
+          z: 4004.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 109.0
+          z: 4004.0
+      11:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 107.0
+          z: 4004.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 107.0
+          z: 4004.0
+      12:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 109.0
+          z: 4020.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 109.0
+          z: 4020.0
+      13:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 107.0
+          z: 4020.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 107.0
+          z: 4020.0
+      14:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 109.0
+          z: 4020.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 109.0
+          z: 4020.0
+      15:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 107.0
+          z: 4020.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 107.0
+          z: 4020.0
+      16:
+        start:
+          world: "partygames"
+          x: 4021.0
+          y: 109.0
+          z: 4018.0
+        end:
+          world: "partygames"
+          x: 4021.0
+          y: 109.0
+          z: 4014.0
+      17:
+        start:
+          world: "partygames"
+          x: 4021.0
+          y: 107.0
+          z: 4018.0
+        end:
+          world: "partygames"
+          x: 4021.0
+          y: 107.0
+          z: 4014.0
+      18:
+        start:
+          world: "partygames"
+          x: 4021.0
+          y: 109.0
+          z: 4010.0
+        end:
+          world: "partygames"
+          x: 4021.0
+          y: 109.0
+          z: 4006.0
+      19:
+        start:
+          world: "partygames"
+          x: 4021.0
+          y: 107.0
+          z: 4010.0
+        end:
+          world: "partygames"
+          x: 4021.0
+          y: 107.0
+          z: 4006.0
+  4:
+    recipeStart:
+      world: "partygames"
+      x: 4020.0
+      y: 103.0
+      z: 4035.0
+    recipeEnd:
+      world: "partygames"
+      x: 4020.0
+      y: 101.0
+      z: 4037.0
+    recipeProduct:
+      world: "partygames"
+      x: 4020.0
+      y: 100.0
+      z: 4036.0
+    npc:
+      world: "partygames"
+      x: 4023.5
+      y: 100.0
+      z: 4040.5
+      yaw: 90
+      pitch: 0
+    materials:
+      0:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 103.0
+          z: 4028.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 103.0
+          z: 4028.0
+      1:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 101.0
+          z: 4028.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 101.0
+          z: 4028.0
+      2:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 103.0
+          z: 4028.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 103.0
+          z: 4028.0
+      3:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 101.0
+          z: 4028.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 101.0
+          z: 4028.0
+      4:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 103.0
+          z: 4044.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 103.0
+          z: 4044.0
+      5:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 101.0
+          z: 4044.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 101.0
+          z: 4044.0
+      6:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 103.0
+          z: 4044.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 103.0
+          z: 4044.0
+      7:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 101.0
+          z: 4044.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 101.0
+          z: 4044.0
+      8:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 109.0
+          z: 4028.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 109.0
+          z: 4028.0
+      9:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 107.0
+          z: 4028.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 107.0
+          z: 4028.0
+      10:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 109.0
+          z: 4028.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 109.0
+          z: 4028.0
+      11:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 107.0
+          z: 4028.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 107.0
+          z: 4028.0
+      12:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 109.0
+          z: 4044.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 109.0
+          z: 4044.0
+      13:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 107.0
+          z: 4044.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 107.0
+          z: 4044.0
+      14:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 109.0
+          z: 4044.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 109.0
+          z: 4044.0
+      15:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 107.0
+          z: 4044.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 107.0
+          z: 4044.0
+      16:
+        start:
+          world: "partygames"
+          x: 4021.0
+          y: 109.0
+          z: 4042.0
+        end:
+          world: "partygames"
+          x: 4021.0
+          y: 109.0
+          z: 4038.0
+      17:
+        start:
+          world: "partygames"
+          x: 4021.0
+          y: 107.0
+          z: 4042.0
+        end:
+          world: "partygames"
+          x: 4021.0
+          y: 107.0
+          z: 4038.0
+      18:
+        start:
+          world: "partygames"
+          x: 4021.0
+          y: 109.0
+          z: 4034.0
+        end:
+          world: "partygames"
+          x: 4021.0
+          y: 109.0
+          z: 4030.0
+      19:
+        start:
+          world: "partygames"
+          x: 4021.0
+          y: 107.0
+          z: 4034.0
+        end:
+          world: "partygames"
+          x: 4021.0
+          y: 107.0
+          z: 4030.0
+  5:
+    recipeStart:
+      world: "partygames"
+      x: 4020.0
+      y: 103.0
+      z: 4059.0
+    recipeEnd:
+      world: "partygames"
+      x: 4020.0
+      y: 101.0
+      z: 4061.0
+    recipeProduct:
+      world: "partygames"
+      x: 4020.0
+      y: 100.0
+      z: 4060.0
+    npc:
+      world: "partygames"
+      x: 4023.5
+      y: 100.0
+      z: 4064.5
+      yaw: 90
+      pitch: 0
+    materials:
+      0:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 103.0
+          z: 4052.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 103.0
+          z: 4052.0
+      1:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 101.0
+          z: 4052.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 101.0
+          z: 4052.0
+      2:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 103.0
+          z: 4052.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 103.0
+          z: 4052.0
+      3:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 101.0
+          z: 4052.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 101.0
+          z: 4052.0
+      4:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 103.0
+          z: 4068.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 103.0
+          z: 4068.0
+      5:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 101.0
+          z: 4068.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 101.0
+          z: 4068.0
+      6:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 103.0
+          z: 4068.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 103.0
+          z: 4068.0
+      7:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 101.0
+          z: 4068.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 101.0
+          z: 4068.0
+      8:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 109.0
+          z: 4052.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 109.0
+          z: 4052.0
+      9:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 107.0
+          z: 4052.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 107.0
+          z: 4052.0
+      10:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 109.0
+          z: 4052.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 109.0
+          z: 4052.0
+      11:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 107.0
+          z: 4052.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 107.0
+          z: 4052.0
+      12:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 109.0
+          z: 4068.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 109.0
+          z: 4068.0
+      13:
+        start:
+          world: "partygames"
+          x: 4019.0
+          y: 107.0
+          z: 4068.0
+        end:
+          world: "partygames"
+          x: 4015.0
+          y: 107.0
+          z: 4068.0
+      14:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 109.0
+          z: 4068.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 109.0
+          z: 4068.0
+      15:
+        start:
+          world: "partygames"
+          x: 4011.0
+          y: 107.0
+          z: 4068.0
+        end:
+          world: "partygames"
+          x: 4007.0
+          y: 107.0
+          z: 4068.0
+      16:
+        start:
+          world: "partygames"
+          x: 4021.0
+          y: 109.0
+          z: 4066.0
+        end:
+          world: "partygames"
+          x: 4021.0
+          y: 109.0
+          z: 4062.0
+      17:
+        start:
+          world: "partygames"
+          x: 4021.0
+          y: 107.0
+          z: 4066.0
+        end:
+          world: "partygames"
+          x: 4021.0
+          y: 107.0
+          z: 4062.0
+      18:
+        start:
+          world: "partygames"
+          x: 4021.0
+          y: 109.0
+          z: 4058.0
+        end:
+          world: "partygames"
+          x: 4021.0
+          y: 109.0
+          z: 4054.0
+      19:
+        start:
+          world: "partygames"
+          x: 4021.0
+          y: 107.0
+          z: 4058.0
+        end:
+          world: "partygames"
+          x: 4021.0
+          y: 107.0
+          z: 4054.0
+  6:
+    recipeStart:
+      world: "partygames"
+      x: 3980.0
+      y: 103.0
+      z: 4059.0
+    recipeEnd:
+      world: "partygames"
+      x: 3980.0
+      y: 101.0
+      z: 4061.0
+    recipeProduct:
+      world: "partygames"
+      x: 3980.0
+      y: 100.0
+      z: 4060.0
+    npc:
+      world: "partygames"
+      x: 3977.5
+      y: 100.0
+      z: 4064.5
+      yaw: -90
+      pitch: 0
+    materials:
+      0:
+        start:
+          world: "partygames"
+          x: 3993.0
+          y: 103.0
+          z: 4052.0
+        end:
+          world: "partygames"
+          x: 3989.0
+          y: 103.0
+          z: 4052.0
+      1:
+        start:
+          world: "partygames"
+          x: 3993.0
+          y: 101.0
+          z: 4052.0
+        end:
+          world: "partygames"
+          x: 3989.0
+          y: 101.0
+          z: 4052.0
+      2:
+        start:
+          world: "partygames"
+          x: 3985.0
+          y: 103.0
+          z: 4052.0
+        end:
+          world: "partygames"
+          x: 3981.0
+          y: 103.0
+          z: 4052.0
+      3:
+        start:
+          world: "partygames"
+          x: 3985.0
+          y: 101.0
+          z: 4052.0
+        end:
+          world: "partygames"
+          x: 3981.0
+          y: 101.0
+          z: 4052.0
+      4:
+        start:
+          world: "partygames"
+          x: 3993.0
+          y: 103.0
+          z: 4068.0
+        end:
+          world: "partygames"
+          x: 3989.0
+          y: 103.0
+          z: 4068.0
+      5:
+        start:
+          world: "partygames"
+          x: 3993.0
+          y: 101.0
+          z: 4068.0
+        end:
+          world: "partygames"
+          x: 3989.0
+          y: 101.0
+          z: 4068.0
+      6:
+        start:
+          world: "partygames"
+          x: 3985.0
+          y: 103.0
+          z: 4068.0
+        end:
+          world: "partygames"
+          x: 3981.0
+          y: 103.0
+          z: 4068.0
+      7:
+        start:
+          world: "partygames"
+          x: 3985.0
+          y: 101.0
+          z: 4068.0
+        end:
+          world: "partygames"
+          x: 3981.0
+          y: 101.0
+          z: 4068.0
+      8:
+        start:
+          world: "partygames"
+          x: 3993.0
+          y: 109.0
+          z: 4052.0
+        end:
+          world: "partygames"
+          x: 3989.0
+          y: 109.0
+          z: 4052.0
+      9:
+        start:
+          world: "partygames"
+          x: 3993.0
+          y: 107.0
+          z: 4052.0
+        end:
+          world: "partygames"
+          x: 3989.0
+          y: 107.0
+          z: 4052.0
+      10:
+        start:
+          world: "partygames"
+          x: 3985.0
+          y: 109.0
+          z: 4052.0
+        end:
+          world: "partygames"
+          x: 3981.0
+          y: 109.0
+          z: 4052.0
+      11:
+        start:
+          world: "partygames"
+          x: 3985.0
+          y: 107.0
+          z: 4052.0
+        end:
+          world: "partygames"
+          x: 3981.0
+          y: 107.0
+          z: 4052.0
+      12:
+        start:
+          world: "partygames"
+          x: 3993.0
+          y: 109.0
+          z: 4068.0
+        end:
+          world: "partygames"
+          x: 3989.0
+          y: 109.0
+          z: 4068.0
+      13:
+        start:
+          world: "partygames"
+          x: 3993.0
+          y: 107.0
+          z: 4068.0
+        end:
+          world: "partygames"
+          x: 3989.0
+          y: 107.0
+          z: 4068.0
+      14:
+        start:
+          world: "partygames"
+          x: 3985.0
+          y: 109.0
+          z: 4068.0
+        end:
+          world: "partygames"
+          x: 3981.0
+          y: 109.0
+          z: 4068.0
+      15:
+        start:
+          world: "partygames"
+          x: 3985.0
+          y: 107.0
+          z: 4068.0
+        end:
+          world: "partygames"
+          x: 3981.0
+          y: 107.0
+          z: 4068.0
+      16:
+        start:
+          world: "partygames"
+          x: 3979.0
+          y: 109.0
+          z: 4066.0
+        end:
+          world: "partygames"
+          x: 3979.0
+          y: 109.0
+          z: 4062.0
+      17:
+        start:
+          world: "partygames"
+          x: 3979.0
+          y: 107.0
+          z: 4066.0
+        end:
+          world: "partygames"
+          x: 3979.0
+          y: 107.0
+          z: 4062.0
+      18:
+        start:
+          world: "partygames"
+          x: 3979.0
+          y: 109.0
+          z: 4058.0
+        end:
+          world: "partygames"
+          x: 3979.0
+          y: 109.0
+          z: 4054.0
+      19:
+        start:
+          world: "partygames"
+          x: 3979.0
+          y: 107.0
+          z: 4058.0
+        end:
+          world: "partygames"
+          x: 3979.0
+          y: 107.0
+          z: 4054.0
+  7:
+    recipeStart:
+      world: "partygames"
+      x: 3980.0
+      y: 103.0
+      z: 3037.0
+    recipeEnd:
+      world: "partygames"
+      x: 3980.0
+      y: 101.0
+      z: 3035.0
+    recipeProduct:
+      world: "partygames"
+      x: 3980.0
+      y: 100.0
+      z: 3036.0
+    npc:
+      world: "partygames"
+      x: 3977.5
+      y: 100.0
+      z: 4032.5
+      yaw: -90
+      pitch: 0
+    materials:
+      0:
+        start:
+          world: "partygames"
+          x: 3993.0
+          y: 103.0
+          z: 4044.0
+        end:
+          world: "partygames"
+          x: 3989.0
+          y: 103.0
+          z: 4044.0
+      1:
+        start:
+          world: "partygames"
+          x: 3993.0
+          y: 101.0
+          z: 4044.0
+        end:
+          world: "partygames"
+          x: 3989.0
+          y: 101.0
+          z: 4044.0
+      2:
+        start:
+          world: "partygames"
+          x: 3985.0
+          y: 103.0
+          z: 4044.0
+        end:
+          world: "partygames"
+          x: 3981.0
+          y: 103.0
+          z: 4044.0
+      3:
+        start:
+          world: "partygames"
+          x: 3985.0
+          y: 101.0
+          z: 4044.0
+        end:
+          world: "partygames"
+          x: 3981.0
+          y: 101.0
+          z: 4044.0
+      4:
+        start:
+          world: "partygames"
+          x: 3993.0
+          y: 103.0
+          z: 4028.0
+        end:
+          world: "partygames"
+          x: 3989.0
+          y: 103.0
+          z: 4028.0
+      5:
+        start:
+          world: "partygames"
+          x: 3993.0
+          y: 101.0
+          z: 4028.0
+        end:
+          world: "partygames"
+          x: 3989.0
+          y: 101.0
+          z: 4028.0
+      6:
+        start:
+          world: "partygames"
+          x: 3985.0
+          y: 103.0
+          z: 4028.0
+        end:
+          world: "partygames"
+          x: 3981.0
+          y: 103.0
+          z: 4028.0
+      7:
+        start:
+          world: "partygames"
+          x: 3985.0
+          y: 101.0
+          z: 4028.0
+        end:
+          world: "partygames"
+          x: 3981.0
+          y: 101.0
+          z: 4028.0
+      8:
+        start:
+          world: "partygames"
+          x: 3993.0
+          y: 109.0
+          z: 4044.0
+        end:
+          world: "partygames"
+          x: 3989.0
+          y: 109.0
+          z: 4044.0
+      9:
+        start:
+          world: "partygames"
+          x: 3993.0
+          y: 107.0
+          z: 4044.0
+        end:
+          world: "partygames"
+          x: 3989.0
+          y: 107.0
+          z: 4044.0
+      10:
+        start:
+          world: "partygames"
+          x: 3985.0
+          y: 109.0
+          z: 4044.0
+        end:
+          world: "partygames"
+          x: 3981.0
+          y: 109.0
+          z: 4044.0
+      11:
+        start:
+          world: "partygames"
+          x: 3985.0
+          y: 107.0
+          z: 4044.0
+        end:
+          world: "partygames"
+          x: 3981.0
+          y: 107.0
+          z: 4044.0
+      12:
+        start:
+          world: "partygames"
+          x: 3993.0
+          y: 109.0
+          z: 4028.0
+        end:
+          world: "partygames"
+          x: 3989.0
+          y: 109.0
+          z: 4028.0
+      13:
+        start:
+          world: "partygames"
+          x: 3993.0
+          y: 107.0
+          z: 4028.0
+        end:
+          world: "partygames"
+          x: 3989.0
+          y: 107.0
+          z: 4028.0
+      14:
+        start:
+          world: "partygames"
+          x: 3985.0
+          y: 109.0
+          z: 4028.0
+        end:
+          world: "partygames"
+          x: 3981.0
+          y: 109.0
+          z: 4028.0
+      15:
+        start:
+          world: "partygames"
+          x: 3985.0
+          y: 107.0
+          z: 4028.0
+        end:
+          world: "partygames"
+          x: 3981.0
+          y: 107.0
+          z: 4028.0
+      16:
+        start:
+          world: "partygames"
+          x: 3979.0
+          y: 109.0
+          z: 4030.0
+        end:
+          world: "partygames"
+          x: 3979.0
+          y: 109.0
+          z: 4034.0
+      17:
+        start:
+          world: "partygames"
+          x: 3979.0
+          y: 107.0
+          z: 4030.0
+        end:
+          world: "partygames"
+          x: 3979.0
+          y: 107.0
+          z: 4034.0
+      18:
+        start:
+          world: "partygames"
+          x: 3979.0
+          y: 109.0
+          z: 4038.0
+        end:
+          world: "partygames"
+          x: 3979.0
+          y: 109.0
+          z: 4042.0
+      19:
+        start:
+          world: "partygames"
+          x: 3979.0
+          y: 107.0
+          z: 4038.0
+        end:
+          world: "partygames"
+          x: 3979.0
+          y: 107.0
+          z: 4042.0
+
+scoreboard:
+  - "&7%date%"
+  - " "
+  - "Game: "
+  - "&a%game%"
+  - "  "
+  - "%minigamefirst%"
+  - "%minigamesecond%"
+  - "%minigamethird%"
+  - "%threedots%"
+  - "%minigameplayer%"
+  - "   "
+  - "Games: &a%currentgameid%/%amountofgames%"
+  - "Stars: &a%stars%&e✯"
+  - "     "
+  - "&ewww.lielamar.com"
+
+parameters:
+  villager_prefix: "&6Foreman Foreman: "
+  villager_happy_message: "&ePerfect! That's just what I needed!"
+  villager_request_message: "&eOk, so I need you to craft me a &b%s&e!"
+  items_to_craft: 5

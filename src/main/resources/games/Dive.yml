@@ -1,0 +1,94 @@
+middle:
+  world: "partygames"
+  x: -1000.5
+  y: 25
+  z: -1000.5
+  yaw: -90
+  pitch: 0
+
+locations:
+  0:
+    world: "partygames"
+    x: -989.5
+    y: 100
+    z: -989.5
+    yaw: 135
+    pitch: 0
+  1:
+    world: "partygames"
+    x: -1000.5
+    y: 100
+    z: -986.5
+    yaw: 180
+    pitch: 0
+  2:
+    world: "partygames"
+    x: -1011.5
+    y: 100
+    z: -989.5
+    yaw: -135
+    pitch: 0
+  3:
+    world: "partygames"
+    x: -1014.5
+    y: 100
+    z: -1000.5
+    yaw: -90
+    pitch: 0
+  4:
+    world: "partygames"
+    x: -1011.5
+    y: 100
+    z: -1011.5
+    yaw: -45
+    pitch: 0
+  5:
+    world: "partygames"
+    x: -1000.5
+    y: 100
+    z: -1014.5
+    yaw: 0
+    pitch: 0
+  6:
+    world: "partygames"
+    x: -989.5
+    y: 100
+    z: -1011.5
+    yaw: 45
+    pitch: 0
+  7:
+    world: "partygames"
+    x: -986.5
+    y: 100
+    z: -1000.5
+    yaw: 90
+    pitch: 0
+
+scoreboard:
+  - "&7%date%"
+  - " "
+  - "Game: "
+  - "&a%game%"
+  - "  "
+  - "%minigamefirst%"
+  - "%minigamesecond%"
+  - "%minigamethird%"
+  - "%threedots%"
+  - "%minigameplayer%"
+  - "   "
+  - "Games: &a%currentgameid%/%amountofgames%"
+  - "Stars: &a%stars%&e✯"
+  - "     "
+  - "&ewww.lielamar.com"
+
+parameters:
+  minimumY: 15.0
+  wool_colors:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 11
+    - 14

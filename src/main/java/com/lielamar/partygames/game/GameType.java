@@ -1,0 +1,32 @@
+package com.lielamar.partygames.game;
+
+public enum GameType {
+
+    ANIMAL_SLAUGHTER,
+    ANVIL_SPLEEF,
+    AVALANCHE,
+    BOMBARDMENT,
+    CANNON_PAINTERS,
+    CHICKEN_RINGS,
+    DIVE,
+    FIRE_LEAPERS,
+    FROZEN_FLOOR,
+    HIGH_GROUND,
+    HOE_HOE_HOE,
+    JIGSAW_RUSH,
+    JUNGLE_JUMP,
+    LAB_ESCAPE,
+    LAWN_MOOWER,
+    MINECART_RACING,
+    PIG_FISHING,
+    PIG_JOUSTING,
+    RPG_16,
+    SHOOTING_RANGE,
+    SPIDER_MAZE,
+    SUPER_SHEEP,
+    THE_FLOOR_IS_LAVA,
+    TRAMPOLINIO,
+    VOLCANO,
+    WORKSHOP
+
+}

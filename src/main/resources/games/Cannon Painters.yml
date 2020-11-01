@@ -1,0 +1,37 @@
+middle:
+  world: "partygames"
+  x: 500.5
+  y: 102
+  z: 250.5
+  yaw: -90
+  pitch: 0
+
+scoreboard:
+  - "&7%date%"
+  - " "
+  - "Game: "
+  - "&a%game%"
+  - "  "
+  - "%minigamefirst%"
+  - "%minigamesecond%"
+  - "%minigamethird%"
+  - "%threedots%"
+  - "%minigameplayer%"
+  - "   "
+  - "Games: &a%currentgameid%/%amountofgames%"
+  - "Stars: &a%stars%&e✯"
+  - "     "
+  - "&ewww.lielamar.com"
+
+parameters:
+  axis: 'x'
+  default_wool_color: 4
+  wool_colors:
+    - 1
+    - 2
+    - 3
+    - 5
+    - 6
+    - 9
+    - 11
+    - 14

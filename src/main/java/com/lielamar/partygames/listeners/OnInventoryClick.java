@@ -14,9 +14,9 @@ public class OnInventoryClick implements Listener {
         if(!(e.getWhoClicked() instanceof Player)) return;
         Player p = (Player)e.getWhoClicked();
 
-        if(p.hasPermission("partygames.admin")) return;
-
-        if(e.getClickedInventory() == p.getInventory())
-            e.setCancelled(true);
+        if(e.getClickedInventory() == p.getInventory()) {
+            if(!p.hasPermission("partygames.admin"))
+                e.setCancelled(true);
+        }
     }
 }

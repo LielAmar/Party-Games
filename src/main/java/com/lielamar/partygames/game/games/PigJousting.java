@@ -145,8 +145,8 @@ public class PigJousting extends Minigame implements Listener {
                         cp.getPlayer().setSneaking(false);
 
                     pig.getBukkitEntity().setPassenger(cp.getPlayer());
-                    pig.setCanMove(true);
-                    pig.setConstantMovement(constant_movement);
+                    pig.getControllableEntityHandler().setCanMove(true);
+                    pig.getControllableEntityHandler().setConstantMovement(constant_movement);
 
                     pigs.put(cp.getPlayer().getUniqueId(), pig);
 

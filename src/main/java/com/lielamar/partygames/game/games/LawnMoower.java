@@ -46,8 +46,8 @@ public class LawnMoower extends Minigame implements Listener {
     public void extraStartParameters() {
         for(ControllableCow cow : cows.values()) {
             if(cow != null) {
-                cow.setCanMove(true);
-                cow.setConstantMovement(constant_movement);
+                cow.getControllableEntityHandler().setCanMove(true);
+                cow.getControllableEntityHandler().setConstantMovement(constant_movement);
             }
         }
     }

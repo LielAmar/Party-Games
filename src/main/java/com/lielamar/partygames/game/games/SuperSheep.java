@@ -78,8 +78,8 @@ public class SuperSheep extends Minigame implements Listener {
 
         for(ControllableSheep sheep : sheeps.values()) {
             if(sheep != null) {
-                sheep.setCanMove(true);
-                sheep.setConstantMovement(constant_movement);
+                sheep.getControllableEntityHandler().setCanMove(true);
+                sheep.getControllableEntityHandler().setConstantMovement(constant_movement);
             }
         }
 
@@ -238,8 +238,6 @@ public class SuperSheep extends Minigame implements Listener {
     @SuppressWarnings("deprecation")
     public void updateBlock(Block block, int color) {
         block.setType(Material.STAINED_GLASS_PANE);
-//        block.getState().getData().setData((byte)color);
-//        block.getState().update();
         block.setData((byte)color);
     }
 

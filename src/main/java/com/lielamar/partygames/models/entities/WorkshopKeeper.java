@@ -1,31 +1,26 @@
 package com.lielamar.partygames.models.entities;
 
-import com.packetmanager.lielamar.PacketManager;
-import net.minecraft.server.v1_8_R3.*;
+import com.lielamar.partygames.models.entities.pathfindergoals.PathfinderGoalWrapper;
+import net.minecraft.server.v1_8_R3.DamageSource;
+import net.minecraft.server.v1_8_R3.Entity;
+import net.minecraft.server.v1_8_R3.EntityVillager;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 
-import java.util.List;
-
 public class WorkshopKeeper extends EntityVillager {
 
-    private boolean isCustom;
+    private PathfinderGoalWrapper pathfinderGoalWrapper;
+    private boolean isCustomEntity;
 
     public WorkshopKeeper(World world) {
         super(((CraftWorld)world).getHandle());
+        this.isCustomEntity = true;
 
-        this.isCustom = true;
-
-        setupPathfinderGoals();
-    }
-
-    public WorkshopKeeper(net.minecraft.server.v1_8_R3.World world) {
-        super(world);
-
-        this.isCustom = false;
+        this.pathfinderGoalWrapper = new PathfinderGoalWrapper(this);
+        this.pathfinderGoalWrapper.setupPathfinderGoals(true, null, null);
     }
 
     /**
@@ -36,50 +31,25 @@ public class WorkshopKeeper extends EntityVillager {
      */
     @Override
     public void g(float sideMot, float forMot) {
-        if(isCustom)
+        if(isCustomEntity)
             return;
 
         super.g(sideMot, forMot);
     }
 
-    /**
-     * Entity drop item (egg)
-     *
-     * @param item     Item to drop
-     * @param amount   Amount to drop
-     * @return         Dropped Item
-     */
-    @Override
-    public EntityItem a(Item item, int amount) {
-        return null;
-    }
-
     @Override
     public void collide(Entity entity) {
-        if(!isCustom)
+        if(!isCustomEntity)
             super.collide(entity);
     }
 
     @Override
     public boolean damageEntity(DamageSource damagesource, float f) {
-        if(!isCustom)
+        if(!isCustomEntity)
             return super.damageEntity(damagesource, f);
         return false;
     }
 
-    @Override
-    public void makeSound(String s, float f, float f1) {}
-
-
-    /**
-     * Sets up all PathfinderGoals to make it numb
-     */
-    public void setupPathfinderGoals() {
-        ((List<?>) PacketManager.getPrivateField("b", PathfinderGoalSelector.class, goalSelector)).clear();
-        ((List<?>) PacketManager.getPrivateField("c", PathfinderGoalSelector.class, goalSelector)).clear();
-        ((List<?>) PacketManager.getPrivateField("b", PathfinderGoalSelector.class, targetSelector)).clear();
-        ((List<?>) PacketManager.getPrivateField("c", PathfinderGoalSelector.class, targetSelector)).clear();
-    }
 
     /**
      * Spawns a workshop villager at location

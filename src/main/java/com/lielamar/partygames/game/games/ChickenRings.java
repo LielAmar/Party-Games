@@ -34,7 +34,7 @@ public class ChickenRings extends Minigame implements Listener {
 
     private Map<CustomPlayer, Integer> lastPassedRing;
     private Map<Integer, Ring> rings;
-    private Ring firstRing, lastRing;
+    private Ring lastRing;
 
     public ChickenRings(Game game, GameType gameType, String minigameName, int minigameTime, ScoreboardType scoreboardType) {
         super(game, gameType, minigameName, minigameTime, scoreboardType);
@@ -85,8 +85,8 @@ public class ChickenRings extends Minigame implements Listener {
 
             this.lastPassedRing.put(cp, -1);
 
-            chickens.get(cp.getPlayer().getUniqueId()).setCanMove(true);
-            chickens.get(cp.getPlayer().getUniqueId()).setConstantMovement(constant_movement);
+            chickens.get(cp.getPlayer().getUniqueId()).getControllableEntityHandler().setCanMove(true);
+            chickens.get(cp.getPlayer().getUniqueId()).getControllableEntityHandler().setConstantMovement(constant_movement);
         }
     }
 
@@ -141,7 +141,6 @@ public class ChickenRings extends Minigame implements Listener {
         for(int i = 0; i < ringLocations.length; i++) {
             this.rings.put(i, new Ring(ringLocations[i], axis));
 
-            if(i == 0) this.firstRing = this.rings.get(i);
             if(i == ringLocations.length-1) this.lastRing = this.rings.get(i);
         }
     }
@@ -191,13 +190,14 @@ public class ChickenRings extends Minigame implements Listener {
                 for(Block block : nextRing.getBlocks())
                     player.getPlayer().sendBlockChange(block.getLocation(), Material.WOOL, (byte) 14); // Sets the ring red
 
-                chickens.get(player.getPlayer().getUniqueId()).setSpeed(1);  // Slows down the chicken
+                chickens.get(player.getPlayer().getUniqueId()).getControllableEntityHandler().setSpeed(1);  // Slows down the chicken
                 // TODO: particles
             } else {
                 for (Block block : nextRing.getBlocks())
                     player.getPlayer().sendBlockChange(block.getLocation(), Material.WOOL, (byte) 5);  // Sets the ring green
 
-                chickens.get(player.getPlayer().getUniqueId()).setSpeed(chickens.get(player.getPlayer().getUniqueId()).getSpeed() + 0.02);  // Speeds up the chicken
+                chickens.get(player.getPlayer().getUniqueId()).getControllableEntityHandler().setSpeed(
+                        chickens.get(player.getPlayer().getUniqueId()).getControllableEntityHandler().getSpeed() + 0.02);  // Speeds up the chicken
                 // TODO: particles
             }
         }

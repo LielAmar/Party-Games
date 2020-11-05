@@ -1,11 +1,12 @@
 package com.lielamar.partygames.models.entities;
 
 import com.lielamar.lielsutils.MathUtils;
-import com.packetmanager.lielamar.PacketManager;
+import com.lielamar.lielsutils.modules.Pair;
+import com.lielamar.partygames.models.entities.pathfindergoals.PathfinderGoalWrapper;
 import net.minecraft.server.v1_8_R3.Entity;
 import net.minecraft.server.v1_8_R3.EntitySkeleton;
+import net.minecraft.server.v1_8_R3.PathfinderGoal;
 import net.minecraft.server.v1_8_R3.PathfinderGoalFloat;
-import net.minecraft.server.v1_8_R3.PathfinderGoalSelector;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
@@ -13,9 +14,12 @@ import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
 import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.util.Vector;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShootingRangeSkeleton extends EntitySkeleton {
+
+    private PathfinderGoalWrapper pathfinderGoalWrapper;
 
     private Location current, point1, point2;
     private int xDiff, yDiff, zDiff;
@@ -24,6 +28,11 @@ public class ShootingRangeSkeleton extends EntitySkeleton {
     public ShootingRangeSkeleton(World world, Location point1, Location point2, double speed) {
         super(((CraftWorld)world).getHandle());
 
+        this.pathfinderGoalWrapper = new PathfinderGoalWrapper(this);
+        List<Pair<PathfinderGoal, Integer>> pathfinderGoals = new ArrayList<>();
+        pathfinderGoals.add(new Pair<>(new PathfinderGoalFloat(this), 1));
+        this.pathfinderGoalWrapper.setupPathfinderGoals(true, null, pathfinderGoals);
+
         this.point1 = current = point1;
         this.point2 = point2;
 
@@ -31,8 +40,6 @@ public class ShootingRangeSkeleton extends EntitySkeleton {
         this.xDiff = ((int)(current.getX()-this.getBukkitEntity().getLocation().getX()))/(int)current.distance(this.getBukkitEntity().getLocation());
         this.yDiff = ((int)(current.getY()-this.getBukkitEntity().getLocation().getY()))/(int)current.distance(this.getBukkitEntity().getLocation());
         this.zDiff = ((int)(current.getZ()-this.getBukkitEntity().getLocation().getZ()))/(int)current.distance(this.getBukkitEntity().getLocation());
-
-        setupPathfinderGoals();
     }
 
     @Override
@@ -68,18 +75,6 @@ public class ShootingRangeSkeleton extends EntitySkeleton {
     @Override
     public void collide(Entity entity) {}
 
-
-    /**
-     * Sets up all PathfinderGoals of the entity
-     */
-    public void setupPathfinderGoals() {
-        ((List<?>) PacketManager.getPrivateField("b", PathfinderGoalSelector.class, goalSelector)).clear();
-        ((List<?>) PacketManager.getPrivateField("c", PathfinderGoalSelector.class, goalSelector)).clear();
-        ((List<?>) PacketManager.getPrivateField("b", PathfinderGoalSelector.class, targetSelector)).clear();
-        ((List<?>) PacketManager.getPrivateField("c", PathfinderGoalSelector.class, targetSelector)).clear();
-
-        this.goalSelector.a(0, new PathfinderGoalFloat(this));
-    }
 
     /**
      * Spawns a Shooting Range skeleton

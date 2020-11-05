@@ -1,12 +1,13 @@
 package com.lielamar.partygames.models.entities;
 
+import com.lielamar.lielsutils.modules.Pair;
 import com.lielamar.partygames.models.entities.pathfindergoals.PathfinderGoalMeleeAttackPlayer;
 import com.lielamar.partygames.models.entities.pathfindergoals.PathfinderGoalTargetPlayer;
-import com.packetmanager.lielamar.PacketManager;
+import com.lielamar.partygames.models.entities.pathfindergoals.PathfinderGoalWrapper;
 import net.minecraft.server.v1_8_R3.EntityHuman;
 import net.minecraft.server.v1_8_R3.EntitySpider;
+import net.minecraft.server.v1_8_R3.PathfinderGoal;
 import net.minecraft.server.v1_8_R3.PathfinderGoalFloat;
-import net.minecraft.server.v1_8_R3.PathfinderGoalSelector;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
@@ -14,40 +15,26 @@ import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.entity.CreatureSpawnEvent;
-import org.bukkit.event.entity.EntityTargetEvent;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChasingSpider extends EntitySpider {
 
     private Player target;
+    private PathfinderGoalWrapper pathfinderGoalWrapper;
 
     public ChasingSpider(World world, Player target) {
         super(((CraftWorld)world).getHandle());
 
         this.target = target;
 
-        setupPathfinderGoals();
-    }
-
-    public ChasingSpider(net.minecraft.server.v1_8_R3.World world) {
-        super(world);
-    }
-
-    /**
-     * Removes all default PathfinderGoals and replaces them with custom ones
-     */
-    public void setupPathfinderGoals() {
-        ((List<?>) PacketManager.getPrivateField("b", PathfinderGoalSelector.class, goalSelector)).clear();
-        ((List<?>) PacketManager.getPrivateField("c", PathfinderGoalSelector.class, goalSelector)).clear();
-        ((List<?>) PacketManager.getPrivateField("b", PathfinderGoalSelector.class, targetSelector)).clear();
-        ((List<?>) PacketManager.getPrivateField("c", PathfinderGoalSelector.class, targetSelector)).clear();
-
-        this.setGoalTarget(((CraftPlayer)this.target).getHandle(), EntityTargetEvent.TargetReason.CUSTOM, true);
-
-        this.goalSelector.a(1, new PathfinderGoalFloat(this));
-        this.goalSelector.a(2, new PathfinderGoalMeleeAttackPlayer(this, EntityHuman.class));     // Attack Pathfinder goal
-        this.goalSelector.a(2, new PathfinderGoalTargetPlayer(this, 5,  10));           // Follow pathfinder goal
+        this.pathfinderGoalWrapper = new PathfinderGoalWrapper(this);
+        List<Pair<PathfinderGoal, Integer>> pathfinderGoals = new ArrayList<>();
+        pathfinderGoals.add(new Pair<>(new PathfinderGoalFloat(this), 1));
+        pathfinderGoals.add(new Pair<>(new PathfinderGoalMeleeAttackPlayer(this, EntityHuman.class), 2));
+        pathfinderGoals.add(new Pair<>(new PathfinderGoalTargetPlayer(this, 5,  10), 2));
+        this.pathfinderGoalWrapper.setupPathfinderGoals(true, ((CraftPlayer)this.target).getHandle(), pathfinderGoals);
     }
 
     /**

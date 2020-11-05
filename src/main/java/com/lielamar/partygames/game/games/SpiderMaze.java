@@ -5,7 +5,7 @@ import com.lielamar.partygames.game.Game;
 import com.lielamar.partygames.game.GameState;
 import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.game.Minigame;
-import com.lielamar.partygames.models.entities.ChasingSpider;
+import com.lielamar.partygames.modules.entities.custom.ChasingSpider;
 import com.lielamar.partygames.utils.Parameters;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -59,7 +59,7 @@ public class SpiderMaze extends Minigame implements Listener {
                     if(getGame().getPlayers()[i] == null) continue;
 
                     ChasingSpider spider = new ChasingSpider(getMiddle().getWorld(), getGame().getPlayers()[i].getPlayer());
-                    spider.spawnCustomEntity(getLocations()[i]);
+                    spider.spawnCustomEntity(spider, getLocations()[i]);
                     spiders.put(getGame().getPlayers()[i].getPlayer().getUniqueId(), spider);
                 }
             }

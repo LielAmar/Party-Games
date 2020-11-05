@@ -1,7 +1,7 @@
-package com.lielamar.partygames.models.games;
+package com.lielamar.partygames.modules.objects;
 
 import com.lielamar.partygames.game.Game;
-import com.lielamar.partygames.models.CustomPlayer;
+import com.lielamar.partygames.modules.CustomPlayer;
 import com.packetmanager.lielamar.PacketManager;
 import com.packetmanager.lielamar.ParticleEffect;
 import org.bukkit.Location;

@@ -4,7 +4,7 @@ import com.lielamar.lielsutils.MathUtils;
 import com.lielamar.partygames.Main;
 import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.game.Minigame;
-import com.lielamar.partygames.models.CustomPlayer;
+import com.lielamar.partygames.modules.CustomPlayer;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -18,7 +18,7 @@ public class GameUtils {
      * @param players               An array of all players to sort
      * @param type                  The sort type (By Minigame Score or By Overall Score)
      * @param randomizeEqualScore   Whether or not to randomize the sorted list if 2 objects has the same score
-     * @return                      Sorted List of {@link com.lielamar.partygames.models.CustomPlayer} objects
+     * @return                      Sorted List of {@link CustomPlayer} objects
      */
     public static CustomPlayer[] sortCustomPlayersList(CustomPlayer[] players, SortType type, boolean randomizeEqualScore) {
         CustomPlayer[] playersCopy = new CustomPlayer[players.length];
@@ -149,7 +149,7 @@ public class GameUtils {
     /**
      * Assigns players with different colors
      *
-     * @param players          Array of {@link com.lielamar.partygames.models.CustomPlayer}s to assign
+     * @param players          Array of {@link CustomPlayer}s to assign
      * @param wool_colors      Array of available colors
      * @param assignedColors   Map of colors assigned to players
      */

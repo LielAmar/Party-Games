@@ -8,8 +8,8 @@ import com.lielamar.partygames.game.Game;
 import com.lielamar.partygames.game.GameState;
 import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.game.Minigame;
-import com.lielamar.partygames.models.CustomPlayer;
-import com.lielamar.partygames.models.entities.ControllableSheep;
+import com.lielamar.partygames.modules.CustomPlayer;
+import com.lielamar.partygames.modules.entities.custom.ControllableSheep;
 import com.lielamar.partygames.utils.GameUtils;
 import com.lielamar.partygames.utils.Parameters;
 import org.bukkit.Bukkit;
@@ -17,7 +17,6 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
 import org.bukkit.entity.Sheep;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -95,18 +94,14 @@ public class SuperSheep extends Minigame implements Listener {
     public void destroyMinigame() {
         super.destroyMinigame();
 
-        for(UUID u : sheeps.keySet()) {
-            if(u == null) continue;
-            Player p = Bukkit.getPlayer(u);
-            if(p == null) continue;
-
-            super.getGame().getMain().getPacketReader().eject(p);
-            if(sheeps == null) return;
-            if(sheeps.containsKey(p.getUniqueId())) {
-                sheeps.get(p.getUniqueId()).getBukkitEntity().setPassenger(null);
-                sheeps.get(p.getUniqueId()).getWorld().removeEntity(sheeps.get(p.getUniqueId()));
-            }
+        for(CustomPlayer cp : super.getGame().getPlayers()) {
+            if(cp == null) continue;
+            super.getGame().getMain().getPacketReader().eject(cp.getPlayer());
         }
+
+        for(ControllableSheep sheep : sheeps.values())
+            sheep.destroyCustomEntity(sheep);
+        sheeps = new HashMap<>();
     }
 
 
@@ -156,7 +151,8 @@ public class SuperSheep extends Minigame implements Listener {
 
                     getGame().getMain().getPacketReader().inject(cp.getPlayer());
 
-                    sheep = new ControllableSheep(getGame().getMain(), cp.getPlayer().getWorld()).spawnCustomEntity(cp.getPlayer().getLocation());
+                    sheep = new ControllableSheep(getGame().getMain(), cp.getPlayer().getWorld());
+                    sheep.spawnCustomEntity(sheep, cp.getPlayer().getLocation());
                     if(cp.getPlayer().isSneaking())
                         cp.getPlayer().setSneaking(false);
 
@@ -172,7 +168,7 @@ public class SuperSheep extends Minigame implements Listener {
     /**
      * Shifts all nodes to the previous one
      *
-     * @param cp         {@link com.lielamar.partygames.models.CustomPlayer} who we shift nodes to
+     * @param cp         {@link CustomPlayer} who we shift nodes to
      * @param location   Location we add
      */
     public void shiftNodes(CustomPlayer cp, Location location) {

@@ -1,3 +1,16 @@
+# ===========================================================================================
+#                                Party Games by Liel Amar
+#                                Special Thanks to gguurr
+#
+# For support, you can contact me through our discord server: https://discord.gg/NzgBrqR.
+#
+# If you have any problems please delete this file, start up your server
+# once again and re-set the information.
+#
+# Github: https://github.com/LielAmar/Party-Games
+# ===========================================================================================
+
+# Location of the game's lobby
 lobby:
   world: "partygames"
   x: 0.5
@@ -6,6 +19,7 @@ lobby:
   yaw: -180
   pitch: 0
 
+# Game parameters
 parameters:
   allow_duplicate_games: false
   countdown_time: 30
@@ -25,6 +39,7 @@ waitscoreboard:
   - "Players: &a%players%/%maxplayers%"
   - ""
   - "&ewww.lielamar.com"
+
 countdownscoreboard:
   - "&7%date%"
   - ""
@@ -36,6 +51,7 @@ countdownscoreboard:
   - "additional players"
   - ""
   - "&ewww.lielamar.com"
+
 gamestatsscoreboard:
   - "&7%date%"
   - " "

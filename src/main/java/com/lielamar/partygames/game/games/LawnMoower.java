@@ -4,8 +4,8 @@ import com.lielamar.partygames.game.Game;
 import com.lielamar.partygames.game.GameState;
 import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.game.Minigame;
-import com.lielamar.partygames.models.CustomPlayer;
-import com.lielamar.partygames.models.entities.ControllableCow;
+import com.lielamar.partygames.modules.CustomPlayer;
+import com.lielamar.partygames.modules.entities.custom.ControllableCow;
 import com.lielamar.partygames.utils.Parameters;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -62,8 +62,7 @@ public class LawnMoower extends Minigame implements Listener {
         }
 
         for(ControllableCow cow : cows.values())
-            cow.destroy();
-
+            cow.destroyCustomEntity(cow);
         cows = new HashMap<>();
     }
 
@@ -83,9 +82,11 @@ public class LawnMoower extends Minigame implements Listener {
 
                     getGame().getMain().getPacketReader().inject(cp.getPlayer());
 
-                    cow = new ControllableCow(getGame().getMain(), cp.getPlayer().getWorld()).spawnCustomEntity(cp.getPlayer().getLocation());
+                    cow = new ControllableCow(getGame().getMain(), cp.getPlayer().getWorld());
+                    cow.spawnCustomEntity(cow, cp.getPlayer().getLocation());
                     if(cp.getPlayer().isSneaking())
                         cp.getPlayer().setSneaking(false);
+
                     cow.getBukkitEntity().setPassenger(cp.getPlayer());
                     cows.put(cp.getPlayer().getUniqueId(), cow);
                 }

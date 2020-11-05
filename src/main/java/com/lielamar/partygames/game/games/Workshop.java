@@ -8,10 +8,10 @@ import com.lielamar.partygames.Main;
 import com.lielamar.partygames.game.Game;
 import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.game.Minigame;
-import com.lielamar.partygames.models.CustomPlayer;
-import com.lielamar.partygames.models.entities.WorkshopKeeper;
-import com.lielamar.partygames.models.games.Recipe;
-import com.lielamar.partygames.models.games.WorkshopObject;
+import com.lielamar.partygames.modules.CustomPlayer;
+import com.lielamar.partygames.modules.entities.custom.WorkshopKeeper;
+import com.lielamar.partygames.modules.objects.Recipe;
+import com.lielamar.partygames.modules.objects.WorkshopObject;
 import com.lielamar.partygames.utils.Parameters;
 import org.bukkit.*;
 import org.bukkit.block.Furnace;
@@ -109,7 +109,8 @@ public class Workshop extends Minigame implements Listener {
             workshop.loadWorkshop(recipes[super.getGame().getPlayers()[i].getMinigameScore()]);
 
             WorkshopKeeper keeper = new WorkshopKeeper(workshop.getNPCLocation().getWorld());
-            Workshop.keepers.add(keeper.spawnCustomEntity(workshop.getNPCLocation()));
+            keeper.spawnCustomEntity(keeper, workshop.getNPCLocation());
+            Workshop.keepers.add(keeper);
         }
     }
 
@@ -138,22 +139,13 @@ public class Workshop extends Minigame implements Listener {
             recipes[counter] = new Recipe(recipe);
             counter++;
             rem.add(recipe);
-//            boolean contains = true;
-//            while(contains) {
-//                recipe = Recipe.RecipeType.values()[Main.rnd.nextInt(Recipe.RecipeType.values().length)];
-//                for(int j = 0; j < i; j++) {
-//                    if(this.recipes[j].getRecipeType() == recipe) continue;
-//                    contains = false;
-//                }
-//            }
-//            this.recipes[i] = new Recipe(recipe);
         }
     }
 
     /**
      * Sends a message to the given player with the required material
      *
-     * @param cp   {@link com.lielamar.partygames.models.CustomPlayer} to send message to
+     * @param cp   {@link CustomPlayer} to send message to
      */
     public void sendRecipeMessage(CustomPlayer cp) {
         if(cp == null) return;

@@ -1,4 +1,4 @@
-package com.lielamar.partygames.models.entities;
+package com.lielamar.partygames.modules.entities;
 
 import net.minecraft.server.v1_8_R3.EntityInsentient;
 import org.bukkit.plugin.Plugin;
@@ -55,7 +55,7 @@ public class ControllableEntityHandler {
             new BukkitRunnable() {
                 @Override
                 public void run() {
-                    if(!constantMovement) {
+                    if(!constantMovement || entity.dead) {
                         this.cancel();
                         return;
                     }

@@ -1,7 +1,7 @@
-package com.lielamar.partygames.models.games;
+package com.lielamar.partygames.modules.objects;
 
-import com.lielamar.partygames.models.CustomPlayer;
-import com.lielamar.partygames.models.entities.CustomFallingBlock;
+import com.lielamar.partygames.modules.CustomPlayer;
+import com.lielamar.partygames.modules.entities.custom.CustomFallingBlock;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -70,7 +70,6 @@ public class TrampolinioScore {
             cp.getPlayer().playSound(cp.getPlayer().getLocation(), Sound.BAT_IDLE, 0.5F, 1F);
 
             cp.getPlayer().setVelocity(cp.getPlayer().getVelocity().multiply(1.5).setY(2));
-
         } else if(cfb.getBukkitBlockId() == 35) {
             cp.getPlayer().playSound(cp.getPlayer().getLocation(), Sound.SUCCESSFUL_HIT, 1F, 1F);
             switch(cfb.getBukkitBlockData()) {

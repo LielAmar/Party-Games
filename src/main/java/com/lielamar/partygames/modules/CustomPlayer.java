@@ -1,4 +1,4 @@
-package com.lielamar.partygames.models;
+package com.lielamar.partygames.modules;
 
 import com.lielamar.lielsutils.bossbar.BossBar;
 import org.bukkit.entity.Player;

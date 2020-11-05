@@ -1,9 +1,13 @@
-package com.lielamar.partygames.models.entities;
+package com.lielamar.partygames.modules.entities;
 
 import com.lielamar.partygames.game.games.ChickenRings;
 import com.lielamar.partygames.game.games.LawnMoower;
 import com.lielamar.partygames.game.games.PigJousting;
 import com.lielamar.partygames.game.games.SuperSheep;
+import com.lielamar.partygames.modules.entities.custom.ControllableChicken;
+import com.lielamar.partygames.modules.entities.custom.ControllableCow;
+import com.lielamar.partygames.modules.entities.custom.ControllablePig;
+import com.lielamar.partygames.modules.entities.custom.ControllableSheep;
 import com.packetmanager.lielamar.PacketManager;
 import com.packetmanager.lielamar.ParticleEffect;
 import io.netty.channel.Channel;
@@ -69,7 +73,7 @@ public class ControllableEntitiesPacketReader {
     }
 
     /**
-     * Reads the PacketPlayInSteerVehicle packet, specifically for the chicken entity {@link com.lielamar.partygames.models.entities.ControllableChicken}
+     * Reads the PacketPlayInSteerVehicle packet, specifically for the chicken entity {@link ControllableChicken}
      *
      * @param packet    Packet sent
      * @param args      Packet arguments
@@ -99,7 +103,7 @@ public class ControllableEntitiesPacketReader {
     }
 
     /**
-     * Reads the PacketPlayInSteerVehicle packet, specifically for the cow entity {@link com.lielamar.partygames.models.entities.ControllableCow}
+     * Reads the PacketPlayInSteerVehicle packet, specifically for the cow entity {@link ControllableCow}
      *
      * @param packet   Packet sent
      * @param args     Packet arguments
@@ -127,7 +131,7 @@ public class ControllableEntitiesPacketReader {
     }
 
     /**
-     * Reads the PacketPlayInSteerVehicle packet, specifically for the pig entity {@link com.lielamar.partygames.models.entities.ControllablePig}
+     * Reads the PacketPlayInSteerVehicle packet, specifically for the pig entity {@link ControllablePig}
      *
      * @param packet   Packet sent
      * @param args     Packet arguments
@@ -155,7 +159,7 @@ public class ControllableEntitiesPacketReader {
     }
 
     /**
-     * Reads the PacketPlayInSteerVehicle packet, specifically for the sheep entity {@link com.lielamar.partygames.models.entities.ControllableSheep}
+     * Reads the PacketPlayInSteerVehicle packet, specifically for the sheep entity {@link ControllableSheep}
      *
      * @param packet   Packet sent
      * @param args     Packet arguments

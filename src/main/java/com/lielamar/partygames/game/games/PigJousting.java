@@ -5,8 +5,8 @@ import com.lielamar.partygames.game.Game;
 import com.lielamar.partygames.game.GameState;
 import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.game.Minigame;
-import com.lielamar.partygames.models.CustomPlayer;
-import com.lielamar.partygames.models.entities.ControllablePig;
+import com.lielamar.partygames.modules.CustomPlayer;
+import com.lielamar.partygames.modules.entities.custom.ControllablePig;
 import com.lielamar.partygames.utils.Parameters;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -82,18 +82,14 @@ public class PigJousting extends Minigame implements Listener {
     public void destroyMinigame() {
         super.destroyMinigame();
 
-        for(UUID u : pigs.keySet()) {
-            if(u == null) continue;
-            Player p = Bukkit.getPlayer(u);
-            if(p == null) continue;
-
-            super.getGame().getMain().getPacketReader().eject(p);
-            if(pigs == null) return;
-            if(pigs.containsKey(p.getUniqueId())) {
-                pigs.get(p.getUniqueId()).getBukkitEntity().setPassenger(null);
-                pigs.get(p.getUniqueId()).getWorld().removeEntity(pigs.get(p.getUniqueId()));
-            }
+        for(CustomPlayer cp : super.getGame().getPlayers()) {
+            if(cp == null) continue;
+            super.getGame().getMain().getPacketReader().eject(cp.getPlayer());
         }
+
+        for(ControllablePig pig : pigs.values())
+            pig.destroyCustomEntity(pig);
+        pigs = new HashMap<>();
     }
 
 
@@ -140,7 +136,8 @@ public class PigJousting extends Minigame implements Listener {
 
                     getGame().getMain().getPacketReader().inject(cp.getPlayer());
 
-                    pig = new ControllablePig(getGame().getMain(), cp.getPlayer().getWorld()).spawnCustomEntity(cp.getPlayer().getLocation());
+                    pig = new ControllablePig(getGame().getMain(), cp.getPlayer().getWorld());
+                    pig.spawnCustomEntity(pig, cp.getPlayer().getLocation());
                     if(cp.getPlayer().isSneaking())
                         cp.getPlayer().setSneaking(false);
 

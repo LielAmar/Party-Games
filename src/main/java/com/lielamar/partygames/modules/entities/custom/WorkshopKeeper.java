@@ -1,16 +1,14 @@
-package com.lielamar.partygames.models.entities;
+package com.lielamar.partygames.modules.entities.custom;
 
-import com.lielamar.partygames.models.entities.pathfindergoals.PathfinderGoalWrapper;
+import com.lielamar.partygames.modules.entities.CustomEntity;
+import com.lielamar.partygames.modules.entities.pathfindergoals.PathfinderGoalWrapper;
 import net.minecraft.server.v1_8_R3.DamageSource;
 import net.minecraft.server.v1_8_R3.Entity;
 import net.minecraft.server.v1_8_R3.EntityVillager;
-import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
-import org.bukkit.event.entity.CreatureSpawnEvent;
 
-public class WorkshopKeeper extends EntityVillager {
+public class WorkshopKeeper extends EntityVillager implements CustomEntity {
 
     private PathfinderGoalWrapper pathfinderGoalWrapper;
     private boolean isCustomEntity;
@@ -23,12 +21,6 @@ public class WorkshopKeeper extends EntityVillager {
         this.pathfinderGoalWrapper.setupPathfinderGoals(true, null, null);
     }
 
-    /**
-     * Entity move
-     *
-     * @param sideMot   Side Motion
-     * @param forMot    Forward Motion
-     */
     @Override
     public void g(float sideMot, float forMot) {
         if(isCustomEntity)
@@ -48,20 +40,5 @@ public class WorkshopKeeper extends EntityVillager {
         if(!isCustomEntity)
             return super.damageEntity(damagesource, f);
         return false;
-    }
-
-
-    /**
-     * Spawns a workshop villager at location
-     *
-     * @param location   Location to teleport the workshop villager to
-     * @return           Created workshop villager
-     */
-    public WorkshopKeeper spawnCustomEntity(Location location) {
-        setLocation(location.getX(), location.getY(), location.getZ(), location.getYaw(), location.getPitch());
-        ((CraftLivingEntity) getBukkitEntity()).setRemoveWhenFarAway(false);
-
-        ((CraftWorld)location.getWorld()).getHandle().addEntity(this, CreatureSpawnEvent.SpawnReason.CUSTOM);
-        return this;
     }
 }

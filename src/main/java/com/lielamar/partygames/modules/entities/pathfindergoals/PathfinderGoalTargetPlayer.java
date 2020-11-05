@@ -1,4 +1,4 @@
-package com.lielamar.partygames.models.entities.pathfindergoals;
+package com.lielamar.partygames.modules.entities.pathfindergoals;
 
 import net.minecraft.server.v1_8_R3.EntityCreature;
 import net.minecraft.server.v1_8_R3.EntityLiving;

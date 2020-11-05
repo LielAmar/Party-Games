@@ -1,4 +1,4 @@
-package com.lielamar.partygames.models.games;
+package com.lielamar.partygames.modules.objects;
 
 import org.bukkit.Location;
 import org.bukkit.block.Block;

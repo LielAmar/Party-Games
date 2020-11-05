@@ -1,4 +1,4 @@
-package com.lielamar.partygames.models.entities.pathfindergoals;
+package com.lielamar.partygames.modules.entities.pathfindergoals;
 
 import com.lielamar.lielsutils.modules.Pair;
 import com.packetmanager.lielamar.PacketManager;

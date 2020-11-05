@@ -1,23 +1,22 @@
-package com.lielamar.partygames.models.entities;
+package com.lielamar.partygames.modules.entities.custom;
 
 import com.lielamar.lielsutils.MathUtils;
 import com.lielamar.lielsutils.modules.Pair;
-import com.lielamar.partygames.models.entities.pathfindergoals.PathfinderGoalWrapper;
+import com.lielamar.partygames.modules.entities.CustomEntity;
+import com.lielamar.partygames.modules.entities.pathfindergoals.PathfinderGoalWrapper;
 import net.minecraft.server.v1_8_R3.Entity;
-import net.minecraft.server.v1_8_R3.EntityZombie;
+import net.minecraft.server.v1_8_R3.EntitySkeleton;
 import net.minecraft.server.v1_8_R3.PathfinderGoal;
 import net.minecraft.server.v1_8_R3.PathfinderGoalFloat;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
-import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShootingRangeZombie extends EntityZombie {
+public class ShootingRangeSkeleton extends EntitySkeleton implements CustomEntity {
 
     private PathfinderGoalWrapper pathfinderGoalWrapper;
 
@@ -25,7 +24,7 @@ public class ShootingRangeZombie extends EntityZombie {
     private int xDiff, yDiff, zDiff;
     private double speed;
 
-    public ShootingRangeZombie(World world, Location point1, Location point2, double speed) {
+    public ShootingRangeSkeleton(World world, Location point1, Location point2, double speed) {
         super(((CraftWorld)world).getHandle());
 
         this.pathfinderGoalWrapper = new PathfinderGoalWrapper(this);
@@ -60,34 +59,13 @@ public class ShootingRangeZombie extends EntityZombie {
             this.xDiff = ((int)(current.getX()-this.getBukkitEntity().getLocation().getX()))/(int)current.distance(this.getBukkitEntity().getLocation());
             this.yDiff = ((int)(current.getY()-this.getBukkitEntity().getLocation().getY()))/(int)current.distance(this.getBukkitEntity().getLocation());
             this.zDiff = ((int)(current.getZ()-this.getBukkitEntity().getLocation().getZ()))/(int)current.distance(this.getBukkitEntity().getLocation());
-
         }
-
-        this.ticksFarFromPlayer = 0;
 
         // Move the entity
         this.getNavigation().a(getBukkitEntity().getLocation().getX()+xDiff, getBukkitEntity().getLocation().getY()+yDiff, getBukkitEntity().getLocation().getZ()+zDiff, this.speed);
+        super.ticksFarFromPlayer = -1;
     }
 
-    /**
-     * Removes collision
-     *
-     * @param entity   Collided entity
-     */
     @Override
     public void collide(Entity entity) {}
-
-
-    /**
-     * Spawns a Shooting Range zombie
-     *
-     * @return   Created Shooting Range zombie
-     */
-    public ShootingRangeZombie spawnCustomEntity() {
-        setLocation(current.getX(), current.getY(), current.getZ(), current.getYaw(), current.getPitch());
-        ((CraftLivingEntity) getBukkitEntity()).setRemoveWhenFarAway(true);
-
-        ((CraftWorld)current.getWorld()).getHandle().addEntity(ShootingRangeZombie.this, CreatureSpawnEvent.SpawnReason.CUSTOM);
-        return this;
-    }
 }

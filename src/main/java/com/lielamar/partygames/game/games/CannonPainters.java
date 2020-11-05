@@ -7,7 +7,7 @@ import com.lielamar.partygames.game.Game;
 import com.lielamar.partygames.game.GameState;
 import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.game.Minigame;
-import com.lielamar.partygames.models.CustomPlayer;
+import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.utils.GameUtils;
 import com.lielamar.partygames.utils.Parameters;
 import org.bukkit.Bukkit;
@@ -82,7 +82,7 @@ public class CannonPainters extends Minigame implements Listener {
     /**
      * Paints a 3x3 area by the player's color
      *
-     * @param cp         {@link com.lielamar.partygames.models.CustomPlayer} Object of the painter
+     * @param cp         {@link CustomPlayer} Object of the painter
      * @param location   3x3 area middle
      */
     @SuppressWarnings("deprecation")

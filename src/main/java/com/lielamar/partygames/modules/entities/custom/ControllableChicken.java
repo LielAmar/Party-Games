@@ -1,15 +1,14 @@
-package com.lielamar.partygames.models.entities;
+package com.lielamar.partygames.modules.entities.custom;
 
-import com.lielamar.partygames.models.entities.pathfindergoals.PathfinderGoalWrapper;
+import com.lielamar.partygames.modules.entities.ControllableEntityHandler;
+import com.lielamar.partygames.modules.entities.CustomEntity;
+import com.lielamar.partygames.modules.entities.pathfindergoals.PathfinderGoalWrapper;
 import net.minecraft.server.v1_8_R3.*;
-import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
-import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.plugin.Plugin;
 
-public class ControllableChicken extends EntityChicken {
+public class ControllableChicken extends EntityChicken implements CustomEntity {
 
     private ControllableEntityHandler controllableEntityHandler;
     private PathfinderGoalWrapper pathfinderGoalWrapper;
@@ -26,14 +25,14 @@ public class ControllableChicken extends EntityChicken {
         this.pathfinderGoalWrapper.setupPathfinderGoals(true, null, null);
     }
 
-    /**
-     * Entity move
-     *
-     * @param sideMot   Side Motion
-     * @param forMot    Forward Motion
-     */
     @Override
     public void g(float sideMot, float forMot) {
+        /*
+         * Entity move
+         *
+         * @param sideMot   Side Motion
+         * @param forMot    Forward Motion
+         */
         if(!isCustomEntity) {
             super.g(sideMot, forMot);
             return;
@@ -52,15 +51,15 @@ public class ControllableChicken extends EntityChicken {
         super.g(sideMot, forMot);
     }
 
-    /**
-     * Entity drop item (egg)
-     *
-     * @param item     Item to drop
-     * @param amount   Amount to drop
-     * @return         Dropped Item
-     */
     @Override
     public EntityItem a(Item item, int amount) {
+        /*
+         * Entity drop item (egg)
+         *
+         * @param item     Item to drop
+         * @param amount   Amount to drop
+         * @return         Dropped Item
+         */
         return null;
     }
 
@@ -76,32 +75,6 @@ public class ControllableChicken extends EntityChicken {
             return super.damageEntity(damagesource, f);
         return false;
     }
-
-
-    /**
-     * Destroys the custom entity (deletes it & everything related)
-     */
-    public void destroy() {
-        getBukkitEntity().setPassenger(null);
-        getBukkitEntity().remove();
-
-        this.controllableEntityHandler.destroy();
-    }
-
-    /**
-     * Spawns a controllable chicken attached to player at location
-     *
-     * @param location   Location to teleport the chicken to
-     * @return           Created controllable chicken
-     */
-    public ControllableChicken spawnCustomEntity(Location location) {
-        setLocation(location.getX(), location.getY(), location.getZ(), location.getYaw(), location.getPitch());
-        ((CraftLivingEntity) getBukkitEntity()).setRemoveWhenFarAway(false);
-
-        ((CraftWorld)location.getWorld()).getHandle().addEntity(ControllableChicken.this, CreatureSpawnEvent.SpawnReason.CUSTOM);
-        return this;
-    }
-
 
     public ControllableEntityHandler getControllableEntityHandler() {
         return this.controllableEntityHandler;

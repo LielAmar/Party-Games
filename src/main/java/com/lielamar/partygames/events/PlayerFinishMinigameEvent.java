@@ -1,7 +1,7 @@
 package com.lielamar.partygames.events;
 
 import com.lielamar.partygames.game.Minigame;
-import com.lielamar.partygames.models.CustomPlayer;
+import com.lielamar.partygames.modules.CustomPlayer;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 

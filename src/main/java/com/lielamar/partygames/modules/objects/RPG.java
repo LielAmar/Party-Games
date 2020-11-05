@@ -1,8 +1,8 @@
-package com.lielamar.partygames.models.games;
+package com.lielamar.partygames.modules.objects;
 
 import com.lielamar.partygames.Main;
 import com.lielamar.partygames.game.Game;
-import com.lielamar.partygames.models.CustomPlayer;
+import com.lielamar.partygames.modules.CustomPlayer;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;

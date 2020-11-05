@@ -3,7 +3,7 @@ package com.lielamar.partygames.listeners;
 import com.lielamar.partygames.Main;
 import com.lielamar.partygames.events.GameEndEvent;
 import com.lielamar.partygames.events.MinigameEndEvent;
-import com.lielamar.partygames.models.CustomPlayer;
+import com.lielamar.partygames.modules.CustomPlayer;
 import org.bukkit.*;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Firework;

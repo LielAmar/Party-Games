@@ -5,9 +5,9 @@ import com.lielamar.lielsutils.validation.CharValidation;
 import com.lielamar.partygames.game.Game;
 import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.game.Minigame;
-import com.lielamar.partygames.models.CustomPlayer;
-import com.lielamar.partygames.models.entities.ControllableChicken;
-import com.lielamar.partygames.models.games.Ring;
+import com.lielamar.partygames.modules.CustomPlayer;
+import com.lielamar.partygames.modules.entities.custom.ControllableChicken;
+import com.lielamar.partygames.modules.objects.Ring;
 import com.lielamar.partygames.utils.GameUtils;
 import com.lielamar.partygames.utils.Parameters;
 import org.bukkit.Bukkit;
@@ -100,8 +100,7 @@ public class ChickenRings extends Minigame implements Listener {
         }
 
         for(ControllableChicken chicken : chickens.values())
-            chicken.destroy();
-
+            chicken.destroyCustomEntity(chicken);
         chickens = new HashMap<>();
     }
 
@@ -110,7 +109,6 @@ public class ChickenRings extends Minigame implements Listener {
      * Sets up all chickens & players
      */
     public void setupChickens() {
-
         new BukkitRunnable() {
 
             @Override
@@ -122,9 +120,11 @@ public class ChickenRings extends Minigame implements Listener {
 
                     getGame().getMain().getPacketReader().inject(cp.getPlayer());
 
-                    chicken = new ControllableChicken(getGame().getMain(), cp.getPlayer().getWorld()).spawnCustomEntity(cp.getPlayer().getLocation());
+                    chicken = new ControllableChicken(getGame().getMain(), cp.getPlayer().getWorld());
+                    chicken.spawnCustomEntity(chicken, cp.getPlayer().getLocation());
                     if(cp.getPlayer().isSneaking())
                         cp.getPlayer().setSneaking(false);
+
                     chicken.getBukkitEntity().setPassenger(cp.getPlayer());
                     chickens.put(cp.getPlayer().getUniqueId(), chicken);
                 }

@@ -8,7 +8,7 @@ import com.lielamar.partygames.game.Game;
 import com.lielamar.partygames.game.GameState;
 import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.game.Minigame;
-import com.lielamar.partygames.models.CustomPlayer;
+import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.utils.GameUtils;
 import com.lielamar.partygames.utils.Parameters;
 import org.bukkit.*;
@@ -201,7 +201,7 @@ public class PigFishing extends Minigame implements Listener {
     /**
      * Activates all redstone blocks except for the given player
      *
-     * @param cp   {@link com.lielamar.partygames.models.CustomPlayer} to avoid activating redstone blocks of
+     * @param cp   {@link CustomPlayer} to avoid activating redstone blocks of
      */
     public void activateRedstoneBlocks(CustomPlayer cp) {
         Location cpLocation = null;

@@ -1,4 +1,4 @@
-package com.lielamar.partygames.models.entities;
+package com.lielamar.partygames.modules.entities.custom;
 
 import net.minecraft.server.v1_8_R3.Block;
 import net.minecraft.server.v1_8_R3.EntityFallingBlock;

@@ -36,7 +36,6 @@ public class Parameters {
     }
 
     public static String MINIGAMES_DIR() { return minigames_dir; }
-    public static String BACKUPS_DIR() { return backups_dir; }
 
     public static boolean ALLOW_DUPLICATE_GAMES() { return allow_duplicate_games; }
     public static int COUNTDOWN_TIME() { return countdown_time; }

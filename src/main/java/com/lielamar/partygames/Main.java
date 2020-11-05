@@ -6,8 +6,9 @@ import com.lielamar.lielsutils.scoreboard.ScoreboardManager;
 import com.lielamar.partygames.commands.PartyGames;
 import com.lielamar.partygames.game.Game;
 import com.lielamar.partygames.listeners.*;
-import com.lielamar.partygames.models.CustomPlayer;
-import com.lielamar.partygames.models.entities.*;
+import com.lielamar.partygames.modules.CustomPlayer;
+import com.lielamar.partygames.modules.entities.*;
+import com.lielamar.partygames.modules.entities.custom.*;
 import com.lielamar.partygames.utils.Parameters;
 import com.packetmanager.lielamar.PacketManager;
 import net.minecraft.server.v1_8_R3.*;
@@ -46,7 +47,6 @@ public class Main extends JavaPlugin {
     public void onDisable() {
         destroy();
     }
-
 
     public void registerCommands() {
         new PartyGames(this);

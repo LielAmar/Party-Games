@@ -7,7 +7,7 @@ import com.lielamar.partygames.game.Game;
 import com.lielamar.partygames.game.GameState;
 import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.game.Minigame;
-import com.lielamar.partygames.models.games.Laser;
+import com.lielamar.partygames.modules.objects.Laser;
 import com.lielamar.partygames.utils.Parameters;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;

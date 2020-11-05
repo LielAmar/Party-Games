@@ -1,4 +1,4 @@
-package com.lielamar.partygames.models.games;
+package com.lielamar.partygames.modules.objects;
 
 import com.lielamar.lielsutils.modules.Pair;
 import com.lielamar.partygames.Main;

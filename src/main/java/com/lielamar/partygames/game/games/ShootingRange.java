@@ -8,9 +8,9 @@ import com.lielamar.partygames.game.Game;
 import com.lielamar.partygames.game.GameState;
 import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.game.Minigame;
-import com.lielamar.partygames.models.CustomPlayer;
-import com.lielamar.partygames.models.entities.ShootingRangeSkeleton;
-import com.lielamar.partygames.models.entities.ShootingRangeZombie;
+import com.lielamar.partygames.modules.CustomPlayer;
+import com.lielamar.partygames.modules.entities.custom.ShootingRangeSkeleton;
+import com.lielamar.partygames.modules.entities.custom.ShootingRangeZombie;
 import com.lielamar.partygames.utils.Parameters;
 import org.bukkit.*;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -151,10 +151,10 @@ public class ShootingRange extends Minigame implements Listener {
 
         if(percentage < normal_zombie_percentage) {
             ShootingRangeZombie zombie = new ShootingRangeZombie(middle.getWorld(), randomPair.getKey(), randomPair.getValue(), 1.5);
-            return zombie.spawnCustomEntity().getBukkitEntity();
+            return zombie.spawnCustomEntity(zombie, randomPair.getKey()).getBukkitEntity();
         } else if(percentage < normal_zombie_percentage + normal_skeleton_percentage) {
             ShootingRangeSkeleton skeleton = new ShootingRangeSkeleton(middle.getWorld(), randomPair.getKey(), randomPair.getValue(), 1.6);
-            return skeleton.spawnCustomEntity().getBukkitEntity();
+            return skeleton.spawnCustomEntity(skeleton, randomPair.getKey()).getBukkitEntity();
         } else if(percentage < normal_zombie_percentage + normal_skeleton_percentage + golden_zombie_percentage) {
             ShootingRangeZombie zombie = new ShootingRangeZombie(middle.getWorld(), randomPair.getKey(), randomPair.getValue(), 2);
             ((LivingEntity)zombie.getBukkitEntity()).getEquipment().setHelmet(new ItemStack(Material.GOLD_HELMET));
@@ -163,13 +163,13 @@ public class ShootingRange extends Minigame implements Listener {
             ((LivingEntity)zombie.getBukkitEntity()).getEquipment().setBoots(new ItemStack(Material.GOLD_BOOTS));
             zombie.setCustomName(ChatColor.GOLD + "SUPER");
             zombie.setCustomNameVisible(false);
-            return zombie.spawnCustomEntity().getBukkitEntity();
+            return zombie.spawnCustomEntity(zombie, randomPair.getKey()).getBukkitEntity();
         } else {
             ShootingRangeZombie zombie = new ShootingRangeZombie(middle.getWorld(), randomPair.getKey(), randomPair.getValue(), 2.1);
             ((LivingEntity)zombie.getBukkitEntity()).getEquipment().setHelmet(new ItemStack(Material.TNT));
             zombie.setCustomName(ChatColor.RED + "TNT");
             zombie.setCustomNameVisible(false);
-            return zombie.spawnCustomEntity().getBukkitEntity();
+            return zombie.spawnCustomEntity(zombie, randomPair.getKey()).getBukkitEntity();
         }
     }
 

@@ -8,7 +8,7 @@ import com.lielamar.partygames.game.Game;
 import com.lielamar.partygames.game.GameState;
 import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.game.Minigame;
-import com.lielamar.partygames.models.games.Bomb;
+import com.lielamar.partygames.modules.objects.Bomb;
 import com.lielamar.partygames.utils.Parameters;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;

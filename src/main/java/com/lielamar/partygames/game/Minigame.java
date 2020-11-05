@@ -8,8 +8,8 @@ import com.lielamar.lielsutils.scoreboard.ScoreboardUtils;
 import com.lielamar.lielsutils.validation.Validation;
 import com.lielamar.partygames.events.MinigameEndEvent;
 import com.lielamar.partygames.events.PlayerFinishMinigameEvent;
-import com.lielamar.partygames.models.CustomPlayer;
-import com.lielamar.partygames.models.exceptions.MinigameConfigurationException;
+import com.lielamar.partygames.modules.CustomPlayer;
+import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
 import com.lielamar.partygames.utils.GameUtils;
 import com.lielamar.partygames.utils.Parameters;
 import com.packetmanager.lielamar.PacketManager;
@@ -232,7 +232,7 @@ public class Minigame {
      * Initiates the player. Set inventory, exp, gamemode, health, hunger and teleport to the location.
      * If we have a per player location for the current game we teleport each player to their location, else we teleport to middle.
      *
-     * @param cp         {@link com.lielamar.partygames.models.CustomPlayer} Object to run the method on
+     * @param cp         {@link CustomPlayer} Object to run the method on
      * @param location   Location to teleport the player to
      */
     public void initiatePlayer(CustomPlayer cp, Location location) {
@@ -273,7 +273,7 @@ public class Minigame {
     /**
      * Turns a player to a spectator
      *
-     * @param cp                   {@link com.lielamar.partygames.models.CustomPlayer} Object to run the method on
+     * @param cp                   {@link CustomPlayer} Object to run the method on
      * @param isSpectatorState     Whether or not the player is an actual spectator or a finished player that turned to a spectator
      * @param canFly               Should allow flight for the provided player?
      * @param minigameScoreToAdd   Amount of score (minigame score) to add to the provided player
@@ -325,7 +325,7 @@ public class Minigame {
     /**
      * Adds a player to the finished players list and calculates whether or not the game needs to stop
      *
-     * @param cp        {@link com.lielamar.partygames.models.CustomPlayer} to set as finished
+     * @param cp        {@link CustomPlayer} to set as finished
      * @param message   Message to send the all players upon finishing
      */
     public void finishPlayer(CustomPlayer cp, String message) {

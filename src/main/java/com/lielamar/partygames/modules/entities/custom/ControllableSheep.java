@@ -1,18 +1,14 @@
-package com.lielamar.partygames.models.entities;
+package com.lielamar.partygames.modules.entities.custom;
 
-import com.lielamar.partygames.models.entities.pathfindergoals.PathfinderGoalWrapper;
-import net.minecraft.server.v1_8_R3.DamageSource;
-import net.minecraft.server.v1_8_R3.Entity;
-import net.minecraft.server.v1_8_R3.EntityHuman;
-import net.minecraft.server.v1_8_R3.EntitySheep;
-import org.bukkit.Location;
+import com.lielamar.partygames.modules.entities.ControllableEntityHandler;
+import com.lielamar.partygames.modules.entities.CustomEntity;
+import com.lielamar.partygames.modules.entities.pathfindergoals.PathfinderGoalWrapper;
+import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.World;
 import org.bukkit.craftbukkit.v1_8_R3.CraftWorld;
-import org.bukkit.craftbukkit.v1_8_R3.entity.CraftLivingEntity;
-import org.bukkit.event.entity.CreatureSpawnEvent;
 import org.bukkit.plugin.Plugin;
 
-public class ControllableSheep extends EntitySheep {
+public class ControllableSheep extends EntitySheep implements CustomEntity {
 
     private ControllableEntityHandler controllableEntityHandler;
     private PathfinderGoalWrapper pathfinderGoalWrapper;
@@ -29,12 +25,6 @@ public class ControllableSheep extends EntitySheep {
         this.pathfinderGoalWrapper.setupPathfinderGoals(true, null, null);
     }
 
-    /**
-     * Entity move
-     *
-     * @param sideMot   Side Motion
-     * @param forMot    Forward Motion
-     */
     @Override
     public void g(float sideMot, float forMot) {
         if(!isCustomEntity) {
@@ -68,31 +58,13 @@ public class ControllableSheep extends EntitySheep {
         return false;
     }
 
-
-    /**
-     * Destroys the custom entity (deletes it & everything related)
-     */
-    public void destroy() {
+    @Override
+    public void destroyCustomEntity(EntityInsentient entity) {
         getBukkitEntity().setPassenger(null);
         getBukkitEntity().remove();
 
         this.controllableEntityHandler.destroy();
     }
-
-    /**
-     * Spawns a controllable cow attached to player at location
-     *
-     * @param location   Location to teleport the cow to
-     * @return           Created controllable cow
-     */
-    public ControllableSheep spawnCustomEntity(Location location) {
-        setLocation(location.getX(), location.getY(), location.getZ(), location.getYaw(), location.getPitch());
-        ((CraftLivingEntity) getBukkitEntity()).setRemoveWhenFarAway(false);
-
-        ((CraftWorld)location.getWorld()).getHandle().addEntity(ControllableSheep.this, CreatureSpawnEvent.SpawnReason.CUSTOM);
-        return this;
-    }
-
 
     public ControllableEntityHandler getControllableEntityHandler() {
         return this.controllableEntityHandler;

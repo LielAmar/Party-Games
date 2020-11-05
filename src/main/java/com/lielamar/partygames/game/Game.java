@@ -8,7 +8,7 @@ import com.lielamar.lielsutils.scoreboard.ScoreboardUtils;
 import com.lielamar.partygames.Main;
 import com.lielamar.partygames.game.games.*;
 import com.lielamar.partygames.events.GameEndEvent;
-import com.lielamar.partygames.models.CustomPlayer;
+import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.utils.GameUtils;
 import com.lielamar.partygames.utils.Parameters;
 import com.packetmanager.lielamar.PacketManager;
@@ -35,9 +35,9 @@ public class Game {
     private Minigame currentGame;
     private int currentGameID;
 
-    private List<String> waitscoreboard;
-    private List<String> countdownscoreboard;
-    private List<String> gamestatsscoreboard;
+    private List<String> waitscoreboardLines;
+    private List<String> countdownscoreboardLines;
+    private List<String> gamestatsscoreboardLines;
 
     private final Scoreboard spectatorsScoreboard;
     private final Team spectatorsTeam;
@@ -57,9 +57,9 @@ public class Game {
         this.currentGame = null;
         this.currentGameID = 0;
 
-        this.waitscoreboard = main.getFileManager().getConfig("config").getConfig().getStringList("waitscoreboard");
-        this.countdownscoreboard = main.getFileManager().getConfig("config").getConfig().getStringList("countdownscoreboard");
-        this.gamestatsscoreboard = main.getFileManager().getConfig("config").getConfig().getStringList("gamestatsscoreboard");
+        this.waitscoreboardLines = main.getFileManager().getConfig("config").getConfig().getStringList("waitscoreboard");
+        this.countdownscoreboardLines = main.getFileManager().getConfig("config").getConfig().getStringList("countdownscoreboard");
+        this.gamestatsscoreboardLines = main.getFileManager().getConfig("config").getConfig().getStringList("gamestatsscoreboard");
 
         this.spectatorsScoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
         this.spectatorsTeam = this.spectatorsScoreboard.registerNewTeam("Ghost");
@@ -169,7 +169,7 @@ public class Game {
             public void run() {
                 if(getGameState() == GameState.WAITING_FOR_PLAYERS) {
                     infoPlayers(ChatColor.YELLOW + "Countdown Stopped!");
-                    scoreboardPlayers(ScoreboardUtils.assembleScoreboard(waitscoreboard, new Pair<>("%date%", TextUtils.getDate()),
+                    scoreboardPlayers(ScoreboardUtils.assembleScoreboard(waitscoreboardLines, new Pair<>("%date%", TextUtils.getDate()),
                             new Pair<>("%map%", "Party Games"),
                             new Pair<>("%players%", getAmountOfPlayers() + ""),
                             new Pair<>("%maxplayers%", Parameters.MAXIMUM_PLAYERS() + ""),
@@ -195,7 +195,7 @@ public class Game {
                 } else if(time <= 5) titlePlayers(ChatColor.GOLD + "" + time);
                 else if(time <= 10) titlePlayers(ChatColor.GREEN + "" + time);
 
-                scoreboardPlayers(ScoreboardUtils.assembleScoreboard(countdownscoreboard, new Pair<>("%date%", TextUtils.getDate()),
+                scoreboardPlayers(ScoreboardUtils.assembleScoreboard(countdownscoreboardLines, new Pair<>("%date%", TextUtils.getDate()),
                         new Pair<>("%map%", "Party Games"),
                         new Pair<>("%players%", getAmountOfPlayers() + ""),
                         new Pair<>("%maxplayers%", Parameters.MAXIMUM_PLAYERS() + ""),
@@ -356,7 +356,7 @@ public class Game {
             if(cp == null) continue;
             this.fixPlayer(cp.getPlayer());
 
-            this.scoreboardPlayers(ScoreboardUtils.assembleScoreboard(gamestatsscoreboard,
+            this.scoreboardPlayers(ScoreboardUtils.assembleScoreboard(gamestatsscoreboardLines,
                     new Pair<>("%date%", TextUtils.getDate()),
                     new Pair<>("%game%", "end"),
                     new Pair<>("%gamefirst%", (topPlayers[0] != null) ? ChatColor.getLastColors(topPlayers[0].getPlayer().getDisplayName()) + topPlayers[0].getPlayer().getName() + ChatColor.WHITE + ": " + ChatColor.GREEN + topPlayers[0].getScore() + ChatColor.YELLOW + "✯" : ""),
@@ -405,7 +405,7 @@ public class Game {
             player.removePotionEffect(pe.getType());
 
         if(this.getGameState() == GameState.WAITING_FOR_PLAYERS) {
-            this.scoreboardPlayers(ScoreboardUtils.assembleScoreboard(waitscoreboard, new Pair<>("%date%", TextUtils.getDate()),
+            this.scoreboardPlayers(ScoreboardUtils.assembleScoreboard(waitscoreboardLines, new Pair<>("%date%", TextUtils.getDate()),
                     new Pair<>("%map%", "Party Games"),
                     new Pair<>("%players%", this.getAmountOfPlayers() + ""),
                     new Pair<>("%maxplayers%", Parameters.MAXIMUM_PLAYERS() + ""),
@@ -483,7 +483,7 @@ public class Game {
     public void setCurrentGameId(int id) { this.currentGameID = id; }
     public int getCurrentGameId() { return this.currentGameID; }
 
-    public List<String> getGameStatsScoreboard() { return this.gamestatsscoreboard; }
+    public List<String> getGameStatsScoreboard() { return this.gamestatsscoreboardLines; }
 
     public Scoreboard getSpectatorsScoreboard() { return this.spectatorsScoreboard; }
     public Scoreboard getStaffScoreboard() { return this.staffScoreboard; }

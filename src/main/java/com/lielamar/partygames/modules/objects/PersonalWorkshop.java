@@ -12,7 +12,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WorkshopObject {
+public class PersonalWorkshop {
 
     public static Material[] materials = { Material.STONE, Material.WEB, Material.IRON_ORE, Material.GOLD_ORE, Material.DIAMOND_ORE, Material.REDSTONE_ORE, Material.MELON_BLOCK, Material.LOG };
 
@@ -24,7 +24,7 @@ public class WorkshopObject {
 
     private List<Integer> materialYs;
 
-    public WorkshopObject(Location recipeStart, Location recipeEnd, Location recipeProduct, Location npcLocation, List<Pair<Location, Location>> materialLocations) {
+    public PersonalWorkshop(Location recipeStart, Location recipeEnd, Location recipeProduct, Location npcLocation, List<Pair<Location, Location>> materialLocations) {
         this.recipeStart = recipeStart;
         this.recipeEnd = recipeEnd;
         this.recipeProduct = recipeProduct;

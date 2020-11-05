@@ -35,9 +35,6 @@ public class ControllableEntityHandler {
         if(constantMovement)
             updateConstantMovement();
     }
-    public boolean isConstantMovement() {
-        return this.constantMovement;
-    }
 
     public void setSpeed(double speed) {
         this.speed = speed;

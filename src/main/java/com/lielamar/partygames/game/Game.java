@@ -7,7 +7,7 @@ import com.lielamar.lielsutils.scoreboard.ScoreboardManager;
 import com.lielamar.lielsutils.scoreboard.ScoreboardUtils;
 import com.lielamar.partygames.Main;
 import com.lielamar.partygames.game.games.*;
-import com.lielamar.partygames.listeners.custom.GameEndEvent;
+import com.lielamar.partygames.events.GameEndEvent;
 import com.lielamar.partygames.models.CustomPlayer;
 import com.lielamar.partygames.utils.GameUtils;
 import com.lielamar.partygames.utils.Parameters;

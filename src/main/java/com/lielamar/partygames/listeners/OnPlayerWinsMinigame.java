@@ -1,8 +1,8 @@
 package com.lielamar.partygames.listeners;
 
 import com.lielamar.partygames.Main;
-import com.lielamar.partygames.listeners.custom.GameEndEvent;
-import com.lielamar.partygames.listeners.custom.MinigameWinEvent;
+import com.lielamar.partygames.events.GameEndEvent;
+import com.lielamar.partygames.events.MinigameEndEvent;
 import com.lielamar.partygames.models.CustomPlayer;
 import org.bukkit.*;
 import org.bukkit.entity.EntityType;
@@ -26,7 +26,7 @@ public class OnPlayerWinsMinigame implements Listener {
     }
 
     @EventHandler
-    public void onWin(MinigameWinEvent e) {
+    public void onMinigameEnd(MinigameEndEvent e) {
         if(e.getFirst() == null) return;
         Player winner = e.getFirst().getPlayer();
 
@@ -57,7 +57,7 @@ public class OnPlayerWinsMinigame implements Listener {
     }
 
     @EventHandler
-    public void onGameWin(GameEndEvent e) {
+    public void onGameEnd(GameEndEvent e) {
         if(e.getFirst() == null) return;
         Player winner = e.getFirst().getPlayer();
 

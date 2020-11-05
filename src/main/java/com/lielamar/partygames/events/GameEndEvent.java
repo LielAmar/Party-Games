@@ -1,20 +1,20 @@
-package com.lielamar.partygames.listeners.custom;
+package com.lielamar.partygames.events;
 
-import com.lielamar.partygames.game.Minigame;
+import com.lielamar.partygames.game.Game;
 import com.lielamar.partygames.models.CustomPlayer;
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 
-public class MinigameWinEvent extends Event {
+public class GameEndEvent extends Event {
 
-    private Minigame minigame;
+    private Game game;
     private CustomPlayer first, second, third;
     private CustomPlayer[] players;
     private static final HandlerList HANDLERS_LIST = new HandlerList();
     private boolean cancelled;
 
-    public MinigameWinEvent(Minigame minigame, CustomPlayer first, CustomPlayer second, CustomPlayer third, CustomPlayer[] players) {
-        this.minigame = minigame;
+    public GameEndEvent(Game game, CustomPlayer first, CustomPlayer second, CustomPlayer third, CustomPlayer[] players){
+        this.game = game;
         this.first = first;
         this.second = second;
         this.third = third;
@@ -39,9 +39,7 @@ public class MinigameWinEvent extends Event {
         return HANDLERS_LIST;
     }
 
-    public Minigame getMinigame() {
-        return this.minigame;
-    }
+    public Game getGame() { return this.game; }
 
     public CustomPlayer getFirst() {
         return this.first;

@@ -93,8 +93,8 @@ public class ControllableEntitiesPacketReader {
         chicken.g(sideMot, forMot);
 
         if(forMot != 0) {
-            chicken.motX *= Math.sqrt(chicken.getSpeed());
-            chicken.motZ *= Math.sqrt(chicken.getSpeed());
+            chicken.motX *= Math.sqrt(chicken.getControllableEntityHandler().getSpeed());
+            chicken.motZ *= Math.sqrt(chicken.getControllableEntityHandler().getSpeed());
         }
     }
 
@@ -121,8 +121,8 @@ public class ControllableEntitiesPacketReader {
         cow.g(sideMot, forMot);
 
         if(forMot != 0) {
-            cow.motX *= Math.sqrt(cow.getSpeed());
-            cow.motZ *= Math.sqrt(cow.getSpeed());
+            cow.motX *= Math.sqrt(cow.getControllableEntityHandler().getSpeed());
+            cow.motZ *= Math.sqrt(cow.getControllableEntityHandler().getSpeed());
         }
     }
 
@@ -149,8 +149,8 @@ public class ControllableEntitiesPacketReader {
         pig.g(sideMot, forMot);
 
         if(forMot != 0) {
-            pig.motX *= Math.sqrt(pig.getSpeed());
-            pig.motZ *= Math.sqrt(pig.getSpeed());
+            pig.motX *= Math.sqrt(pig.getControllableEntityHandler().getSpeed());
+            pig.motZ *= Math.sqrt(pig.getControllableEntityHandler().getSpeed());
         }
     }
 
@@ -190,8 +190,8 @@ public class ControllableEntitiesPacketReader {
             sheep.g(sideMot, forMot);
 
             if(forMot != 0) {
-                sheep.motX *= Math.sqrt(sheep.getSpeed()+0.1);
-                sheep.motZ *= Math.sqrt(sheep.getSpeed()+0.1);
+                sheep.motX *= Math.sqrt(sheep.getControllableEntityHandler().getSpeed()+0.1);
+                sheep.motZ *= Math.sqrt(sheep.getControllableEntityHandler().getSpeed()+0.1);
             }
         }
     }

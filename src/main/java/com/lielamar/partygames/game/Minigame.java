@@ -6,8 +6,8 @@ import com.lielamar.lielsutils.modules.Pair;
 import com.lielamar.lielsutils.scoreboard.ScoreboardManager;
 import com.lielamar.lielsutils.scoreboard.ScoreboardUtils;
 import com.lielamar.lielsutils.validation.Validation;
-import com.lielamar.partygames.listeners.custom.MinigameWinEvent;
-import com.lielamar.partygames.listeners.custom.PlayerFinishMinigameEvent;
+import com.lielamar.partygames.events.MinigameEndEvent;
+import com.lielamar.partygames.events.PlayerFinishMinigameEvent;
 import com.lielamar.partygames.models.CustomPlayer;
 import com.lielamar.partygames.models.exceptions.MinigameConfigurationException;
 import com.lielamar.partygames.utils.GameUtils;
@@ -185,7 +185,7 @@ public class Minigame {
      */
     public void stopMinigame() {
         CustomPlayer[] players = GameUtils.sortCustomPlayersList(this.getGame().getPlayers(), GameUtils.SortType.BY_MINIGAME_SCORE, true);
-        MinigameWinEvent event = new MinigameWinEvent(this, players[0], players[1], players[2], players);
+        MinigameEndEvent event = new MinigameEndEvent(this, players[0], players[1], players[2], players);
         Bukkit.getPluginManager().callEvent(event);
 
         if(this.startMinigameTask != null) this.startMinigameTask.cancel();

@@ -10,7 +10,5 @@ public class OnPlayerFinishMinigame implements Listener {
     @EventHandler
     public void onFinishMinigame(PlayerFinishMinigameEvent e) {
         e.getPlayer().getPlayer().playSound(e.getPlayer().getPlayer().getLocation(), Sound.LEVEL_UP, 1F, 0.7F);
-
-
     }
 }

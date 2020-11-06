@@ -7,13 +7,19 @@ import com.lielamar.partygames.commands.PartyGames;
 import com.lielamar.partygames.game.Game;
 import com.lielamar.partygames.listeners.*;
 import com.lielamar.partygames.modules.CustomPlayer;
-import com.lielamar.partygames.modules.entities.*;
+import com.lielamar.partygames.modules.entities.ControllableEntitiesPacketReader;
 import com.lielamar.partygames.modules.entities.custom.*;
 import com.lielamar.partygames.utils.Parameters;
 import com.packetmanager.lielamar.PacketManager;
 import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.player.PlayerAchievementAwardedEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
+import org.bukkit.event.player.PlayerItemDamageEvent;
+import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -58,21 +64,22 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new OnPlayerJoin(this), this);
         pm.registerEvents(new OnPlayerQuit(this), this);
         pm.registerEvents(new OnPlayerDeath(this), this);
-//        pm.registerEvents(new OnPlayerInteract(), this); // TODO: remove after testing
 
-        pm.registerEvents(new OnHungerChange(), this);
-        pm.registerEvents(new OnItemDrop(), this);
-        pm.registerEvents(new OnItemPickup(), this);
+        pm.registerEvents(new PlayerEventsHandler<PlayerDropItemEvent>("partygames.admin"), this);
+        pm.registerEvents(new PlayerEventsHandler<PlayerPickupItemEvent>("partygames.admin"), this);
+        pm.registerEvents(new PlayerEventsHandler<PlayerAchievementAwardedEvent>(), this);
+        pm.registerEvents(new PlayerEventsHandler<PlayerItemDamageEvent>(), this);
+
+        pm.registerEvents(new EntityEventsHandler<FoodLevelChangeEvent>(), this);
+        pm.registerEvents(new EntityEventsHandler<EntityDamageEvent>(), this);
+
         pm.registerEvents(new OnEntitySpawn(), this);
-        pm.registerEvents(new OnDamage(), this);
         pm.registerEvents(new OnBlockBreak(), this);
         pm.registerEvents(new OnBlockPlace(), this);
-        pm.registerEvents(new OnDurabilityChange(), this);
         pm.registerEvents(new OnWeatherChange(), this);
-        pm.registerEvents(new OnPlayerAchievement(), this);
-        pm.registerEvents(new OnPlayerFinishMinigame(), this);
         pm.registerEvents(new OnInventoryClick(), this);
 
+        pm.registerEvents(new OnPlayerFinishMinigame(), this);
         pm.registerEvents(new OnPlayerWinsMinigame(this), this);
     }
 

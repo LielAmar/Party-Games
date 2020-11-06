@@ -10,8 +10,8 @@ import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.game.Minigame;
 import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.modules.entities.custom.WorkshopKeeper;
+import com.lielamar.partygames.modules.objects.PersonalWorkshop;
 import com.lielamar.partygames.modules.objects.Recipe;
-import com.lielamar.partygames.modules.objects.WorkshopObject;
 import com.lielamar.partygames.utils.Parameters;
 import org.bukkit.*;
 import org.bukkit.block.Furnace;
@@ -44,7 +44,7 @@ public class Workshop extends Minigame implements Listener {
     private static int items_to_craft = 5;
 
     private Recipe[] recipes;
-    private Map<CustomPlayer, WorkshopObject> assignedRecipeBoards;
+    private Map<CustomPlayer, PersonalWorkshop> assignedRecipeBoards;
 
     public Workshop(Game game, GameType gameType, String minigameName, int minigameTime, ScoreboardType scoreboardType) {
         super(game, gameType, minigameName, minigameTime, scoreboardType);
@@ -78,7 +78,7 @@ public class Workshop extends Minigame implements Listener {
             return;
         }
 
-        WorkshopObject canvas;
+        PersonalWorkshop workshop;
         for(int i = 0; i < super.getGame().getPlayers().length; i++) {
             if(super.getGame().getPlayers()[i] == null) continue;
 
@@ -89,14 +89,14 @@ public class Workshop extends Minigame implements Listener {
                         SpigotUtils.fetchLocation(config.getConfig(), "workshops." + i + ".materials." + j + ".end")
                 ));
 
-            canvas = new WorkshopObject(
+            workshop = new PersonalWorkshop(
                     SpigotUtils.fetchLocation(config.getConfig(), "workshops." + i + ".recipeStart"),
                     SpigotUtils.fetchLocation(config.getConfig(), "workshops." + i + ".recipeEnd"),
                     SpigotUtils.fetchLocation(config.getConfig(), "workshops." + i + ".recipeProduct"),
                     SpigotUtils.fetchLocation(config.getConfig(), "workshops." + i + ".npc"),
                     materialLocations);
 
-            this.assignedRecipeBoards.put(super.getGame().getPlayers()[i], canvas);
+            this.assignedRecipeBoards.put(super.getGame().getPlayers()[i], workshop);
         }
     }
 
@@ -105,7 +105,7 @@ public class Workshop extends Minigame implements Listener {
         for(int i = 0; i < super.getGame().getPlayers().length; i++) {
             if(super.getGame().getPlayers()[i] == null) continue;
 
-            WorkshopObject workshop = assignedRecipeBoards.get(super.getGame().getPlayers()[i]);
+            PersonalWorkshop workshop = assignedRecipeBoards.get(super.getGame().getPlayers()[i]);
             workshop.loadWorkshop(recipes[super.getGame().getPlayers()[i].getMinigameScore()]);
 
             WorkshopKeeper keeper = new WorkshopKeeper(workshop.getNPCLocation().getWorld());
@@ -119,7 +119,7 @@ public class Workshop extends Minigame implements Listener {
         super.destroyMinigame();
 
         for(WorkshopKeeper keeper : keepers) keeper.getBukkitEntity().remove();
-        for(WorkshopObject workshop : assignedRecipeBoards.values()) workshop.destroy();
+        for(PersonalWorkshop workshop : assignedRecipeBoards.values()) workshop.destroy();
     }
 
 
@@ -190,7 +190,7 @@ public class Workshop extends Minigame implements Listener {
         if(!assignedRecipeBoards.get(super.getGame().getPlayers()[playerIndex]).containsMaterial(e.getClickedBlock())) return;
 
         e.getPlayer().playSound(e.getPlayer().getLocation(), Sound.DIG_STONE, 1F, 1F);
-        e.getPlayer().getInventory().addItem(WorkshopObject.getMatchingMaterial(e.getClickedBlock().getType()));
+        e.getPlayer().getInventory().addItem(PersonalWorkshop.getMatchingMaterial(e.getClickedBlock().getType()));
         e.getClickedBlock().setType(Material.AIR);
     }
 

@@ -25,7 +25,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Minigame {
+public abstract class Minigame {
 
     private Game game;
     private GameType gameType;

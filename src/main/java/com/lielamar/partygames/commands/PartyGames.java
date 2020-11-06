@@ -6,11 +6,14 @@ import com.lielamar.partygames.commands.subcommands.*;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabCompleter;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-public class PartyGames implements CommandExecutor {
+public class PartyGames implements CommandExecutor, TabCompleter {
 
     private Main main;
 
@@ -29,6 +32,7 @@ public class PartyGames implements CommandExecutor {
 
     public PartyGames(Main main) {
         this.main = main;
+        main.getCommand(mainCommand).setTabCompleter(this);
         main.getCommand(mainCommand).setExecutor(this);
 
         this.commands = new HashSet<>();
@@ -96,5 +100,20 @@ public class PartyGames implements CommandExecutor {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public List<String> onTabComplete(CommandSender cs, org.bukkit.command.Command cmd, String cmdLabel, String[] args) {
+        if(cmd.getName().equalsIgnoreCase(mainCommand)) {
+            if(!cs.hasPermission("partygames.admin"))
+                return null;
+
+            if(args.length == 0) {
+                List<String> tabComplete = new ArrayList<>();
+                this.commands.forEach(subCmd -> tabComplete.add(subCmd.getName()));
+                return tabComplete;
+            }
+        }
+        return null;
     }
 }

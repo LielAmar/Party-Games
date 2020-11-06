@@ -6,7 +6,6 @@ public class Parameters {
 
     // GENERAL
     private static String minigames_dir = "games/";
-    private static String backups_dir = "backups/";
 
     // GAME
     private static boolean allow_duplicate_games = false;
@@ -23,7 +22,6 @@ public class Parameters {
 
     public static void initiate(FileConfiguration config) {
         if(config.contains("parameters.minigames_dir")) minigames_dir = config.getString("parameters.minigames_dir");
-        if(config.contains("parameters.backups_dir")) backups_dir = config.getString("parameters.backups_dir");
 
         if(config.contains("parameters.allow_duplicate_games")) allow_duplicate_games = config.getBoolean("parameters.allow_duplicate_games");
         if(config.contains("parameters.countdown_time")) countdown_time = config.getInt("parameters.countdown_time");

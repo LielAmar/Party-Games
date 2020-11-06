@@ -14,12 +14,6 @@ import com.packetmanager.lielamar.PacketManager;
 import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.FoodLevelChangeEvent;
-import org.bukkit.event.player.PlayerAchievementAwardedEvent;
-import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerItemDamageEvent;
-import org.bukkit.event.player.PlayerPickupItemEvent;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -64,20 +58,10 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new OnPlayerJoin(this), this);
         pm.registerEvents(new OnPlayerQuit(this), this);
         pm.registerEvents(new OnPlayerDeath(this), this);
-
-        pm.registerEvents(new PlayerEventsHandler<PlayerDropItemEvent>("partygames.admin"), this);
-        pm.registerEvents(new PlayerEventsHandler<PlayerPickupItemEvent>("partygames.admin"), this);
-        pm.registerEvents(new PlayerEventsHandler<PlayerAchievementAwardedEvent>(), this);
-        pm.registerEvents(new PlayerEventsHandler<PlayerItemDamageEvent>(), this);
-
-        pm.registerEvents(new EntityEventsHandler<FoodLevelChangeEvent>(), this);
-        pm.registerEvents(new EntityEventsHandler<EntityDamageEvent>(), this);
+        pm.registerEvents(new PlayerEventsHandler("partygames.admin"), this);
 
         pm.registerEvents(new OnEntitySpawn(), this);
-        pm.registerEvents(new OnBlockBreak(), this);
-        pm.registerEvents(new OnBlockPlace(), this);
         pm.registerEvents(new OnWeatherChange(), this);
-        pm.registerEvents(new OnInventoryClick(), this);
 
         pm.registerEvents(new OnPlayerFinishMinigame(), this);
         pm.registerEvents(new OnPlayerWinsMinigame(this), this);

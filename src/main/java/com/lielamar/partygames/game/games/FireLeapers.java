@@ -3,17 +3,13 @@ package com.lielamar.partygames.game.games;
 import com.lielamar.lielsutils.validation.CharValidation;
 import com.lielamar.lielsutils.validation.DoubleValidation;
 import com.lielamar.lielsutils.validation.IntValidation;
-import com.lielamar.partygames.game.Game;
-import com.lielamar.partygames.game.GameState;
-import com.lielamar.partygames.game.GameType;
-import com.lielamar.partygames.game.Minigame;
+import com.lielamar.partygames.game.*;
 import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
 import com.lielamar.partygames.modules.objects.Laser;
-import com.lielamar.partygames.utils.Parameters;
+import com.lielamar.partygames.game.GameType;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -32,15 +28,13 @@ public class FireLeapers extends Minigame {
     private double minX, maxX, y, minZ, maxZ, distance;
     private List<Location> particleLocations;
 
-    public FireLeapers(Game game, GameType gameType, String minigameName, int minigameTime, ScoreboardType scoreboardType) {
-        super(game, gameType, minigameName, minigameTime, scoreboardType);
+    public FireLeapers(Game game, GameType gameType) {
+        super(game, gameType);
     }
 
     @Override
     public void setupMinigameParameters() {
         super.setupMinigameParameters();
-
-        YamlConfiguration config = super.getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + super.getMinigameName()).getConfig();
 
         if(config.contains("parameters.axis")) axis = config.getString("parameters.axis").toLowerCase().charAt(0);
         if(config.contains("parameters.start_difficulty")) start_difficulty = config.getDouble("parameters.start_difficulty");
@@ -49,7 +43,7 @@ public class FireLeapers extends Minigame {
 
         this.difficulty = start_difficulty;
 
-        this.setupParticleLocations(config);
+        this.setupParticleLocations();
 
         try {
             super.validateVariables(
@@ -80,7 +74,7 @@ public class FireLeapers extends Minigame {
         super.extraStartParameters();
 
         super.runMinigameTask = new BukkitRunnable() {
-            int i = getGameTime();
+            int i = getGameType().getGameDuration();
 
             @Override
             public void run() {
@@ -109,10 +103,8 @@ public class FireLeapers extends Minigame {
 
     /**
      * Sets up all locations where at particles are spawning
-     *
-     * @param config   Config to load data from
      */
-    public void setupParticleLocations(YamlConfiguration config) {
+    public void setupParticleLocations() {
         this.particleLocations = new ArrayList<>();
 
         this.minX = config.getInt("particles.minX");

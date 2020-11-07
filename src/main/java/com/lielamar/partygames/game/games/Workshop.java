@@ -2,7 +2,6 @@ package com.lielamar.partygames.game.games;
 
 import com.lielamar.lielsutils.SpigotUtils;
 import com.lielamar.lielsutils.TextUtils;
-import com.lielamar.lielsutils.files.FileManager;
 import com.lielamar.lielsutils.modules.Pair;
 import com.lielamar.partygames.Main;
 import com.lielamar.partygames.game.Game;
@@ -12,10 +11,8 @@ import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.modules.entities.custom.WorkshopKeeper;
 import com.lielamar.partygames.modules.objects.PersonalWorkshop;
 import com.lielamar.partygames.modules.objects.Recipe;
-import com.lielamar.partygames.utils.Parameters;
 import org.bukkit.*;
 import org.bukkit.block.Furnace;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.ItemFrame;
 import org.bukkit.entity.Villager;
 import org.bukkit.event.EventHandler;
@@ -46,16 +43,14 @@ public class Workshop extends Minigame implements Listener {
     private Recipe[] recipes;
     private Map<CustomPlayer, PersonalWorkshop> assignedRecipeBoards;
 
-    public Workshop(Game game, GameType gameType, String minigameName, int minigameTime, ScoreboardType scoreboardType) {
-        super(game, gameType, minigameName, minigameTime, scoreboardType);
+    public Workshop(Game game, GameType gameType) {
+        super(game, gameType);
         Bukkit.getPluginManager().registerEvents(this, this.getGame().getMain());
     }
 
     @Override
     public void setupMinigameParameters() {
         super.setupMinigameParameters();
-
-        YamlConfiguration config = super.getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + super.getMinigameName()).getConfig();
 
         if(config.contains("parameters.villager_prefix")) villager_prefix = config.getString("parameters.villager_prefix");
         if(config.contains("parameters.villager_happy_message")) villager_happy_message = config.getString("parameters.villager_happy_message");
@@ -68,11 +63,9 @@ public class Workshop extends Minigame implements Listener {
     @Override
     public void setupMinigame() {
         super.setupMinigame();
-        FileManager.Config config = super.getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + super.getMinigameName());
-
         this.assignedRecipeBoards = new HashMap<>();
 
-        int amount_of_canvases = config.getConfig().getConfigurationSection("workshops").getKeys(false).size();
+        int amount_of_canvases = config.getConfigurationSection("workshops").getKeys(false).size();
         if(amount_of_canvases < super.getGame().getPlayers().length) {
             super.destroyMinigame();
             return;
@@ -83,17 +76,17 @@ public class Workshop extends Minigame implements Listener {
             if(super.getGame().getPlayers()[i] == null) continue;
 
             List<Pair<Location, Location>> materialLocations = new ArrayList<>();
-            for(int j = 0; j < config.getConfig().getConfigurationSection("workshops." + i + ".materials").getKeys(false).size(); j++)
+            for(int j = 0; j < config.getConfigurationSection("workshops." + i + ".materials").getKeys(false).size(); j++)
                 materialLocations.add(new Pair<>(
-                        SpigotUtils.fetchLocation(config.getConfig(), "workshops." + i + ".materials." + j + ".start"),
-                        SpigotUtils.fetchLocation(config.getConfig(), "workshops." + i + ".materials." + j + ".end")
+                        SpigotUtils.fetchLocation(config, "workshops." + i + ".materials." + j + ".start"),
+                        SpigotUtils.fetchLocation(config, "workshops." + i + ".materials." + j + ".end")
                 ));
 
             workshop = new PersonalWorkshop(
-                    SpigotUtils.fetchLocation(config.getConfig(), "workshops." + i + ".recipeStart"),
-                    SpigotUtils.fetchLocation(config.getConfig(), "workshops." + i + ".recipeEnd"),
-                    SpigotUtils.fetchLocation(config.getConfig(), "workshops." + i + ".recipeProduct"),
-                    SpigotUtils.fetchLocation(config.getConfig(), "workshops." + i + ".npc"),
+                    SpigotUtils.fetchLocation(config, "workshops." + i + ".recipeStart"),
+                    SpigotUtils.fetchLocation(config, "workshops." + i + ".recipeEnd"),
+                    SpigotUtils.fetchLocation(config, "workshops." + i + ".recipeProduct"),
+                    SpigotUtils.fetchLocation(config, "workshops." + i + ".npc"),
                     materialLocations);
 
             this.assignedRecipeBoards.put(super.getGame().getPlayers()[i], workshop);
@@ -160,9 +153,7 @@ public class Workshop extends Minigame implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onInteract(PlayerInteractEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof Workshop)) return;
 
@@ -196,9 +187,7 @@ public class Workshop extends Minigame implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onInteractWithVillager(PlayerInteractAtEntityEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof Workshop)) return;
 
@@ -244,9 +233,7 @@ public class Workshop extends Minigame implements Listener {
 
     @EventHandler
     public void onFurnaceOpen(InventoryOpenEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof Workshop)) return;
 
@@ -262,9 +249,7 @@ public class Workshop extends Minigame implements Listener {
 
     @EventHandler (priority = EventPriority.HIGHEST)
     public void onInventoryClick(InventoryClickEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof Workshop)) return;
 
@@ -278,9 +263,7 @@ public class Workshop extends Minigame implements Listener {
 
     @EventHandler
     public void onFurnaceSmelt(FurnaceSmeltEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof Workshop)) return;
 
@@ -292,9 +275,7 @@ public class Workshop extends Minigame implements Listener {
 
     @EventHandler
     public void onFurnaceBurn(FurnaceBurnEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof Workshop)) return;
 
@@ -306,9 +287,7 @@ public class Workshop extends Minigame implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onItemFrameDamage(EntityDamageByEntityEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof Workshop)) return;
 
@@ -318,9 +297,7 @@ public class Workshop extends Minigame implements Listener {
 
     @EventHandler
     public void onItemFrameBreak(HangingBreakByEntityEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof Workshop)) return;
 
@@ -330,9 +307,7 @@ public class Workshop extends Minigame implements Listener {
 
     @EventHandler
     public void onItemFrameInteract(PlayerInteractEntityEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof Workshop)) return;
 

@@ -4,18 +4,14 @@ import com.lielamar.lielsutils.SpigotUtils;
 import com.lielamar.lielsutils.modules.Pair;
 import com.lielamar.lielsutils.validation.DoubleValidation;
 import com.lielamar.partygames.Main;
-import com.lielamar.partygames.game.Game;
-import com.lielamar.partygames.game.GameState;
-import com.lielamar.partygames.game.GameType;
-import com.lielamar.partygames.game.Minigame;
+import com.lielamar.partygames.game.*;
 import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
 import com.lielamar.partygames.modules.objects.Bomb;
-import com.lielamar.partygames.utils.Parameters;
+import com.lielamar.partygames.game.GameType;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -36,16 +32,14 @@ public class Bombardment extends Minigame implements Listener {
     private Location[] cannons;
     private List<Location> shootLocations;
 
-    public Bombardment(Game game, GameType gameType, String minigameName, int minigameTime, ScoreboardType scoreboardType) {
-        super(game, gameType, minigameName, minigameTime, scoreboardType);
-        Bukkit.getPluginManager().registerEvents(this, this.getGame().getMain());
+    public Bombardment(Game game, GameType gameType) {
+        super(game, gameType);
+        Bukkit.getPluginManager().registerEvents(this, getGame().getMain());
     }
 
     @Override
     public void setupMinigameParameters() {
         super.setupMinigameParameters();
-
-        YamlConfiguration config = super.getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + super.getMinigameName()).getConfig();
 
         if(config.contains("parameters.max_distance_from_middle")) max_distance_from_middle = config.getDouble("parameters.max_distance_from_middle");
         if(config.contains("parameters.bomb_type")) bomb_type = Material.valueOf(config.getString("parameters.bomb_type"));
@@ -80,7 +74,7 @@ public class Bombardment extends Minigame implements Listener {
      */
     public void startAdditionalTimer() {
         new BukkitRunnable() {
-            int i = getGameTime();
+            int i = getGameType().getGameDuration();
 
             @Override
             public void run() {
@@ -89,18 +83,18 @@ public class Bombardment extends Minigame implements Listener {
                     return;
                 }
 
-                if(getGameTime()-i == 15) currentWave = 2;
-                else if(getGameTime()-i == 30) currentWave = 3;
-                else if(getGameTime()-i == 45) currentWave = 4;
-                else if(getGameTime()-i == 60) currentWave = 5;
-                else if(getGameTime()-i == 75) currentWave = 6;
-                else if(getGameTime()-1 == 90) currentWave = 7;
+                if(getGameType().getGameDuration()-i == 15) currentWave = 2;
+                else if(getGameType().getGameDuration()-i == 30) currentWave = 3;
+                else if(getGameType().getGameDuration()-i == 45) currentWave = 4;
+                else if(getGameType().getGameDuration()-i == 60) currentWave = 5;
+                else if(getGameType().getGameDuration()-i == 75) currentWave = 6;
+                else if(getGameType().getGameDuration()-1 == 90) currentWave = 7;
 
-                if(i == getGameTime())
+                if(i == getGameType().getGameDuration())
                     new Bomb(getGame(), cannons[0], getMiddle().clone().add(0, -4, 0), Material.COAL_BLOCK, currentWave);
 
                 if(getGameState() == GameState.IN_GAME)
-                    handleBombShooting(getGameTime()-i);
+                    handleBombShooting(getGameType().getGameDuration()-i);
 
                 i--;
             }
@@ -113,12 +107,12 @@ public class Bombardment extends Minigame implements Listener {
     public void setupShootLocations() {
         this.shootLocations = new ArrayList<>();
 
-        double minX = super.getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + super.getMinigameName()).getConfig().getInt("shoot.minX");
-        double maxX = super.getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + super.getMinigameName()).getConfig().getInt("shoot.maxX");
-        double y = super.getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + super.getMinigameName()).getConfig().getInt("shoot.Y");
-        double minZ = super.getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + super.getMinigameName()).getConfig().getInt("shoot.minZ");
-        double maxZ = super.getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + super.getMinigameName()).getConfig().getInt("shoot.maxZ");
-        double distance = super.getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + super.getMinigameName()).getConfig().getInt("shoot.distance");
+        double minX = config.getInt("shoot.minX");
+        double maxX = config.getInt("shoot.maxX");
+        double y = config.getInt("shoot.Y");
+        double minZ = config.getInt("shoot.minZ");
+        double maxZ = config.getInt("shoot.maxZ");
+        double distance = config.getInt("shoot.distance");
         World world = super.getMiddle().getWorld();
 
         for(double x = 0; Math.abs(x) <= Math.abs(minX-maxX); x += (minX > maxX) ? -distance : distance) {
@@ -169,9 +163,7 @@ public class Bombardment extends Minigame implements Listener {
 
     @EventHandler (priority = EventPriority.HIGHEST)
     public void onPlayerDamage(EntityDamageEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof Bombardment)) return;
 
@@ -191,9 +183,7 @@ public class Bombardment extends Minigame implements Listener {
 
     @EventHandler
     public void onWaterTouch(PlayerMoveEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof Bombardment)) return;
 

@@ -8,12 +8,10 @@ import com.lielamar.partygames.game.Minigame;
 import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
 import com.lielamar.partygames.utils.GameUtils;
-import com.lielamar.partygames.utils.Parameters;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -35,16 +33,14 @@ public class HoeHoeHoe extends Minigame implements Listener {
     private Map<Integer, CustomPlayer> assignedColors;
     private List<Player> didntStartGame;
 
-    public HoeHoeHoe(Game game, GameType gameType, String minigameName, int minigameTime, ScoreboardType scoreboardType) {
-        super(game, gameType, minigameName, minigameTime, scoreboardType);
+    public HoeHoeHoe(Game game, GameType gameType) {
+        super(game, gameType);
         Bukkit.getPluginManager().registerEvents(this, this.getGame().getMain());
     }
 
     @Override
     public void setupMinigameParameters() {
         super.setupMinigameParameters();
-
-        YamlConfiguration config = super.getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + super.getMinigameName()).getConfig();
 
         if(config.contains("parameters.item")) item = SpigotUtils.getItem(Material.valueOf(config.getString("parameters.item")), 1, ChatColor.YELLOW + "Hoe Hoe Hoe");
         if(config.contains("parameters.block_types") && config.isList("parameters.block_types")) {
@@ -98,7 +94,6 @@ public class HoeHoeHoe extends Minigame implements Listener {
     @EventHandler (priority = EventPriority.HIGHEST)
     @SuppressWarnings("deprecation")
     public void onInteract(PlayerInteractEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
 
         if(super.getGame().getCurrentGame() == null) return;

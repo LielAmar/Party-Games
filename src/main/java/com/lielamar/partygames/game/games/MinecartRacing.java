@@ -4,19 +4,15 @@ import com.lielamar.lielsutils.SpigotUtils;
 import com.lielamar.lielsutils.validation.CharValidation;
 import com.lielamar.lielsutils.validation.IntValidation;
 import com.lielamar.partygames.Main;
-import com.lielamar.partygames.game.Game;
-import com.lielamar.partygames.game.GameState;
-import com.lielamar.partygames.game.GameType;
-import com.lielamar.partygames.game.Minigame;
+import com.lielamar.partygames.game.*;
 import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
+import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.utils.GameUtils;
-import com.lielamar.partygames.utils.Parameters;
 import com.packetmanager.lielamar.PacketManager;
 import net.minecraft.server.v1_8_R3.EntityArrow;
 import org.bukkit.*;
 import org.bukkit.block.Block;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.craftbukkit.v1_8_R3.entity.CraftArrow;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.EntityType;
@@ -51,8 +47,8 @@ public class MinecartRacing extends Minigame implements Listener {
     private Location finishLine;
     private Location[] rails;
 
-    public MinecartRacing(Game game, GameType gameType, String minigameName, int minigameTime, ScoreboardType scoreboardType) {
-        super(game, gameType, minigameName, minigameTime, scoreboardType);
+    public MinecartRacing(Game game, GameType gameType) {
+        super(game, gameType);
         Bukkit.getPluginManager().registerEvents(this, this.getGame().getMain());
     }
 
@@ -60,10 +56,8 @@ public class MinecartRacing extends Minigame implements Listener {
     public void setupMinigameParameters() {
         super.setupMinigameParameters();
 
-        YamlConfiguration config = super.getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + super.getMinigameName()).getConfig();
-
-        if (config.contains("parameters.axis")) axis = config.getString("parameters.axis").toLowerCase().charAt(0);
-        if (config.contains("parameters.wool_colors") && config.isList("parameters.wool_colors"))
+        if(config.contains("parameters.axis")) axis = config.getString("parameters.axis").toLowerCase().charAt(0);
+        if(config.contains("parameters.wool_colors") && config.isList("parameters.wool_colors"))
             wool_colors = config.getIntegerList("parameters.wool_colors").toArray(new Integer[0]);
 
         this.assignedColors = new HashMap<>();
@@ -71,8 +65,8 @@ public class MinecartRacing extends Minigame implements Listener {
         this.finishLine = SpigotUtils.fetchLocation(config, "finish");
 
         GameUtils.assignColorsToPlayers(super.getGame().getPlayers(), wool_colors, this.assignedColors);
-        this.setupCarts(config);
-        this.setupBoards(config);
+        this.setupCarts();
+        this.setupBoards();
 
         try {
             super.validateVariables(
@@ -118,7 +112,7 @@ public class MinecartRacing extends Minigame implements Listener {
     /**
      * Sets up all carts
      */
-    public void setupCarts(YamlConfiguration config) {
+    public void setupCarts() {
         this.rails = SpigotUtils.fetchLocations(config, "rails");
 
         if (this.rails.length < super.getGame().getPlayers().length) {
@@ -144,7 +138,7 @@ public class MinecartRacing extends Minigame implements Listener {
      * Sets up all boards
      */
     @SuppressWarnings("deprecation")
-    public void setupBoards(YamlConfiguration config) {
+    public void setupBoards() {
         int distance = config.getInt("boards.distance");
         int endpoint = config.getInt("boards.endpoint");
 
@@ -183,49 +177,43 @@ public class MinecartRacing extends Minigame implements Listener {
 
     @EventHandler
     public void onVehicleEnter(VehicleEnterEvent e) {
-        if (super.getMinigameName() == null) return;
-        if (super.getGame() == null) return;
+        if(super.getGame() == null) return;
+        if(super.getGame().getCurrentGame() == null) return;
+        if(!(super.getGame().getCurrentGame() instanceof MinecartRacing)) return;
 
-        if (super.getGame().getCurrentGame() == null) return;
-        if (!(super.getGame().getCurrentGame() instanceof MinecartRacing)) return;
-
-        if (super.getGameState() != GameState.IN_GAME)
+        if(super.getGameState() != GameState.IN_GAME)
             e.setCancelled(true);
     }
 
     @EventHandler
     public void onVehicleExit(VehicleExitEvent e) {
-        if (super.getMinigameName() == null) return;
-        if (super.getGame() == null) return;
-
-        if (super.getGame().getCurrentGame() == null) return;
-        if (!(super.getGame().getCurrentGame() instanceof MinecartRacing)) return;
+        if(super.getGame() == null) return;
+        if(super.getGame().getCurrentGame() == null) return;
+        if(!(super.getGame().getCurrentGame() instanceof MinecartRacing)) return;
 
         int playerIndex = super.getGame().getPlayerIndex((Player) e.getExited());
-        if (playerIndex == -1) return;
+        if(playerIndex == -1) return;
 
         e.setCancelled(true);
     }
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent e) {
-        if (super.getMinigameName() == null) return;
-        if (super.getGame() == null) return;
+        if(super.getGame() == null) return;
+        if(super.getGame().getCurrentGame() == null) return;
+        if(!(super.getGame().getCurrentGame() instanceof MinecartRacing)) return;
 
-        if (super.getGame().getCurrentGame() == null) return;
-        if (!(super.getGame().getCurrentGame() instanceof MinecartRacing)) return;
-
-        if (super.getGameState() == GameState.GAME_END) return;
+        if(super.getGameState() == GameState.GAME_END) return;
 
         int playerIndex = super.getGame().getPlayerIndex(e.getPlayer());
-        if (playerIndex == -1) return;
-        if (super.getGame().getPlayers()[playerIndex].isSpectator()) return;
+        if(playerIndex == -1) return;
+        if(super.getGame().getPlayers()[playerIndex].isSpectator()) return;
 
         boolean preGame = super.getGameState() != GameState.IN_GAME;
         boolean blockChanged = (int) e.getTo().getX() != (int) e.getFrom().getX()
                 || (int) e.getTo().getY() != (int) e.getFrom().getY()
                 || (int) e.getTo().getZ() != (int) e.getFrom().getZ();
-        if (preGame && blockChanged) {
+        if(preGame && blockChanged) {
             e.setTo(e.getFrom());
             return;
         }
@@ -234,22 +222,20 @@ public class MinecartRacing extends Minigame implements Listener {
                 this.middle.getZ(), this.finishLine.getZ());
         super.getGame().getPlayers()[playerIndex].setMinigameScore(distanceFromFinishLine);
 
-        if (axis == 'x' && Math.abs(e.getPlayer().getLocation().getX() - this.finishLine.getX()) < 2
+        if(axis == 'x' && Math.abs(e.getPlayer().getLocation().getX() - this.finishLine.getX()) < 2
                 || axis == 'z' && Math.abs(e.getPlayer().getLocation().getZ() - this.finishLine.getZ()) < 2)
             super.stopMinigame();
     }
 
     @EventHandler
     public void onShootWool(ProjectileHitEvent e) {
-        if (super.getMinigameName() == null) return;
-        if (super.getGame() == null) return;
+        if(super.getGame() == null) return;
+        if(super.getGame().getCurrentGame() == null) return;
+        if(!(super.getGame().getCurrentGame() instanceof MinecartRacing)) return;
 
-        if (super.getGame().getCurrentGame() == null) return;
-        if (!(super.getGame().getCurrentGame() instanceof MinecartRacing)) return;
+        if(super.getGameState() != GameState.IN_GAME && super.getGameState() != GameState.GAME_END) return;
 
-        if (super.getGameState() != GameState.IN_GAME && super.getGameState() != GameState.GAME_END) return;
-
-        if (e.getEntityType() != EntityType.ARROW) return;
+        if(e.getEntityType() != EntityType.ARROW) return;
 
         e.getEntity().remove();
 
@@ -271,22 +257,22 @@ public class MinecartRacing extends Minigame implements Listener {
                     int y = fieldY.getInt(entityArrow);
                     int z = fieldZ.getInt(entityArrow);
 
-                    if ((x != -1) && (y != -1) && (z != -1)) {
+                    if((x != -1) && (y != -1) && (z != -1)) {
                         Block block = e.getEntity().getWorld().getBlockAt(x, y, z);
-                        if (block.getY() <= getMiddle().getY()) return; // If they shoot the rails
+                        if(block.getY() <= getMiddle().getY()) return; // If they shoot the rails
 
-                        if (block.getType() != Material.WOOL) return;
+                        if(block.getType() != Material.WOOL) return;
 
                         Wool wool = (Wool) block.getState().getData();
                         CustomPlayer cp = assignedColors.get(SpigotUtils.translateColorToInt(wool.getColor()));
-                        if (cp != null) {
+                        if(cp != null) {
                             carts.get(cp.getPlayer().getUniqueId()).setMaxSpeed(carts.get(cp.getPlayer().getUniqueId()).getMaxSpeed() * 1.2);
                             carts.get(cp.getPlayer().getUniqueId()).setVelocity(carts.get(cp.getPlayer().getUniqueId()).getVelocity().multiply(1.2));
                             PacketManager.sendActionbar(cp.getPlayer(), ChatColor.GOLD + "SPEED BOOST");
                         }
 
                         block.breakNaturally();
-                        if (e.getEntity().getShooter() instanceof Player)
+                        if(e.getEntity().getShooter() instanceof Player)
                             ((Player) e.getEntity().getShooter()).playSound(((Player) e.getEntity().getShooter()).getLocation(), Sound.SUCCESSFUL_HIT, 1F, 1F);
                     }
                 } catch (Exception ex) {
@@ -298,39 +284,37 @@ public class MinecartRacing extends Minigame implements Listener {
 
     @EventHandler
     public void onVehicleDestroy(VehicleDestroyEvent e) {
-        if (super.getMinigameName() == null) return;
-        if (super.getGame() == null) return;
+        if(super.getGame() == null) return;
 
-        if (super.getGame().getCurrentGame() == null) return;
-        if (!(super.getGame().getCurrentGame() instanceof MinecartRacing)) return;
+        if(super.getGame().getCurrentGame() == null) return;
+        if(!(super.getGame().getCurrentGame() instanceof MinecartRacing)) return;
 
         e.setCancelled(true);
     }
 
     @EventHandler
     public void onVehicleUpdate(VehicleUpdateEvent e) {
-        if (super.getMinigameName() == null) return;
-        if (super.getGame() == null) return;
+        if(super.getGame() == null) return;
 
-        if (super.getGame().getCurrentGame() == null) return;
-        if (!(super.getGame().getCurrentGame() instanceof MinecartRacing)) return;
+        if(super.getGame().getCurrentGame() == null) return;
+        if(!(super.getGame().getCurrentGame() instanceof MinecartRacing)) return;
 
-        if (super.getGameState() != GameState.IN_GAME && super.getGameState() != GameState.GAME_END) return;
+        if(super.getGameState() != GameState.IN_GAME && super.getGameState() != GameState.GAME_END) return;
 
-        if (axis == 'x') {
-            if (getMiddle().getX() > finishLine.getX()) {
-                if (e.getVehicle().getVelocity().getX() > 0)
+        if(axis == 'x') {
+            if(getMiddle().getX() > finishLine.getX()) {
+                if(e.getVehicle().getVelocity().getX() > 0)
                     e.getVehicle().setVelocity(e.getVehicle().getVelocity().setX(e.getVehicle().getVelocity().getX() * (-1)));
             } else {
-                if (e.getVehicle().getVelocity().getX() < 0)
+                if(e.getVehicle().getVelocity().getX() < 0)
                     e.getVehicle().setVelocity(e.getVehicle().getVelocity().setX(e.getVehicle().getVelocity().getX() * (-1)));
             }
         } else {
-            if (getMiddle().getZ() > finishLine.getZ()) {
-                if (e.getVehicle().getVelocity().getZ() > 0)
+            if(getMiddle().getZ() > finishLine.getZ()) {
+                if(e.getVehicle().getVelocity().getZ() > 0)
                     e.getVehicle().setVelocity(e.getVehicle().getVelocity().setZ(e.getVehicle().getVelocity().getZ() * (-1)));
             } else {
-                if (e.getVehicle().getVelocity().getZ() < 0)
+                if(e.getVehicle().getVelocity().getZ() < 0)
                     e.getVehicle().setVelocity(e.getVehicle().getVelocity().setZ(e.getVehicle().getVelocity().getZ() * (-1)));
             }
         }
@@ -338,17 +322,16 @@ public class MinecartRacing extends Minigame implements Listener {
 
     @EventHandler
     public void onEntitySpawn(EntitySpawnEvent e) {
-        if (super.getMinigameName() == null) return;
-        if (super.getGame() == null) return;
+        if(super.getGame() == null) return;
 
-        if (super.getGame().getCurrentGame() == null) return;
-        if (!(super.getGame().getCurrentGame() instanceof MinecartRacing)) return;
+        if(super.getGame().getCurrentGame() == null) return;
+        if(!(super.getGame().getCurrentGame() instanceof MinecartRacing)) return;
 
-        if (super.getGameState() != GameState.IN_GAME && super.getGameState() != GameState.GAME_END) return;
+        if(super.getGameState() != GameState.IN_GAME && super.getGameState() != GameState.GAME_END) return;
 
-        if (e.getEntity().getType() == EntityType.DROPPED_ITEM) {
+        if(e.getEntity().getType() == EntityType.DROPPED_ITEM) {
             Item item = (Item) e.getEntity();
-            if (item.getItemStack().getType() == Material.WOOL)
+            if(item.getItemStack().getType() == Material.WOOL)
                 e.getEntity().remove();
         }
     }

@@ -1,16 +1,12 @@
 package com.lielamar.partygames.game.games;
 
-import com.lielamar.partygames.game.Game;
-import com.lielamar.partygames.game.GameState;
-import com.lielamar.partygames.game.GameType;
-import com.lielamar.partygames.game.Minigame;
+import com.lielamar.partygames.game.*;
 import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.modules.entities.custom.ControllableCow;
-import com.lielamar.partygames.utils.Parameters;
+import com.lielamar.partygames.game.GameType;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.Sound;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -26,16 +22,14 @@ public class LawnMoower extends Minigame implements Listener {
 
     private static boolean constant_movement = false;
 
-    public LawnMoower(Game game, GameType gameType, String minigameName, int minigameTime, ScoreboardType scoreboardType) {
-        super(game, gameType, minigameName, minigameTime, scoreboardType);
+    public LawnMoower(Game game, GameType gameType) {
+        super(game, gameType);
         Bukkit.getPluginManager().registerEvents(this, this.getGame().getMain());
     }
 
     @Override
     public void setupMinigameParameters() {
         super.setupMinigameParameters();
-
-        YamlConfiguration config = super.getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + super.getMinigameName()).getConfig();
 
         if(config.contains("parameters.constant_movement")) constant_movement = config.getBoolean("parameters.constant_movement");
 
@@ -97,9 +91,7 @@ public class LawnMoower extends Minigame implements Listener {
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof LawnMoower)) return;
 

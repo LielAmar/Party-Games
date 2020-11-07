@@ -3,17 +3,13 @@ package com.lielamar.partygames.game.games;
 import com.lielamar.lielsutils.validation.DoubleValidation;
 import com.lielamar.lielsutils.validation.IntValidation;
 import com.lielamar.partygames.Main;
-import com.lielamar.partygames.game.Game;
-import com.lielamar.partygames.game.GameState;
-import com.lielamar.partygames.game.GameType;
-import com.lielamar.partygames.game.Minigame;
+import com.lielamar.partygames.game.*;
 import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
-import com.lielamar.partygames.utils.Parameters;
+import com.lielamar.partygames.game.GameType;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.FallingBlock;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -37,16 +33,14 @@ public class AnvilSpleef extends Minigame implements Listener {
 
     private List<Location> anvilLocations;
 
-    public AnvilSpleef(Game game, GameType gameType, String minigameName, int minigameTime, ScoreboardType scoreboardType) {
-        super(game, gameType, minigameName, minigameTime, scoreboardType);
-        Bukkit.getPluginManager().registerEvents(this, this.getGame().getMain());
+    public AnvilSpleef(Game game, GameType gameType) {
+        super(game, gameType);
+        Bukkit.getPluginManager().registerEvents(this, getGame().getMain());
     }
 
     @Override
     public void setupMinigameParameters() {
         super.setupMinigameParameters();
-
-        YamlConfiguration config = super.getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + super.getMinigameName()).getConfig();
 
         if(config.contains("parameters.radius")) radius = config.getInt("parameters.radius");
         if(config.contains("parameters.minimum_y")) minimum_y = config.getDouble("parameters.minimum_y");
@@ -78,7 +72,7 @@ public class AnvilSpleef extends Minigame implements Listener {
      */
     public void startAdditionalTimer() {
         new BukkitRunnable() {
-            int i = getGameTime();
+            int i = getGameType().getGameDuration();
 
             @Override
             public void run() {
@@ -140,9 +134,7 @@ public class AnvilSpleef extends Minigame implements Listener {
 
     @EventHandler
     public void onPlayerFallOffMap(PlayerMoveEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof AnvilSpleef)) return;
 
@@ -166,9 +158,7 @@ public class AnvilSpleef extends Minigame implements Listener {
 
     @EventHandler
     public void onPlayerDamageByAnvil(EntityDamageByEntityEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof AnvilSpleef)) return;
 
@@ -191,9 +181,7 @@ public class AnvilSpleef extends Minigame implements Listener {
 
     @EventHandler
     public void onEntityChangeBlock(EntityChangeBlockEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof AnvilSpleef)) return;
 

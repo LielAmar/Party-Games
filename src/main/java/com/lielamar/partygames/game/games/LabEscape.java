@@ -2,18 +2,14 @@ package com.lielamar.partygames.game.games;
 
 import com.lielamar.lielsutils.validation.DoubleValidation;
 import com.lielamar.partygames.Main;
-import com.lielamar.partygames.game.Game;
-import com.lielamar.partygames.game.GameState;
-import com.lielamar.partygames.game.GameType;
-import com.lielamar.partygames.game.Minigame;
+import com.lielamar.partygames.game.*;
 import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
-import com.lielamar.partygames.utils.Parameters;
+import com.lielamar.partygames.game.GameType;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -31,16 +27,14 @@ public class LabEscape extends Minigame implements Listener {
     private static int bottom_y = 11;
     private static List<Material> block_types = new ArrayList<>();
 
-    public LabEscape(Game game, GameType gameType, String minigameName, int minigameTime, ScoreboardType scoreboardType) {
-        super(game, gameType, minigameName, minigameTime, scoreboardType);
+    public LabEscape(Game game, GameType gameType) {
+        super(game, gameType);
         Bukkit.getPluginManager().registerEvents(this, this.getGame().getMain());
     }
 
     @Override
     public void setupMinigameParameters() {
         super.setupMinigameParameters();
-
-        YamlConfiguration config = super.getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + super.getMinigameName()).getConfig();
 
         if(config.contains("parameters.max_distance_from_middle")) max_distance_from_middle = config.getDouble("parameters.max_distance_from_middle");
         if(config.contains("parameters.top_y")) top_y = config.getInt("parameters.top_y");
@@ -101,9 +95,7 @@ public class LabEscape extends Minigame implements Listener {
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof LabEscape)) return;
 
@@ -125,9 +117,7 @@ public class LabEscape extends Minigame implements Listener {
 
     @EventHandler (priority = EventPriority.HIGHEST)
     public void onBlockBreak(BlockBreakEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof LabEscape)) return;
 

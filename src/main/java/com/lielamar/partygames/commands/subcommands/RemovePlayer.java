@@ -71,7 +71,6 @@ public class RemovePlayer extends Command {
             return;
         }
 
-        main.getScoreboardManager().getScoreboard(player).setScoreboard(main.getGame().getStaffScoreboard());
         player.setFlying(true);
         player.setAllowFlight(true);
         Bukkit.getOnlinePlayers().stream()

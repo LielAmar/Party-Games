@@ -1,18 +1,14 @@
 package com.lielamar.partygames.game.games;
 
 import com.lielamar.lielsutils.SpigotUtils;
-import com.lielamar.partygames.game.Game;
-import com.lielamar.partygames.game.GameState;
-import com.lielamar.partygames.game.GameType;
-import com.lielamar.partygames.game.Minigame;
+import com.lielamar.partygames.game.*;
 import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.modules.entities.custom.ControllablePig;
-import com.lielamar.partygames.utils.Parameters;
+import com.lielamar.partygames.game.GameType;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -37,16 +33,14 @@ public class PigJousting extends Minigame implements Listener {
 
     public static Map<UUID, ControllablePig> pigs = new HashMap<>();
 
-    public PigJousting(Game game, GameType gameType, String minigameName, int minigameTime, ScoreboardType scoreboardType) {
-        super(game, gameType, minigameName, minigameTime, scoreboardType);
+    public PigJousting(Game game, GameType gameType) {
+        super(game, gameType);
         Bukkit.getPluginManager().registerEvents(this, this.getGame().getMain());
     }
 
     @Override
     public void setupMinigameParameters() {
         super.setupMinigameParameters();
-
-        YamlConfiguration config = getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + getMinigameName()).getConfig();
 
         if(config.contains("parameters.constant_movement")) constant_movement = config.getBoolean("parameters.constant_movement");
         if(config.contains("parameters.helmet")) helmet = new ItemStack(Material.valueOf(config.getString("parameters.helmet")));
@@ -64,10 +58,8 @@ public class PigJousting extends Minigame implements Listener {
 
         Location start, end;
         for(int i = 0; i < super.getLocations().length; i++) {
-            start = SpigotUtils.fetchLocation(super.getGame().getMain().getFileManager()
-                    .getConfig(Parameters.MINIGAMES_DIR() + super.getMinigameName()).getConfig(), "fences." + i + ".start");
-            end = SpigotUtils.fetchLocation(super.getGame().getMain().getFileManager()
-                    .getConfig(Parameters.MINIGAMES_DIR() + super.getMinigameName()).getConfig(), "fences." + i + ".end");
+            start = SpigotUtils.fetchLocation(config, "fences." + i + ".start");
+            end = SpigotUtils.fetchLocation(config, "fences." + i + ".end");
 
             for(int x = 0; Math.abs(x) <= Math.abs(start.getX()-end.getX()); x+= (start.getX() > end.getX()) ? -1 : 1) {
                 for(int y = 0; Math.abs(y) <= Math.abs(start.getY()-end.getY()); y+= (start.getY() > end.getY()) ? -1 : 1) {
@@ -99,7 +91,7 @@ public class PigJousting extends Minigame implements Listener {
      */
     public void startAdditionalTimer() {
         new BukkitRunnable() {
-            int i = getGameTime();
+            int i = getGameType().getGameDuration();
 
             @Override
             public void run() {
@@ -161,9 +153,7 @@ public class PigJousting extends Minigame implements Listener {
 
     @EventHandler (priority = EventPriority.HIGHEST)
     public void onPlayerDamage(EntityDamageByEntityEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof PigJousting)) return;
 
@@ -203,9 +193,7 @@ public class PigJousting extends Minigame implements Listener {
 
     @EventHandler
     public void onRegen(EntityRegainHealthEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof PigJousting)) return;
 

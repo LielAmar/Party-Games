@@ -33,7 +33,7 @@ public class OnPlayerWinsMinigame implements Listener {
         runWin(winner);
 
         e.getMinigame().getGame().infoPlayers(ChatColor.GREEN + "" + ChatColor.BOLD + "------------------------------------------");
-        e.getMinigame().getGame().infoPlayers(ChatColor.WHITE + "" + ChatColor.BOLD + "                " + e.getMinigame().getMinigameName());
+        e.getMinigame().getGame().infoPlayers(ChatColor.WHITE + "" + ChatColor.BOLD + "                " + e.getMinigame().getGameType().getName());
 
         if(e.getFirst() != null) {
             e.getFirst().addScore(3);

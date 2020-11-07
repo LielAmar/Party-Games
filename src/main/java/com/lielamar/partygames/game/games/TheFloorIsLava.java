@@ -1,16 +1,12 @@
 package com.lielamar.partygames.game.games;
 
 import com.lielamar.lielsutils.SpigotUtils;
-import com.lielamar.partygames.game.Game;
-import com.lielamar.partygames.game.GameState;
-import com.lielamar.partygames.game.GameType;
-import com.lielamar.partygames.game.Minigame;
+import com.lielamar.partygames.game.*;
 import com.lielamar.partygames.modules.CustomPlayer;
+import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.utils.GameUtils;
-import com.lielamar.partygames.utils.Parameters;
 import org.bukkit.*;
 import org.bukkit.block.Block;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
@@ -33,8 +29,8 @@ public class TheFloorIsLava extends Minigame implements Listener {
     private Location checkpoint, checkpointStart, checkpointEnd;
     private Location endpointStart, endpointEnd;
 
-    public TheFloorIsLava(Game game, GameType gameType, String minigameName, int minigameTime, ScoreboardType scoreboardType) {
-        super(game, gameType, minigameName, minigameTime, scoreboardType);
+    public TheFloorIsLava(Game game, GameType gameType) {
+        super(game, gameType);
         super.middle.getWorld().setTime(14000);
         Bukkit.getPluginManager().registerEvents(this, this.getGame().getMain());
     }
@@ -43,13 +39,11 @@ public class TheFloorIsLava extends Minigame implements Listener {
     public void setupMinigameParameters() {
         super.setupMinigameParameters();
 
-        YamlConfiguration config = super.getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + getMinigameName()).getConfig();
-
         if(config.contains("parameters.minimum_y")) minimum_y = config.getDouble("parameters.minimum_y");
 
         this.checkpointPlayers = new ArrayList<>();
 
-        this.setupPoints(config);
+        this.setupPoints();
     }
 
     @Override
@@ -90,10 +84,8 @@ public class TheFloorIsLava extends Minigame implements Listener {
 
     /**
      * Sets up all points (wall, checkpoint, endpoint)
-     *
-     * @param config   Config to load data from
      */
-    public void setupPoints(YamlConfiguration config) {
+    public void setupPoints() {
         this.wallStart = SpigotUtils.fetchLocation(config, "wall.start");
         this.wallEnd = SpigotUtils.fetchLocation(config, "wall.end");
 
@@ -126,9 +118,7 @@ public class TheFloorIsLava extends Minigame implements Listener {
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof TheFloorIsLava)) return;
 
@@ -158,14 +148,12 @@ public class TheFloorIsLava extends Minigame implements Listener {
 
     @EventHandler
     public void onPlayerPhysics(PlayerInteractEvent e) {
-        if(e.getAction() != Action.PHYSICAL) return;
-        if(e.getClickedBlock().getType() != Material.STONE_PLATE) return;
-
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof TheFloorIsLava)) return;
+
+        if(e.getAction() != Action.PHYSICAL) return;
+        if(e.getClickedBlock().getType() != Material.STONE_PLATE) return;
 
         e.setCancelled(true);
 

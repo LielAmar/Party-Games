@@ -35,7 +35,6 @@ public class OnPlayerJoin implements Listener {
                 return;
             }
 
-            this.main.getScoreboardManager().getScoreboard(e.getPlayer()).setScoreboard(this.main.getGame().getStaffScoreboard());
             for(Player pl : Bukkit.getOnlinePlayers()) {
                 if(pl.hasPermission("partygames.seespectators") && !this.main.getGame().containsPlayer(pl))
                     pl.hidePlayer(e.getPlayer());

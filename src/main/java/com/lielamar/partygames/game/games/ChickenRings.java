@@ -10,13 +10,11 @@ import com.lielamar.partygames.modules.entities.custom.ControllableChicken;
 import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
 import com.lielamar.partygames.modules.objects.Ring;
 import com.lielamar.partygames.utils.GameUtils;
-import com.lielamar.partygames.utils.Parameters;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
@@ -37,16 +35,14 @@ public class ChickenRings extends Minigame implements Listener {
     private Map<Integer, Ring> rings;
     private Ring lastRing;
 
-    public ChickenRings(Game game, GameType gameType, String minigameName, int minigameTime, ScoreboardType scoreboardType) {
-        super(game, gameType, minigameName, minigameTime, scoreboardType);
+    public ChickenRings(Game game, GameType gameType) {
+        super(game, gameType);
         Bukkit.getPluginManager().registerEvents(this, this.getGame().getMain());
     }
 
     @Override
     public void setupMinigameParameters() {
         super.setupMinigameParameters();
-
-        YamlConfiguration config = super.getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + super.getMinigameName()).getConfig();
 
         if(config.contains("parameters.axis")) axis = config.getString("parameters.axis").toLowerCase().charAt(0);
         if(config.contains("parameters.constant_movement")) constant_movement = config.getBoolean("parameters.constant_movement");
@@ -137,7 +133,7 @@ public class ChickenRings extends Minigame implements Listener {
      * Sets up all rings
      */
     public void setupRingsLocations() {
-        Location[] ringLocations = SpigotUtils.fetchLocations(super.getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + getMinigameName()).getConfig(), "rings");
+        Location[] ringLocations = SpigotUtils.fetchLocations(config, "rings");
 
         for(int i = 0; i < ringLocations.length; i++) {
             this.rings.put(i, new Ring(ringLocations[i], axis));
@@ -209,9 +205,7 @@ public class ChickenRings extends Minigame implements Listener {
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof ChickenRings)) return;
 

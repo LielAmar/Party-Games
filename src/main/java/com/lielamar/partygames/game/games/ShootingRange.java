@@ -4,17 +4,13 @@ import com.lielamar.lielsutils.SpigotUtils;
 import com.lielamar.lielsutils.modules.Pair;
 import com.lielamar.lielsutils.validation.IntValidation;
 import com.lielamar.partygames.Main;
-import com.lielamar.partygames.game.Game;
-import com.lielamar.partygames.game.GameState;
-import com.lielamar.partygames.game.GameType;
-import com.lielamar.partygames.game.Minigame;
+import com.lielamar.partygames.game.*;
 import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.modules.entities.custom.ShootingRangeSkeleton;
 import com.lielamar.partygames.modules.entities.custom.ShootingRangeZombie;
 import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
-import com.lielamar.partygames.utils.Parameters;
+import com.lielamar.partygames.game.GameType;
 import org.bukkit.*;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.*;
 import org.bukkit.event.EventHandler;
@@ -46,16 +42,14 @@ public class ShootingRange extends Minigame implements Listener {
     private List<UUID> explosiveArrow;
     private List<Entity> mobs;
 
-    public ShootingRange(Game game, GameType gameType, String minigameName, int minigameTime, ScoreboardType scoreboardType) {
-        super(game, gameType, minigameName, minigameTime, scoreboardType);
+    public ShootingRange(Game game, GameType gameType) {
+        super(game, gameType);
         Bukkit.getPluginManager().registerEvents(this, this.getGame().getMain());
     }
 
     @Override
     public void setupMinigameParameters() {
         super.setupMinigameParameters();
-
-        YamlConfiguration config = super.getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + super.getMinigameName()).getConfig();
 
         if(config.contains("parameters.amount_of_runners")) amount_of_runners = config.getInt("parameters.amount_of_runners");
         if(config.contains("parameters.normal_zombie_percentage")) normal_zombie_percentage = config.getInt("parameters.normal_zombie_percentage");
@@ -66,7 +60,7 @@ public class ShootingRange extends Minigame implements Listener {
         this.explosiveArrow = new ArrayList<>();
         this.mobs = new ArrayList<>();
 
-        this.setupMobSpawnLocations(config);
+        this.setupMobSpawnLocations();
 
         try {
             super.validateVariables(
@@ -106,10 +100,8 @@ public class ShootingRange extends Minigame implements Listener {
 
     /**
      * Sets up all spawn locations for the mobs
-     *
-     * @param config   Config to load data from
      */
-    public void setupMobSpawnLocations(YamlConfiguration config) {
+    public void setupMobSpawnLocations() {
         this.mobSpawnLocations = new ArrayList<>();
 
         for(int i = 0; i < config.getConfigurationSection("mobSpawnLocations").getKeys(false).size(); i++)
@@ -203,9 +195,7 @@ public class ShootingRange extends Minigame implements Listener {
 
     @EventHandler
     public void onMobShoot(EntityDamageByEntityEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof ShootingRange)) return;
 
@@ -225,9 +215,7 @@ public class ShootingRange extends Minigame implements Listener {
 
     @EventHandler
     public void onArrowLand(ProjectileHitEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof ShootingRange)) return;
 
@@ -250,9 +238,7 @@ public class ShootingRange extends Minigame implements Listener {
 
     @EventHandler
     public void onEntityDeath(EntityDeathEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof ShootingRange)) return;
 
@@ -267,9 +253,7 @@ public class ShootingRange extends Minigame implements Listener {
 
     @EventHandler
     public void onDropSpawn(EntitySpawnEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof ShootingRange)) return;
 
@@ -279,9 +263,7 @@ public class ShootingRange extends Minigame implements Listener {
 
     @EventHandler
     public void onEntityCombust(EntityCombustEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof ShootingRange)) return;
 

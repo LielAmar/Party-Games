@@ -2,16 +2,12 @@ package com.lielamar.partygames.game.games;
 
 import com.lielamar.lielsutils.SpigotUtils;
 import com.lielamar.lielsutils.validation.IntValidation;
-import com.lielamar.partygames.game.Game;
-import com.lielamar.partygames.game.GameState;
-import com.lielamar.partygames.game.GameType;
-import com.lielamar.partygames.game.Minigame;
+import com.lielamar.partygames.game.*;
 import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
 import com.lielamar.partygames.modules.objects.RPG;
-import com.lielamar.partygames.utils.Parameters;
+import com.lielamar.partygames.game.GameType;
 import org.bukkit.*;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -39,16 +35,14 @@ public class RPG16 extends Minigame implements Listener {
     private Map<UUID, Long> doubleJumpCooldown;
     private Map<UUID, Long> rpgCooldown;
 
-    public RPG16(Game game, GameType gameType, String minigameName, int minigameTime, ScoreboardType scoreboardType) {
-        super(game, gameType, minigameName, minigameTime, scoreboardType);
+    public RPG16(Game game, GameType gameType) {
+        super(game, gameType);
         Bukkit.getPluginManager().registerEvents(this, this.getGame().getMain());
     }
 
     @Override
     public void setupMinigameParameters() {
         super.setupMinigameParameters();
-
-        YamlConfiguration config = super.getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + super.getMinigameName()).getConfig();
 
         if(config.contains("parameters.rpg_cooldown")) rpg_cooldown = config.getInt("parameters.rpg_cooldown");
         if(config.contains("parameters.doublejump_cooldown")) doublejump_cooldown = config.getInt("parameters.doublejump_cooldown");
@@ -79,9 +73,7 @@ public class RPG16 extends Minigame implements Listener {
 
     @EventHandler (priority = EventPriority.HIGHEST)
     public void onPlayerDamage(EntityDamageEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof RPG16)) return;
 
@@ -102,9 +94,7 @@ public class RPG16 extends Minigame implements Listener {
 
     @EventHandler
     public void onRegen(EntityRegainHealthEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof RPG16)) return;
 
@@ -115,9 +105,7 @@ public class RPG16 extends Minigame implements Listener {
 
     @EventHandler
     public void onPigShoot(PlayerInteractEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof RPG16)) return;
 
@@ -142,9 +130,7 @@ public class RPG16 extends Minigame implements Listener {
 
     @EventHandler
     public void onDropSpawn(EntitySpawnEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof RPG16)) return;
 
@@ -154,9 +140,7 @@ public class RPG16 extends Minigame implements Listener {
 
     @EventHandler
     public void onDoubleJump(PlayerMoveEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof RPG16)) return;
 
@@ -180,9 +164,7 @@ public class RPG16 extends Minigame implements Listener {
 
     @EventHandler
     public void onFlight(PlayerToggleFlightEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof RPG16)) return;
 

@@ -4,20 +4,16 @@ import com.lielamar.lielsutils.SpigotUtils;
 import com.lielamar.lielsutils.modules.Node;
 import com.lielamar.lielsutils.validation.IntValidation;
 import com.lielamar.partygames.Main;
-import com.lielamar.partygames.game.Game;
-import com.lielamar.partygames.game.GameState;
-import com.lielamar.partygames.game.GameType;
-import com.lielamar.partygames.game.Minigame;
+import com.lielamar.partygames.game.*;
 import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.modules.entities.custom.ControllableSheep;
 import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
+import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.utils.GameUtils;
-import com.lielamar.partygames.utils.Parameters;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Sheep;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -40,16 +36,14 @@ public class SuperSheep extends Minigame implements Listener {
     private Map<UUID, Node<Location>> nodes;
     private int current_length;
 
-    public SuperSheep(Game game, GameType gameType, String minigameName, int minigameTime, ScoreboardType scoreboardType) {
-        super(game, gameType, minigameName, minigameTime, scoreboardType);
+    public SuperSheep(Game game, GameType gameType) {
+        super(game, gameType);
         Bukkit.getPluginManager().registerEvents(this, this.getGame().getMain());
     }
 
     @Override
     public void setupMinigameParameters() {
         super.setupMinigameParameters();
-
-        YamlConfiguration config = super.getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + super.getMinigameName()).getConfig();
 
         if(config.contains("parameters.constant_movement")) constant_movement = config.getBoolean("parameters.constant_movement");
         if(config.contains("parameters.start_length")) start_length = config.getInt("parameters.start_length");
@@ -112,7 +106,7 @@ public class SuperSheep extends Minigame implements Listener {
      */
     public void startAdditionalTimer() {
         new BukkitRunnable() {
-            int i = 4*getGameTime();
+            int i = 4*getGameType().getGameDuration();
 
             @Override
             public void run() {
@@ -241,9 +235,7 @@ public class SuperSheep extends Minigame implements Listener {
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof SuperSheep)) return;
 

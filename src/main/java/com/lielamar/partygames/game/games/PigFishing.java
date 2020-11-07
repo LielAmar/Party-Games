@@ -4,18 +4,14 @@ import com.lielamar.lielsutils.SpigotUtils;
 import com.lielamar.lielsutils.validation.DoubleValidation;
 import com.lielamar.lielsutils.validation.IntValidation;
 import com.lielamar.partygames.Main;
-import com.lielamar.partygames.game.Game;
-import com.lielamar.partygames.game.GameState;
-import com.lielamar.partygames.game.GameType;
-import com.lielamar.partygames.game.Minigame;
+import com.lielamar.partygames.game.*;
 import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
+import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.utils.GameUtils;
-import com.lielamar.partygames.utils.Parameters;
 import org.bukkit.*;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Pig;
 import org.bukkit.event.EventHandler;
@@ -47,16 +43,14 @@ public class PigFishing extends Minigame implements Listener {
     private Location pigtile;
     private List<Pig> pigs;
 
-    public PigFishing(Game game, GameType gameType, String minigameName, int minigameTime, ScoreboardType scoreboardType) {
-        super(game, gameType, minigameName, minigameTime, scoreboardType);
+    public PigFishing(Game game, GameType gameType) {
+        super(game, gameType);
         Bukkit.getPluginManager().registerEvents(this, this.getGame().getMain());
     }
 
     @Override
     public void setupMinigameParameters() {
         super.setupMinigameParameters();
-
-        YamlConfiguration config = super.getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + super.getMinigameName()).getConfig();
 
         if(config.contains("parameters.max_distance_from_location")) max_distance_from_location = config.getDouble("parameters.max_distance_from_location");
         if(config.contains("parameters.pig_score_y")) pig_score_y = config.getDouble("parameters.pig_score_y");
@@ -68,8 +62,8 @@ public class PigFishing extends Minigame implements Listener {
             wool_colors = config.getIntegerList("parameters.wool_colors").toArray(new Integer[0]);
 
         this.assignedColors = new HashMap<>();
-        this.redstoneLocations = SpigotUtils.fetchLocations(super.getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + super.getMinigameName()).getConfig(), "redstoneblocks");
-        this.pigtile = SpigotUtils.fetchLocation(super.getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + super.getMinigameName()).getConfig(), "pigtile");
+        this.redstoneLocations = SpigotUtils.fetchLocations(config, "redstoneblocks");
+        this.pigtile = SpigotUtils.fetchLocation(config, "pigtile");
         this.pigs = new ArrayList<>();
 
         GameUtils.assignColorsToPlayers(super.getGame().getPlayers(), wool_colors, this.assignedColors);
@@ -117,7 +111,7 @@ public class PigFishing extends Minigame implements Listener {
      */
     public void startAdditionalTimer() {
         new BukkitRunnable() {
-            int i = getGameTime();
+            int i = getGameType().getGameDuration();
             int randomValue = Main.rnd.nextInt(5)-2;
 
             @Override
@@ -234,9 +228,7 @@ public class PigFishing extends Minigame implements Listener {
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof PigFishing)) return;
 
@@ -261,9 +253,7 @@ public class PigFishing extends Minigame implements Listener {
 
     @EventHandler
     public void onEntityDamage(EntityDamageEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof PigFishing)) return;
 
@@ -275,9 +265,7 @@ public class PigFishing extends Minigame implements Listener {
 
     @EventHandler
     public void onVehicleEnter(PlayerInteractAtEntityEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof PigFishing)) return;
 

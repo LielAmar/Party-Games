@@ -3,19 +3,15 @@ package com.lielamar.partygames.game.games;
 import com.lielamar.lielsutils.SpigotUtils;
 import com.lielamar.lielsutils.validation.CharValidation;
 import com.lielamar.lielsutils.validation.IntValidation;
-import com.lielamar.partygames.game.Game;
-import com.lielamar.partygames.game.GameState;
-import com.lielamar.partygames.game.GameType;
-import com.lielamar.partygames.game.Minigame;
+import com.lielamar.partygames.game.*;
 import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
+import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.utils.GameUtils;
-import com.lielamar.partygames.utils.Parameters;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Chicken;
 import org.bukkit.entity.Egg;
 import org.bukkit.entity.Player;
@@ -41,16 +37,14 @@ public class CannonPainters extends Minigame implements Listener {
 
     private Map<Integer, CustomPlayer> assignedColors;
 
-    public CannonPainters(Game game, GameType gameType, String minigameName, int minigameTime, ScoreboardType scoreboardType) {
-        super(game, gameType, minigameName, minigameTime, scoreboardType);
+    public CannonPainters(Game game, GameType gameType) {
+        super(game, gameType);
         Bukkit.getPluginManager().registerEvents(this, this.getGame().getMain());
     }
 
     @Override
     public void setupMinigameParameters() {
         super.setupMinigameParameters();
-
-        YamlConfiguration config = super.getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + super.getMinigameName()).getConfig();
 
         if(config.contains("parameters.axis")) axis = config.getString("parameters.axis").toLowerCase().charAt(0);
         if(config.contains("parameters.default_wool_color")) default_wool_color = config.getInt("parameters.default_wool_color");
@@ -136,9 +130,7 @@ public class CannonPainters extends Minigame implements Listener {
 
     @EventHandler
     public void onEggThrough(ProjectileLaunchEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof CannonPainters)) return;
 
@@ -155,9 +147,7 @@ public class CannonPainters extends Minigame implements Listener {
 
     @EventHandler
     public void onEggLand(ProjectileHitEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof CannonPainters)) return;
 
@@ -174,9 +164,7 @@ public class CannonPainters extends Minigame implements Listener {
 
     @EventHandler
     public void chickenSpawnEvent(EntitySpawnEvent e) {
-        if(this.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof CannonPainters)) return;
 

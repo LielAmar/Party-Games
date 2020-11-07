@@ -2,7 +2,6 @@ package com.lielamar.partygames.utils;
 
 import com.lielamar.lielsutils.MathUtils;
 import com.lielamar.partygames.Main;
-import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.game.Minigame;
 import com.lielamar.partygames.modules.CustomPlayer;
 import org.bukkit.ChatColor;
@@ -67,81 +66,19 @@ public class GameUtils {
     }
 
     /**
-     * Returns the game description of the given GameType
-     *
-     * @param type   GameType of the minigame game
-     * @return       Description of game
-     */
-    public static String getGameDescription(GameType type) {
-        if(type == GameType.ANIMAL_SLAUGHTER)
-            return "Get points by killing animals!";
-        if(type == GameType.ANVIL_SPLEEF)
-            return "Avoid the falling anvils!";
-        if(type == GameType.AVALANCHE)
-            return "Avoid the snowballs!";
-        if(type == GameType.BOMBARDMENT)
-            return "Avoid the cannon balls!";
-        if(type == GameType.CANNON_PAINTERS)
-            return "Paint the most wool in your color!";
-        if(type == GameType.CHICKEN_RINGS)
-            return "Be the first at the finish line!";
-        if(type == GameType.DIVE)
-            return "Dive down and cover the most space!";
-        if(type == GameType.FIRE_LEAPERS)
-            return "Avoid the fire leapers!";
-        if(type == GameType.FROZEN_FLOOR)
-            return "Be the last player on the frozen floor!";
-        if(type == GameType.HIGH_GROUND)
-            return "Knock players away and have the high ground!";
-        if(type == GameType.HOE_HOE_HOE)
-            return "Claim as much land as possible with your hoe!";
-        if(type == GameType.JIGSAW_RUSH)
-            return "Copy the big canvas into your small one!";
-        if(type == GameType.JUNGLE_JUMP)
-            return "Be the first player at the finish line!";
-        if(type == GameType.LAB_ESCAPE)
-            return "Escape the laboratory using your tools!";
-        if(type == GameType.LAWN_MOOWER)
-            return "Feed your cow the most grass!";
-        if(type == GameType.MINECART_RACING)
-            return "Shoot the wool in your color to boost your minecart!";
-        if(type == GameType.PIG_FISHING)
-            return "Fish the most pigs into your hole!";
-        if(type == GameType.PIG_JOUSTING)
-            return "Be the last player alive!";
-        if(type == GameType.RPG_16)
-            return "Kill the most players using your RPG-16!";
-        if(type == GameType.SHOOTING_RANGE)
-            return "Kill the most mobs with your bow!";
-        if(type == GameType.SPIDER_MAZE)
-            return "Be the first one to finish the maze!";
-        if(type == GameType.SUPER_SHEEP)
-            return "Avoid touching other players' trail!";
-        if(type == GameType.THE_FLOOR_IS_LAVA)
-            return "Win by having a good rhythm!";
-        if(type == GameType.TRAMPOLINIO)
-            return "Catch the most scores in the Trampoline!";
-        if(type == GameType.VOLCANO)
-            return "Watch your steps and be the last one alive!";
-        if(type == GameType.WORKSHOP)
-            return "Craft the Villager's desired item as fast as possible!";
-        return "no game description";
-    }
-
-    /**
      * Prints a minigame preparation
      *
      * @param minigame   Minigame to print the preparationof
      */
     public static void printMinigamePreparation(Minigame minigame) {
-        String desc = ChatColor.YELLOW + "" + ChatColor.BOLD + "    " + getGameDescription(minigame.getGameType());
+        String desc = ChatColor.YELLOW + "" + ChatColor.BOLD + "    " + minigame.getGameType().getDescription();
         StringBuilder name = new StringBuilder();
-        for(int i = 0; i < (desc.length()/2 + desc.length()/4 - minigame.getMinigameName().length()); i++) {
+        for(int i = 0; i < (desc.length()/2 + desc.length()/4 - minigame.getGameType().getName().length()); i++) {
             name.append(" ");
         }
 
         minigame.getGame().infoPlayers(ChatColor.GREEN + "" + ChatColor.BOLD + "------------------------------------------");
-        minigame.getGame().infoPlayers(ChatColor.WHITE + "" + ChatColor.BOLD + name.toString() + minigame.getMinigameName());
+        minigame.getGame().infoPlayers(ChatColor.WHITE + "" + ChatColor.BOLD + name.toString() + minigame.getGameType().getName());
         minigame.getGame().infoPlayers(desc);
         minigame.getGame().infoPlayers(ChatColor.GREEN + "" + ChatColor.BOLD + "------------------------------------------");
     }

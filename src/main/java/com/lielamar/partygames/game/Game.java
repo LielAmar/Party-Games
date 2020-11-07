@@ -6,8 +6,8 @@ import com.lielamar.lielsutils.modules.Pair;
 import com.lielamar.lielsutils.scoreboard.ScoreboardManager;
 import com.lielamar.lielsutils.scoreboard.ScoreboardUtils;
 import com.lielamar.partygames.Main;
-import com.lielamar.partygames.game.games.*;
 import com.lielamar.partygames.events.GameEndEvent;
+import com.lielamar.partygames.game.games.*;
 import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.utils.GameUtils;
 import com.lielamar.partygames.utils.Parameters;
@@ -16,8 +16,6 @@ import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scoreboard.Scoreboard;
-import org.bukkit.scoreboard.Team;
 
 import java.util.List;
 
@@ -26,12 +24,10 @@ public class Game {
     private Main main;
     private GameState state;
     private int remainingTime;
-
-    private Location lobby;
+    private Location gameLobby;
 
     private CustomPlayer[] players;
     private GameType[] minigames;
-
     private Minigame currentGame;
     private int currentGameID;
 
@@ -39,35 +35,20 @@ public class Game {
     private List<String> countdownscoreboardLines;
     private List<String> gamestatsscoreboardLines;
 
-    private final Scoreboard spectatorsScoreboard;
-    private final Team spectatorsTeam;
-    private final Scoreboard staffScoreboard;
-    private final Team staffTeam;
-
     public Game(Main main) {
         this.main = main;
         this.state = GameState.WAITING_FOR_PLAYERS;
         this.remainingTime = 0;
-
-        this.lobby = SpigotUtils.fetchLocation(main.getConfig(), "lobby");
+        this.gameLobby = SpigotUtils.fetchLocation(main.getConfig(), "lobby");
 
         this.players = new CustomPlayer[Parameters.MAXIMUM_PLAYERS()];
         this.generateMinigames();
-
         this.currentGame = null;
         this.currentGameID = 0;
 
-        this.waitscoreboardLines = main.getFileManager().getConfig("config").getConfig().getStringList("waitscoreboard");
-        this.countdownscoreboardLines = main.getFileManager().getConfig("config").getConfig().getStringList("countdownscoreboard");
-        this.gamestatsscoreboardLines = main.getFileManager().getConfig("config").getConfig().getStringList("gamestatsscoreboard");
-
-        this.spectatorsScoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
-        this.spectatorsTeam = this.spectatorsScoreboard.registerNewTeam("Ghost");
-        this.spectatorsTeam.setCanSeeFriendlyInvisibles(true);
-
-        this.staffScoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
-        this.staffTeam = this.staffScoreboard.registerNewTeam("Ghost");
-        this.staffTeam.setCanSeeFriendlyInvisibles(true);
+        this.waitscoreboardLines = main.getConfig().getStringList("waitscoreboard");
+        this.countdownscoreboardLines = main.getConfig().getStringList("countdownscoreboard");
+        this.gamestatsscoreboardLines = main.getConfig().getStringList("gamestatsscoreboard");
     }
 
 
@@ -79,27 +60,27 @@ public class Game {
      */
     public boolean addPlayer(Player player, boolean forceAdd) {
         int amountOfPlayers = this.getAmountOfPlayers();
-        boolean isFreeSlot = amountOfPlayers < this.getPlayers().length;
+        boolean hasFreeSlot = amountOfPlayers < this.getPlayers().length;
 
         if(!forceAdd) {
             boolean isInGame = this.getPlayerIndex(player) != -1;
             boolean canJoinState = this.getGameState() == GameState.WAITING_FOR_PLAYERS || this.getGameState() == GameState.COUNTING_DOWN;
-            if(isInGame || !isFreeSlot || !canJoinState)
+            if(isInGame || !hasFreeSlot || !canJoinState)
                 return false;
         }
 
-        if(!isFreeSlot) {
-            CustomPlayer[] tmpPlayers = new CustomPlayer[this.getPlayers().length + (this.getPlayers().length/2) + 1];
-            for(int i = 0; i < this.getPlayers().length; i++)
+        if(!hasFreeSlot) {
+            CustomPlayer[] tmpPlayers = new CustomPlayer[this.getPlayers().length + 1];
+            for(int i = 0; i < this.getPlayers().length; i++) {
                 tmpPlayers[i] = this.getPlayers()[i];
+            }
             this.players = tmpPlayers;
         }
 
         for(int i = 0; i < this.getPlayers().length; i++) {
-
             CustomPlayer p = this.getPlayers()[i];
-            if(p == null || p.getPlayer() == null) {
 
+            if(p == null || p.getPlayer() == null) {
                 this.getPlayers()[i] = new CustomPlayer(player);
                 amountOfPlayers++;
 
@@ -130,7 +111,6 @@ public class Game {
         if(!isInGame) return false;
 
         for(int i = 0; i < this.getPlayers().length; i++) {
-
             CustomPlayer p = this.getPlayers()[i];
             if(p == null) continue;
 
@@ -163,37 +143,40 @@ public class Game {
         this.remainingTime = Parameters.COUNTDOWN_TIME();
 
         new BukkitRunnable() {
-            int time = Parameters.COUNTDOWN_TIME();
+            int timerTime = Parameters.COUNTDOWN_TIME();
 
             @Override
             public void run() {
-                if(getGameState() == GameState.WAITING_FOR_PLAYERS) {
-                    infoPlayers(ChatColor.YELLOW + "Countdown Stopped!");
-                    scoreboardPlayers(ScoreboardUtils.assembleScoreboard(waitscoreboardLines, new Pair<>("%date%", TextUtils.getDate()),
-                            new Pair<>("%map%", "Party Games"),
-                            new Pair<>("%players%", getAmountOfPlayers() + ""),
-                            new Pair<>("%maxplayers%", Parameters.MAXIMUM_PLAYERS() + ""),
-                            new Pair<>("%remainingtime%", TextUtils.formatSeconds(getRemainingTime()) + "")));
-                }
-
                 if(getGameState() != GameState.COUNTING_DOWN) {
+                    if(getGameState() == GameState.WAITING_FOR_PLAYERS) {
+                        infoPlayers(ChatColor.YELLOW + "Countdown Stopped!");
+                        scoreboardPlayers(ScoreboardUtils.assembleScoreboard(waitscoreboardLines, new Pair<>("%date%", TextUtils.getDate()),
+                                new Pair<>("%map%", "Party Games"),
+                                new Pair<>("%players%", getAmountOfPlayers() + ""),
+                                new Pair<>("%maxplayers%", Parameters.MAXIMUM_PLAYERS() + ""),
+                                new Pair<>("%remainingtime%", TextUtils.formatSeconds(getRemainingTime()) + "")));
+                    }
                     this.cancel();
                     return;
                 }
 
-                if(time == 0) {
+                if(timerTime == 0) {
                     this.cancel();
                     startGame();
                     return;
                 }
 
-                if(time <= 5 || time == 10 || time == 15 || time == 30)
-                    infoPlayers(ChatColor.YELLOW + "The game starts in " + ChatColor.RED + time + ChatColor.YELLOW + " seconds!");
-                if(time <= 3) {
-                    titlePlayers(ChatColor.RED + "" + time);
+                if(timerTime <= 5 || timerTime == 10 || timerTime == 15 || timerTime == 30)
+                    infoPlayers(ChatColor.YELLOW + "The game starts in " + ChatColor.RED + timerTime + ChatColor.YELLOW + " seconds!");
+
+                if(timerTime <= 3) {
+                    titlePlayers(ChatColor.RED + "" + timerTime);
                     playSound(Sound.WOOD_CLICK, 1F, 1F);
-                } else if(time <= 5) titlePlayers(ChatColor.GOLD + "" + time);
-                else if(time <= 10) titlePlayers(ChatColor.GREEN + "" + time);
+                } else if(timerTime <= 5) {
+                    titlePlayers(ChatColor.GOLD + "" + timerTime);
+                } else if(timerTime == 10) {
+                    titlePlayers(ChatColor.GREEN + "" + timerTime);
+                }
 
                 scoreboardPlayers(ScoreboardUtils.assembleScoreboard(countdownscoreboardLines, new Pair<>("%date%", TextUtils.getDate()),
                         new Pair<>("%map%", "Party Games"),
@@ -201,8 +184,8 @@ public class Game {
                         new Pair<>("%maxplayers%", Parameters.MAXIMUM_PLAYERS() + ""),
                         new Pair<>("%remainingtime%", TextUtils.formatSeconds(getRemainingTime()) + "")));
 
-                time = time-1;
                 remainingTime = getRemainingTime()-1;
+                timerTime--;
             }
         }.runTaskTimer(this.getMain(), 0L, 20L);
     }
@@ -226,16 +209,19 @@ public class Game {
     }
 
     /**
-     * Generate a list of {@link com.lielamar.partygames.game.GameType} objects for this game instance
+     * Generate a list of {@link GameType} objects for this game instance
      * Loads all minigames upon server start to avoid loading them when the game runs and cause players to lag
      */
     public void generateMinigames() {
         this.minigames = new GameType[Parameters.AMOUNT_OF_GAMES()];
 
+        boolean allowDuplicateGames = Parameters.ALLOW_DUPLICATE_GAMES();
+        boolean hasEnoughGames = (GameType.values().length >= this.minigames.length);
+
         int amount_of_games = 0;
         while(amount_of_games < Parameters.AMOUNT_OF_GAMES()) {
             GameType type = GameType.values()[Main.rnd.nextInt(GameType.values().length)];
-            if(!this.containsMinigame(type)) {
+            if(!this.containsMinigame(type) || this.containsMinigame(type) && (allowDuplicateGames || !hasEnoughGames)) {
                 this.minigames[amount_of_games] = type;
                 amount_of_games++;
             }
@@ -265,11 +251,6 @@ public class Game {
      * @return       Whether or not the given type is in the minigame list
      */
     public boolean containsMinigame(GameType type) {
-        boolean allowDuplicateGames = Parameters.ALLOW_DUPLICATE_GAMES();
-        boolean hasEnoughGames = (GameType.values().length >= this.minigames.length);
-
-        if(allowDuplicateGames || !hasEnoughGames) return false;
-
         for(GameType minigameType : this.minigames) {
             if(type == minigameType)
                 return true;
@@ -285,58 +266,57 @@ public class Game {
      */
     private Minigame getMatchingMinigame(GameType type) {
         if(type == GameType.ANIMAL_SLAUGHTER)
-            return new AnimalSlaughter(this, type, "Animal Slaughter", 45, Minigame.ScoreboardType.MINIGAME_SCORE);
+            return new AnimalSlaughter(this, type);
         if(type == GameType.ANVIL_SPLEEF)
-            return new AnvilSpleef(this, type, "Anvil Spleef", 120, Minigame.ScoreboardType.GAME_SCORE);
+            return new AnvilSpleef(this, type);
         if(type == GameType.AVALANCHE)
-            return new Avalanche(this, type, "Avalanche", 5, Minigame.ScoreboardType.GAME_SCORE);
+            return new Avalanche(this, type);
         if(type == GameType.BOMBARDMENT)
-            return new Bombardment(this, type, "Bombardment", 180, Minigame.ScoreboardType.GAME_SCORE);
+            return new Bombardment(this, type);
         if(type == GameType.CANNON_PAINTERS)
-            return new CannonPainters(this, type, "Cannon Painters",30, Minigame.ScoreboardType.MINIGAME_SCORE);
+            return new CannonPainters(this, type);
         if(type == GameType.CHICKEN_RINGS)
-            return new ChickenRings(this, type, "Chicken Rings",240, Minigame.ScoreboardType.MINIGAME_SCORE);
+            return new ChickenRings(this, type);
         if(type == GameType.DIVE)
-            return new Dive(this, type, "Dive", 60, Minigame.ScoreboardType.MINIGAME_SCORE);
+            return new Dive(this, type);
         if(type == GameType.FIRE_LEAPERS)
-            return new FireLeapers(this, type, "Fire Leapers", 150, Minigame.ScoreboardType.MINIGAME_SCORE);
+            return new FireLeapers(this, type);
         if(type == GameType.FROZEN_FLOOR)
-            return new FrozenFloor(this, type, "Frozen Floor", 120, Minigame.ScoreboardType.GAME_SCORE);
+            return new FrozenFloor(this, type);
         if(type == GameType.HIGH_GROUND)
-            return new HighGround(this, type, "High Ground", 75, Minigame.ScoreboardType.MINIGAME_SCORE);
+            return new HighGround(this, type);
         if(type == GameType.HOE_HOE_HOE)
-            return new HoeHoeHoe(this, type, "Hoe Hoe Hoe", 60, Minigame.ScoreboardType.MINIGAME_SCORE);
+            return new HoeHoeHoe(this, type);
         if(type == GameType.JIGSAW_RUSH)
-            return new JigsawRush(this, type, "Jigsaw Rush", 120, Minigame.ScoreboardType.MINIGAME_SCORE);
+            return new JigsawRush(this, type);
         if(type == GameType.JUNGLE_JUMP)
-            return new JungleJump(this, type, "Jungle Jump", 120, Minigame.ScoreboardType.MINIGAME_SCORE);
+            return new JungleJump(this, type);
         if(type == GameType.LAB_ESCAPE)
-            return new LabEscape(this, type, "Lab Escape", 180, Minigame.ScoreboardType.MINIGAME_SCORE);
+            return new LabEscape(this, type);
         if(type == GameType.LAWN_MOOWER)
-            return new LawnMoower(this, type, "Lawn Moower", 60, Minigame.ScoreboardType.MINIGAME_SCORE);
+            return new LawnMoower(this, type);
         if(type == GameType.MINECART_RACING)
-            return new MinecartRacing(this, type, "Minecart Racing", 120, Minigame.ScoreboardType.MINIGAME_SCORE);
+            return new MinecartRacing(this, type);
         if(type == GameType.PIG_FISHING)
-            return new PigFishing(this, type, "Pig Fishing", 90, Minigame.ScoreboardType.MINIGAME_SCORE);
+            return new PigFishing(this, type);
         if(type == GameType.PIG_JOUSTING)
-            return new PigJousting(this, type, "Pig Jousting", 120, Minigame.ScoreboardType.GAME_SCORE);
+            return new PigJousting(this, type);
         if(type == GameType.RPG_16)
-            return new RPG16(this, type, "RPG-16", 120, Minigame.ScoreboardType.MINIGAME_SCORE);
+            return new RPG16(this, type);
         if(type == GameType.SHOOTING_RANGE)
-            return new ShootingRange(this, type, "Shooting Range", 60, Minigame.ScoreboardType.MINIGAME_SCORE);
+            return new ShootingRange(this, type);
         if(type == GameType.SPIDER_MAZE)
-            return new SpiderMaze(this, type, "Spider Maze", 120, Minigame.ScoreboardType.GAME_SCORE);
+            return new SpiderMaze(this, type);
         if(type == GameType.SUPER_SHEEP)
-            return new SuperSheep(this, type, "Super Sheep", 120, Minigame.ScoreboardType.GAME_SCORE);
+            return new SuperSheep(this, type);
         if(type == GameType.THE_FLOOR_IS_LAVA)
-            return new TheFloorIsLava(this, type, "The Floor Is Lava", 120, Minigame.ScoreboardType.MINIGAME_SCORE);
+            return new TheFloorIsLava(this, type);
         if(type == GameType.TRAMPOLINIO)
-            return new Trampolinio(this, type, "Trampolinio", 120, Minigame.ScoreboardType.MINIGAME_SCORE);
+            return new Trampolinio(this, type);
         if(type == GameType.VOLCANO)
-            return new Volcano(this, type, "Volcano", 180, Minigame.ScoreboardType.GAME_SCORE);
+            return new Volcano(this, type);
         if(type == GameType.WORKSHOP)
-            return new Workshop(this, type, "Workshop", 240, Minigame.ScoreboardType.MINIGAME_SCORE);
-
+            return new Workshop(this, type);
         return null;
     }
 
@@ -347,11 +327,10 @@ public class Game {
         CustomPlayer[] topPlayers = GameUtils.sortCustomPlayersList(this.getPlayers(), GameUtils.SortType.BY_SCORE, true);
         GameEndEvent event = new GameEndEvent(this, topPlayers[0], topPlayers[1], topPlayers[2], topPlayers);
         Bukkit.getPluginManager().callEvent(event);
-
-        if(event.isCancelled()) return;
+        if(event.isCancelled())
+            return;
 
         this.state = GameState.GAME_END;
-
         this.bossbarPlayers(null);
 
         for(CustomPlayer cp : this.getPlayers()) {
@@ -379,7 +358,7 @@ public class Game {
      * @param player   Player to fix
      */
     public void fixPlayer(Player player) {
-        player.teleport(this.lobby);
+        player.teleport(this.gameLobby);
 
         for(CustomPlayer cp : getPlayers()) {
             if(cp == null) continue;
@@ -424,7 +403,6 @@ public class Game {
     public int getPlayerIndex(Player player) {
         for(int i = 0; i < this.getPlayers().length; i++) {
             CustomPlayer p = this.getPlayers()[i];
-
             if(p == null) continue;
 
             if(p.getPlayer() == player)
@@ -440,15 +418,7 @@ public class Game {
      * @return         Whether or not player is in the game
      */
     public boolean containsPlayer(Player player) {
-        for(int i = 0; i < this.getPlayers().length; i++) {
-            CustomPlayer p = this.getPlayers()[i];
-
-            if(p == null) continue;
-
-            if(p.getPlayer() == player)
-                return true;
-        }
-        return false;
+        return getPlayerIndex(player) != -1;
     }
 
     /**
@@ -467,28 +437,17 @@ public class Game {
     }
 
 
-    public Main getMain() {
-        return this.main;
-    }
+    public Main getMain() { return this.main; }
     public GameState getGameState() { return this.state; }
-
     public int getRemainingTime() { return this.remainingTime; }
 
-    public CustomPlayer[] getPlayers() {
-        return this.players;
-    }
+    public CustomPlayer[] getPlayers() { return this.players; }
     public GameType[] getMinigames() { return this.minigames; }
-
-    public Minigame getCurrentGame() {
-        return this.currentGame;
-    }
+    public Minigame getCurrentGame() { return this.currentGame; }
     public void setCurrentGameId(int id) { this.currentGameID = id; }
     public int getCurrentGameId() { return this.currentGameID; }
 
     public List<String> getGameStatsScoreboard() { return this.gamestatsscoreboardLines; }
-
-    public Scoreboard getSpectatorsScoreboard() { return this.spectatorsScoreboard; }
-    public Scoreboard getStaffScoreboard() { return this.staffScoreboard; }
 
 
     /**
@@ -498,7 +457,8 @@ public class Game {
      */
     public void infoPlayers(String msg) {
         for(CustomPlayer p : this.getPlayers()) {
-            if(p != null) p.getPlayer().sendMessage(msg);
+            if(p != null)
+                p.getPlayer().sendMessage(msg);
         }
     }
 
@@ -509,7 +469,8 @@ public class Game {
      */
     public void titlePlayers(String msg) {
         for(CustomPlayer p : this.getPlayers()) {
-            if(p != null) PacketManager.sendTitle(p.getPlayer(), msg, null,10, 20, 10);
+            if(p != null)
+                PacketManager.sendTitle(p.getPlayer(), msg, null,10, 20, 10);
         }
     }
 
@@ -520,7 +481,8 @@ public class Game {
      */
     public void actionbarPlayers(String msg) {
         for(CustomPlayer p : this.getPlayers()) {
-            if(p != null) PacketManager.sendActionbar(p.getPlayer(), msg);
+            if(p != null)
+                PacketManager.sendActionbar(p.getPlayer(), msg);
         }
     }
 
@@ -532,8 +494,10 @@ public class Game {
     public void bossbarPlayers(String msg) {
         for(CustomPlayer p : this.getPlayers()) {
             if(p != null) {
-                if(msg == null) p.destroyBossBar();
-                else p.updateBossBar(msg);
+                if(msg == null)
+                    p.destroyBossBar();
+                else
+                    p.updateBossBar(msg);
             }
         }
     }

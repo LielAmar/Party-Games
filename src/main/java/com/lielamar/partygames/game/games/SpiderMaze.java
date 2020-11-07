@@ -1,18 +1,14 @@
 package com.lielamar.partygames.game.games;
 
 import com.lielamar.lielsutils.SpigotUtils;
-import com.lielamar.partygames.game.Game;
-import com.lielamar.partygames.game.GameState;
-import com.lielamar.partygames.game.GameType;
-import com.lielamar.partygames.game.Minigame;
+import com.lielamar.partygames.game.*;
 import com.lielamar.partygames.modules.entities.custom.ChasingSpider;
-import com.lielamar.partygames.utils.Parameters;
+import com.lielamar.partygames.game.GameType;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -34,8 +30,8 @@ public class SpiderMaze extends Minigame implements Listener {
     private Location finishpointStart, finishpointEnd;
     private List<Block> finishpointBlocks;
 
-    public SpiderMaze(Game game, GameType gameType, String minigameName, int minigameTime, ScoreboardType scoreboardType) {
-        super(game, gameType, minigameName, minigameTime, scoreboardType);
+    public SpiderMaze(Game game, GameType gameType) {
+        super(game, gameType);
         super.middle.getWorld().setTime(14000);
         Bukkit.getPluginManager().registerEvents(this, this.getGame().getMain());
     }
@@ -44,9 +40,7 @@ public class SpiderMaze extends Minigame implements Listener {
     public void setupMinigameParameters() {
         super.setupMinigameParameters();
 
-        YamlConfiguration config = super.getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + getMinigameName()).getConfig();
-
-        this.setupFinishPoint(config);
+        this.setupFinishPoint();
     }
 
     @Override
@@ -85,10 +79,8 @@ public class SpiderMaze extends Minigame implements Listener {
 
     /**
      * Sets up the finish point
-     *
-     * @param config   Config to load data from
      */
-    public void setupFinishPoint(YamlConfiguration config) {
+    public void setupFinishPoint() {
         this.finishpointStart = SpigotUtils.fetchLocation(config, "finishpoint.start");
         this.finishpointEnd = SpigotUtils.fetchLocation(config, "finishpoint.end");
         this.finishpointBlocks = new ArrayList<>();
@@ -104,9 +96,7 @@ public class SpiderMaze extends Minigame implements Listener {
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof SpiderMaze)) return;
 
@@ -124,14 +114,12 @@ public class SpiderMaze extends Minigame implements Listener {
 
     @EventHandler
     public void onPlayerPhysics(PlayerInteractEvent e) {
-        if(e.getAction() != Action.PHYSICAL) return;
-        if(e.getClickedBlock().getType() != Material.WOOD_PLATE) return;
-
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof SpiderMaze)) return;
+
+        if(e.getAction() != Action.PHYSICAL) return;
+        if(e.getClickedBlock().getType() != Material.WOOD_PLATE) return;
 
         e.setCancelled(true);
 
@@ -151,9 +139,7 @@ public class SpiderMaze extends Minigame implements Listener {
 
     @EventHandler (priority = EventPriority.HIGHEST)
     public void onPlayerDamage(EntityDamageByEntityEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof SpiderMaze)) return;
 
@@ -192,9 +178,7 @@ public class SpiderMaze extends Minigame implements Listener {
 
     @EventHandler
     public void onRegen(EntityRegainHealthEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof SpiderMaze)) return;
 

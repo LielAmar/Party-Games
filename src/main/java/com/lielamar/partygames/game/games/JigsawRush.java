@@ -3,19 +3,15 @@ package com.lielamar.partygames.game.games;
 import com.lielamar.lielsutils.SpigotUtils;
 import com.lielamar.lielsutils.validation.IntValidation;
 import com.lielamar.partygames.Main;
-import com.lielamar.partygames.game.Game;
-import com.lielamar.partygames.game.GameState;
-import com.lielamar.partygames.game.GameType;
-import com.lielamar.partygames.game.Minigame;
+import com.lielamar.partygames.game.*;
 import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
 import com.lielamar.partygames.modules.objects.Canvas;
-import com.lielamar.partygames.utils.Parameters;
+import com.lielamar.partygames.game.GameType;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -34,16 +30,14 @@ public class JigsawRush extends Minigame implements Listener {
     private Material[][] canvas;
     private Map<CustomPlayer, Canvas> assignedCanvases;
 
-    public JigsawRush(Game game, GameType gameType, String minigameName, int minigameTime, ScoreboardType scoreboardType) {
-        super(game, gameType, minigameName, minigameTime, scoreboardType);
+    public JigsawRush(Game game, GameType gameType) {
+        super(game, gameType);
         Bukkit.getPluginManager().registerEvents(this, this.getGame().getMain());
     }
 
     @Override
     public void setupMinigameParameters() {
         super.setupMinigameParameters();
-
-        YamlConfiguration config = super.getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + super.getMinigameName()).getConfig();
 
         if(config.contains("parameters.block_types") && config.isList("parameters.block_types")) {
             for(String s : config.getStringList("parameters.block_types"))
@@ -72,8 +66,7 @@ public class JigsawRush extends Minigame implements Listener {
     public void setupMinigame() {
         super.setupMinigame();
 
-        Location[] canvases = SpigotUtils.fetchLocations(super.getGame().getMain().getFileManager()
-                .getConfig(Parameters.MINIGAMES_DIR() + super.getMinigameName()).getConfig(), "canvases");
+        Location[] canvases = SpigotUtils.fetchLocations(config, "canvases");
         this.assignedCanvases = new HashMap<>();
 
         if(canvases.length < super.getGame().getPlayers().length) {
@@ -104,7 +97,7 @@ public class JigsawRush extends Minigame implements Listener {
      * Sets up all big canvases - Randomising the blocks
      */
     public void setupBigCanvases() {
-        int amount_of_big_canvases = super.getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + super.getMinigameName()).getConfig().getConfigurationSection("bigcanvases").getKeys(false).size();
+        int amount_of_big_canvases = config.getConfigurationSection("bigcanvases").getKeys(false).size();
         this.canvas = new Material[(int)Math.sqrt(block_types.size())][(int)Math.sqrt(block_types.size())];
 
         Material randomMaterial;
@@ -123,8 +116,8 @@ public class JigsawRush extends Minigame implements Listener {
         char axis;
 
         for(int i = 0; i < amount_of_big_canvases; i++) {
-            startLoc = SpigotUtils.fetchLocation(super.getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + super.getMinigameName()).getConfig(), "bigcanvases." + i + ".start");
-            endLoc = SpigotUtils.fetchLocation(super.getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + super.getMinigameName()).getConfig(), "bigcanvases." + i + ".end");
+            startLoc = SpigotUtils.fetchLocation(config, "bigcanvases." + i + ".start");
+            endLoc = SpigotUtils.fetchLocation(config, "bigcanvases." + i + ".end");
 
             if(startLoc.getX() != endLoc.getX()) axis = 'x';
             else if(startLoc.getZ() != endLoc.getZ()) axis = 'z';
@@ -174,9 +167,7 @@ public class JigsawRush extends Minigame implements Listener {
 
     @EventHandler (priority = EventPriority.HIGHEST)
     public void onInteract(PlayerInteractEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof JigsawRush)) return;
 

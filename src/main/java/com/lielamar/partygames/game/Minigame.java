@@ -12,6 +12,7 @@ import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
 import com.lielamar.partygames.utils.GameUtils;
 import com.lielamar.partygames.utils.Parameters;
+import com.lielamar.partygames.utils.ScoreboardType;
 import com.packetmanager.lielamar.PacketManager;
 import org.bukkit.*;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -29,17 +30,15 @@ public abstract class Minigame {
 
     private Game game;
     private GameType gameType;
-    private int gameTime;
-    private String minigameName;
-
-    private List<String> scoreboardLines;
 
     protected BukkitTask startMinigameTask;
     protected BukkitTask runMinigameTask;
     protected BukkitTask stopMinigameTask;
 
+    protected YamlConfiguration config;
+
     protected GameState gameState;
-    protected ScoreboardType scoreboardType;
+    protected List<String> scoreboardLines;
     protected CustomPlayer[] finishedPlayers;
 
     protected Location middle;
@@ -48,29 +47,32 @@ public abstract class Minigame {
     private int elapsedTime;
     private int amountOfSpectators;
 
-    public Minigame(Game game, GameType gameType, String minigameName, int gameTime, ScoreboardType scoreboardType) {
+    public Minigame(Game game, GameType gameType) {
         this.game = game;
         this.gameType = gameType;
-        this.gameTime = gameTime;
-        this.minigameName = minigameName;
-
-        this.scoreboardLines = this.game.getMain().getFileManager()
-                .getConfig(Parameters.MINIGAMES_DIR() + minigameName).getConfig().getStringList("scoreboard");
 
         this.gameState = GameState.WAITING_FOR_PLAYERS;
-        this.scoreboardType = scoreboardType;
+        this.scoreboardLines = this.game.getMain().getFileManager()
+                .getConfig(Parameters.MINIGAMES_DIR() + gameType.getName()).getConfig().getStringList("scoreboard");
         this.finishedPlayers = new CustomPlayer[3];
 
-        this.setupMinigameParameters();
         this.setupMinigame();
-        this.updateMinigameScoreboard();
     }
 
     /**
-     * Sets-up all minigames parameters
+     * Sets up the minigame
+     */
+    public void setupMinigame() {
+        this.setupMinigameParameters();
+        this.updateMinigameScoreboard();
+        this.teleportPlayers();
+    }
+
+    /**
+     * Sets up all minigames parameters
      */
     public void setupMinigameParameters() {
-        YamlConfiguration config = game.getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + getMinigameName()).getConfig();
+        this.config = game.getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + gameType.getName()).getConfig();
 
         this.middle = SpigotUtils.fetchLocation(config, "middle");
         this.locations = SpigotUtils.fetchLocations(config, "locations");
@@ -81,14 +83,10 @@ public abstract class Minigame {
     }
 
     /**
-     * Sets up the minigame
-     */
-    public void setupMinigame() {
-        this.teleportPlayers();
-    }
-
-    /**
-     * Teleports all online players to a location within the arena and then teleports all minigame players to their own location/minigame main location
+     * Sets up the minigame players.
+     *
+     * * Teleports all online players to a location within the arena and then teleports
+     *   all minigame players to their own location/minigame main location
      */
     public void teleportPlayers() {
         boolean perPlayerLocation = getLocations().length > 0;
@@ -117,7 +115,6 @@ public abstract class Minigame {
      */
     public void startMinigame() {
         if(stopMinigameTask != null) return;
-
         GameUtils.printMinigamePreparation(this);
 
         this.gameState = GameState.COUNTING_DOWN;
@@ -148,13 +145,14 @@ public abstract class Minigame {
      * Starts the minigame timer
      */
     public void runMinigame() {
-        if(this.startMinigameTask != null) this.startMinigameTask.cancel();
+        if(this.startMinigameTask != null)
+            this.startMinigameTask.cancel();
 
         this.gameState = GameState.IN_GAME;
         this.extraStartParameters();
 
         this.runMinigameTask = new BukkitRunnable() {
-            int i = gameTime;
+            int i = gameType.getGameDuration();
 
             @Override
             public void run() {
@@ -194,7 +192,6 @@ public abstract class Minigame {
         if(this.runMinigameTask != null) this.runMinigameTask.cancel();
 
         this.scoreboardLines = this.getGame().getGameStatsScoreboard();
-        this.scoreboardType = ScoreboardType.GAME_SCORE;
 
         this.gameState = GameState.GAME_END;
         stopMinigameTask = new BukkitRunnable() {
@@ -222,8 +219,6 @@ public abstract class Minigame {
      * Destroys the current minigame & attempts to run the next one
      */
     public void destroyMinigame() {
-        this.minigameName = null;
-        this.gameState = null;
         this.locations = null;
         this.middle = null;
         this.game.runNextMinigame();
@@ -385,10 +380,10 @@ public abstract class Minigame {
      */
     public void updateMinigameScoreboard(Pair<?, ?>... additionalPairs) {
         CustomPlayer[] sortedPlayers = getGame().getPlayers();
-        if(scoreboardType == ScoreboardType.MINIGAME_SCORE)
-            sortedPlayers = GameUtils.sortCustomPlayersList(getGame().getPlayers(), GameUtils.SortType.BY_MINIGAME_SCORE, false);
-        else if(scoreboardType == ScoreboardType.GAME_SCORE)
+        if(gameState == GameState.GAME_END || getGameType().getScoreboardType() == ScoreboardType.BY_GAME_SCORE)
             sortedPlayers = GameUtils.sortCustomPlayersList(getGame().getPlayers(), GameUtils.SortType.BY_SCORE, false);
+        else
+            sortedPlayers = GameUtils.sortCustomPlayersList(getGame().getPlayers(), GameUtils.SortType.BY_MINIGAME_SCORE, false);
 
         CustomPlayer cp;
         List<Pair<?, ?>> pairs;
@@ -403,7 +398,7 @@ public abstract class Minigame {
 
             pairs = new ArrayList<>(Arrays.asList(additionalPairs));
             pairs.add(new Pair<>("%date%", TextUtils.getDate()));
-            pairs.add(new Pair<>("%game%", getMinigameName()));
+            pairs.add(new Pair<>("%game%", this.gameType.getName()));
             pairs.add(new Pair<>("%minigamefirst%", (sortedPlayers[0] != null) ? ChatColor.getLastColors(sortedPlayers[0].getPlayer().getDisplayName()) + sortedPlayers[0].getPlayer().getName() + ChatColor.WHITE + ": " + ChatColor.GREEN + this.getMinigameScore(sortedPlayers[0]) : ""));
             pairs.add(new Pair<>("%gamefirst%", (sortedPlayers[0] != null) ? ChatColor.getLastColors(sortedPlayers[0].getPlayer().getDisplayName()) + sortedPlayers[0].getPlayer().getName() + ChatColor.WHITE + ": " + ChatColor.GREEN + sortedPlayers[0].getScore() + ChatColor.YELLOW + "✯" : ""));
             pairs.add(new Pair<>("%minigamesecond%", (sortedPlayers[1] != null) ? ChatColor.getLastColors(sortedPlayers[1].getPlayer().getDisplayName()) + sortedPlayers[1].getPlayer().getName() + ChatColor.WHITE + ": " + ChatColor.GREEN + this.getMinigameScore(sortedPlayers[1]) : ""));
@@ -450,32 +445,16 @@ public abstract class Minigame {
 
     public Game getGame() { return this.game; }
     public GameType getGameType() { return this.gameType; }
-    public int getGameTime() { return this.gameTime; }
-
-    public String getMinigameName() { return this.minigameName; }
-    public List<String> getScoreboardLines() { return this.scoreboardLines; }
 
     public GameState getGameState() { return this.gameState; }
-    public ScoreboardType getScoreboardType() { return this.scoreboardType; }
+    public List<String> getScoreboardLines() { return this.scoreboardLines; }
     public CustomPlayer[] getFinishedPlayers() { return this.finishedPlayers; }
 
     public Location getMiddle() { return this.middle; }
     public Location[] getLocations() { return this.locations; }
 
     public int getElapsedTime() { return this.elapsedTime; }
-    public void setElapsedTime(int time) {
-        if(time < 0) time = 0;
-        this.elapsedTime = time;
-    }
+    public void setElapsedTime(int time) { this.elapsedTime = Math.max(time, 0); }
     public int getAmountOfSpectators() { return this.amountOfSpectators; }
-    public void setAmountOfSpectators(int amount) {
-        if(amount < 0) amount = 0;
-        this.amountOfSpectators = amount;
-    }
-
-
-    public enum ScoreboardType {
-        MINIGAME_SCORE,
-        GAME_SCORE
-    }
+    public void setAmountOfSpectators(int amount) { this.amountOfSpectators = Math.max(amount, 0); }
 }

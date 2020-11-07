@@ -4,14 +4,10 @@ import com.lielamar.lielsutils.MathUtils;
 import com.lielamar.lielsutils.modules.Pair;
 import com.lielamar.lielsutils.validation.IntValidation;
 import com.lielamar.partygames.Main;
-import com.lielamar.partygames.game.Game;
-import com.lielamar.partygames.game.GameState;
-import com.lielamar.partygames.game.GameType;
-import com.lielamar.partygames.game.Minigame;
+import com.lielamar.partygames.game.*;
 import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
-import com.lielamar.partygames.utils.Parameters;
+import com.lielamar.partygames.game.GameType;
 import org.bukkit.*;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
@@ -37,16 +33,14 @@ public class Avalanche extends Minigame implements Listener {
     private List<Location> safePoints;
     private BukkitTask spawningSnowballsTask;
 
-    public Avalanche(Game game, GameType gameType, String minigameName, int minigameTime, ScoreboardType scoreboardType) {
-        super(game, gameType, minigameName, minigameTime, scoreboardType);
-        Bukkit.getPluginManager().registerEvents(this, this.getGame().getMain());
+    public Avalanche(Game game, GameType gameType) {
+        super(game, gameType);
+        Bukkit.getPluginManager().registerEvents(this, getGame().getMain());
     }
 
     @Override
     public void setupMinigameParameters() {
         super.setupMinigameParameters();
-
-        YamlConfiguration config = super.getGame().getMain().getFileManager().getConfig(Parameters.MINIGAMES_DIR() + super.getMinigameName()).getConfig();
 
         if(config.contains("parameters.radius")) radius = config.getInt("parameters.radius");
         if(config.contains("parameters.amount_of_waves")) amount_of_waves = config.getInt("parameters.amount_of_waves");
@@ -78,7 +72,7 @@ public class Avalanche extends Minigame implements Listener {
         this.spawnSafePoints();    // First Safe Points
 
         super.runMinigameTask = new BukkitRunnable() {
-            int i = getGameTime();
+            int i = getGameType().getGameDuration();
             int currentWaveCountdown = wave_countdown;
 
             @Override
@@ -91,7 +85,7 @@ public class Avalanche extends Minigame implements Listener {
                         return;
                     }
 
-                    i = getGameTime();
+                    i = getGameType().getGameDuration();
 
                     currentWave++;
                     currentWaveCountdown = wave_countdown - (currentWave/5);
@@ -227,9 +221,7 @@ public class Avalanche extends Minigame implements Listener {
 
     @EventHandler
     public void onPlayerDamageBySnowball(EntityDamageByEntityEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof Avalanche)) return;
 
@@ -256,9 +248,7 @@ public class Avalanche extends Minigame implements Listener {
 
     @EventHandler (priority = EventPriority.HIGHEST)
     public void onPlayerDamage(EntityDamageEvent e) {
-        if(super.getMinigameName() == null) return;
         if(super.getGame() == null) return;
-
         if(super.getGame().getCurrentGame() == null) return;
         if(!(super.getGame().getCurrentGame() instanceof Avalanche)) return;
 

@@ -68,10 +68,10 @@ public class SetMinigameScore extends Command {
         }
 
         try {
-            int score = Integer.parseInt(args[1]);
+            int scoreToSet = Integer.parseInt(args[1]);
 
-            main.getGame().getPlayers()[playerIndex].setMinigameScore(score);
-            cs.sendMessage(ChatColor.GRAY + "" + score + ChatColor.GREEN + " minigame score has been set for " + player.getDisplayName() + ChatColor.GREEN + "!");
+            main.getGame().getPlayers()[playerIndex].setMinigameScore(scoreToSet);
+            cs.sendMessage(ChatColor.GRAY + "" + scoreToSet + ChatColor.GREEN + " minigame score has been set for " + player.getDisplayName() + ChatColor.GREEN + "!");
         } catch(IllegalArgumentException e) {
             cs.sendMessage(ChatColor.GRAY + args[1] + ChatColor.RED + " is not a number!");
         }

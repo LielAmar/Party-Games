@@ -68,10 +68,10 @@ public class SetScore extends Command {
         }
 
         try {
-            int score = Integer.parseInt(args[1]);
+            int scoreToSet = Integer.parseInt(args[1]);
 
-            main.getGame().getPlayers()[playerIndex].setScore(score);
-            cs.sendMessage(ChatColor.GRAY + "" + score + ChatColor.GREEN + " score has been set for " + player.getDisplayName() + ChatColor.GREEN + "!");
+            main.getGame().getPlayers()[playerIndex].setScore(scoreToSet);
+            cs.sendMessage(ChatColor.GRAY + "" + scoreToSet + ChatColor.GREEN + " score has been set for " + player.getDisplayName() + ChatColor.GREEN + "!");
         } catch(IllegalArgumentException e) {
             cs.sendMessage(ChatColor.GRAY + args[1] + ChatColor.RED + " is not a number!");
         }

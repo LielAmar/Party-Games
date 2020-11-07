@@ -7,6 +7,7 @@ import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.game.Minigame;
 import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.modules.entities.custom.ControllableChicken;
+import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
 import com.lielamar.partygames.modules.objects.Ring;
 import com.lielamar.partygames.utils.GameUtils;
 import com.lielamar.partygames.utils.Parameters;
@@ -60,7 +61,7 @@ public class ChickenRings extends Minigame implements Listener {
             super.validateVariables(
                     new CharValidation(axis, "[Chicken Rings] Axis must be from the allowed Axes list: x/z", new Character[] { 'x', 'z' })
             );
-        } catch(Exception e) {
+        } catch(MinigameConfigurationException e) {
             e.printStackTrace();
         }
     }

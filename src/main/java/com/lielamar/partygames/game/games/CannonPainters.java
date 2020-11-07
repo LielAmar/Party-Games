@@ -8,6 +8,7 @@ import com.lielamar.partygames.game.GameState;
 import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.game.Minigame;
 import com.lielamar.partygames.modules.CustomPlayer;
+import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
 import com.lielamar.partygames.utils.GameUtils;
 import com.lielamar.partygames.utils.Parameters;
 import org.bukkit.Bukkit;
@@ -65,7 +66,7 @@ public class CannonPainters extends Minigame implements Listener {
                     new CharValidation(axis, "[Cannon Painters] Axis must be from the allowed Axes list: x/z", new Character[] { 'x', 'z' }),
                     new IntValidation(default_wool_color, "[Cannon Painters] Default Wool Color must be greater than/equals to 0 and less than/equals to 15", 0, 15),
                     new IntValidation(wool_colors.length, "[Cannon Painters] Amount of Colors must be greater than/equals to Amount Of Players", super.getGame().getPlayers().length));
-        } catch(Exception e) {
+        } catch(MinigameConfigurationException e) {
             e.printStackTrace();
         }
     }

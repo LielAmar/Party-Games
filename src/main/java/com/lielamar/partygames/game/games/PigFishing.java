@@ -9,6 +9,7 @@ import com.lielamar.partygames.game.GameState;
 import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.game.Minigame;
 import com.lielamar.partygames.modules.CustomPlayer;
+import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
 import com.lielamar.partygames.utils.GameUtils;
 import com.lielamar.partygames.utils.Parameters;
 import org.bukkit.*;
@@ -81,7 +82,7 @@ public class PigFishing extends Minigame implements Listener {
                     new IntValidation(baby_percentage, "[Pig Fishing] Baby Pig Percentage must be greater than/equals to 0 and less than/equals to 100", 1, 100),
                     new IntValidation(special_percentage, "[Pig Fishing] Special Pig Percentage must be greater than/equals to 0 and less than/equals to 100", 1, 100),
                     new IntValidation(wool_colors.length, "[Pig Fishing] Amount of Colors must be greater than/equals to Amount Of Players", super.getGame().getPlayers().length));
-        } catch(Exception e) {
+        } catch(MinigameConfigurationException e) {
             e.printStackTrace();
         }
     }

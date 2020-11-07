@@ -8,6 +8,7 @@ import com.lielamar.partygames.game.GameState;
 import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.game.Minigame;
 import com.lielamar.partygames.modules.CustomPlayer;
+import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
 import com.lielamar.partygames.utils.Parameters;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -45,7 +46,7 @@ public class Volcano extends Minigame implements Listener {
             super.validateVariables(
                     new IntValidation(radius, "[Volcano] Radius must be greater than 0", 1),
                     new IntValidation(random_break_delay, "[Volcano] Random Break Delay must be greater than 0", 1));
-        } catch(Exception e) {
+        } catch(MinigameConfigurationException e) {
             e.printStackTrace();
         }
     }

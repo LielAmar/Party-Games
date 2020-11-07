@@ -9,6 +9,7 @@ import com.lielamar.partygames.game.GameState;
 import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.game.Minigame;
 import com.lielamar.partygames.modules.CustomPlayer;
+import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
 import com.lielamar.partygames.utils.GameUtils;
 import com.lielamar.partygames.utils.Parameters;
 import com.packetmanager.lielamar.PacketManager;
@@ -77,7 +78,7 @@ public class MinecartRacing extends Minigame implements Listener {
             super.validateVariables(
                     new CharValidation(axis, "[Minecart Racing] Axis must be from the allowed Axes list: x/z", new Character[]{'x', 'z'}),
                     new IntValidation(wool_colors.length, "[Minecart Racing] Amount of Colors must be greater than/equals to Amount Of Players", super.getGame().getPlayers().length));
-        } catch (Exception e) {
+        } catch (MinigameConfigurationException e) {
             e.printStackTrace();
         }
     }

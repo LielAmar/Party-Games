@@ -7,6 +7,7 @@ import com.lielamar.partygames.game.GameState;
 import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.game.Minigame;
 import com.lielamar.partygames.modules.CustomPlayer;
+import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
 import com.lielamar.partygames.modules.objects.RPG;
 import com.lielamar.partygames.utils.Parameters;
 import org.bukkit.*;
@@ -61,7 +62,7 @@ public class RPG16 extends Minigame implements Listener {
             super.validateVariables(
                     new IntValidation(rpg_cooldown, "[RPG-16] RPG Cooldown must be greater than/equals to 0", 0),
                     new IntValidation(doublejump_cooldown, "[RPG-16] Doublejump Cooldown must be greater than/equals to 0", 0));
-        } catch(Exception e) {
+        } catch(MinigameConfigurationException e) {
             e.printStackTrace();
         }
     }

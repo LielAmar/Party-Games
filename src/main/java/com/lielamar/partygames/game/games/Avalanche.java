@@ -8,6 +8,7 @@ import com.lielamar.partygames.game.Game;
 import com.lielamar.partygames.game.GameState;
 import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.game.Minigame;
+import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
 import com.lielamar.partygames.utils.Parameters;
 import org.bukkit.*;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -61,7 +62,7 @@ public class Avalanche extends Minigame implements Listener {
                             new IntValidation(amount_of_waves, "[Avalanche] Amount of Waves must be greater than 0", 1),
                             new IntValidation(wave_countdown, "[Avalanche] Wave Countdown must be greater than 0", 1),
                             new IntValidation(pvp_wave, "[Avalanche] PvP Wave must be greater than/equals to 0", 0));
-        } catch(Exception e) {
+        } catch(MinigameConfigurationException e) {
             e.printStackTrace();
         }
     }

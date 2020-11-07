@@ -11,6 +11,7 @@ import com.lielamar.partygames.game.Minigame;
 import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.modules.entities.custom.ShootingRangeSkeleton;
 import com.lielamar.partygames.modules.entities.custom.ShootingRangeZombie;
+import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
 import com.lielamar.partygames.utils.Parameters;
 import org.bukkit.*;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -74,7 +75,7 @@ public class ShootingRange extends Minigame implements Listener {
                     new IntValidation(normal_skeleton_percentage, "[Shooting Range] Normal Skeleton Percentage must be greater than/equals to 0 and less than/equals to 100", 1, 100),
                     new IntValidation(golden_zombie_percentage, "[Shooting Range] Golden Zombie Percentage must be greater than/equals to 0 and less than/equals to 100", 1, 100),
                     new IntValidation(tnt_zombie_percentage, "[Shooting Range] TNT Zombie Percentage must be greater than/equals to 0 and less than/equals to 100", 1, 100));
-        } catch(Exception e) {
+        } catch(MinigameConfigurationException e) {
             e.printStackTrace();
         }
     }

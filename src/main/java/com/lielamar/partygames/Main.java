@@ -3,7 +3,7 @@ package com.lielamar.partygames;
 import com.lielamar.lielsutils.files.FileManager;
 import com.lielamar.lielsutils.map.MapManager;
 import com.lielamar.lielsutils.scoreboard.ScoreboardManager;
-import com.lielamar.partygames.commands.PartyGames;
+import com.lielamar.partygames.commands.CommandManager;
 import com.lielamar.partygames.game.Game;
 import com.lielamar.partygames.listeners.*;
 import com.lielamar.partygames.modules.CustomPlayer;
@@ -35,21 +35,22 @@ public class Main extends JavaPlugin {
         saveDefaultConfig();
 
         registerManagers();
-        registerCommands();
         registerListeners();
         registerCustomEntities();
 
-        if(Bukkit.getOnlinePlayers().size() > 0)
-            initiate();
+        initiate();
     }
 
-    @Override
-    public void onDisable() {
-        destroy();
-    }
+    public void registerManagers() {
+        Parameters.initiate(getConfig());
 
-    public void registerCommands() {
-        new PartyGames(this);
+        new CommandManager(this);
+        this.mapManager = new MapManager(this).saveAllMaps();
+        this.fileManager = new FileManager(this);
+        this.scoreboardManager = new ScoreboardManager(this, "PARTY GAMES");
+        this.controllableEntitiesPacketReader = new ControllableEntitiesPacketReader();
+
+        this.game = new Game(this);
     }
 
     public void registerListeners() {
@@ -58,6 +59,7 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new OnPlayerJoin(this), this);
         pm.registerEvents(new OnPlayerQuit(this), this);
         pm.registerEvents(new OnPlayerDeath(this), this);
+
         pm.registerEvents(new PlayerEventsHandler("partygames.admin"), this);
 
         pm.registerEvents(new OnEntitySpawn(), this);
@@ -67,52 +69,30 @@ public class Main extends JavaPlugin {
         pm.registerEvents(new OnPlayerWinsMinigame(this), this);
     }
 
-    /**
-     * Registers all game managers (MapManager, FileManager, ScoreboardManager, PacketReader and game itself)
-     */
-    public void registerManagers() {
-        Parameters.initiate(getConfig());
-
-        this.mapManager = new MapManager(this).saveAllMaps();
-        this.fileManager = new FileManager(this);
-        this.scoreboardManager = new ScoreboardManager(this, "PARTY GAMES");
-        this.controllableEntitiesPacketReader = new ControllableEntitiesPacketReader();
-
-        this.game = new Game(this);
-    }
-
-    /**
-     * Registers all custom entities for the different minigames
-     */
     public void registerCustomEntities() {
         PacketManager.registerEntity("controllablechicken", 93, EntityChicken.class, ControllableChicken.class);
         PacketManager.registerEntity("controllablecow", 92, EntityCow.class, ControllableCow.class);
         PacketManager.registerEntity("controllablepig", 90, EntityPig.class, ControllablePig.class);
         PacketManager.registerEntity("controllablesheep", 91, EntitySheep.class, ControllableSheep.class);
-
         PacketManager.registerEntity("shootingrangezombie", 54, EntityZombie.class, ShootingRangeZombie.class);
         PacketManager.registerEntity("shootingrangeskeleton", 51, EntitySkeleton.class, ShootingRangeSkeleton.class);
-
         PacketManager.registerEntity("chasingspider", 52, EntitySpider.class, ChasingSpider.class);
-
         PacketManager.registerEntity("customfallingblock", 21, EntityFallingBlock.class, CustomFallingBlock.class);
-
         PacketManager.registerEntity("workshopkeeper", 120, EntityVillager.class, WorkshopKeeper.class);
     }
 
-    /**
-     * Initiates the game
-     */
     public void initiate() {
-        for(Player pl : Bukkit.getOnlinePlayers()) {
+        Bukkit.getOnlinePlayers().forEach(pl -> {
             scoreboardManager.injectPlayer(pl);
             game.addPlayer(pl, false);
-        }
+        });
     }
 
-    /**
-     * Destroys the game
-     */
+    @Override
+    public void onDisable() {
+        destroy();
+    }
+
     public void destroy() {
         this.mapManager.restoreAllMaps();
 

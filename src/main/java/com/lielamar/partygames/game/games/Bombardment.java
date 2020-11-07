@@ -8,6 +8,7 @@ import com.lielamar.partygames.game.Game;
 import com.lielamar.partygames.game.GameState;
 import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.game.Minigame;
+import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
 import com.lielamar.partygames.modules.objects.Bomb;
 import com.lielamar.partygames.utils.Parameters;
 import org.bukkit.Bukkit;
@@ -57,7 +58,7 @@ public class Bombardment extends Minigame implements Listener {
         try {
             super.validateVariables(
                     new DoubleValidation(max_distance_from_middle, "[Bombardment] Max Distance From Middle must be greater than 0", 1));
-        } catch(Exception e) {
+        } catch(MinigameConfigurationException e) {
             e.printStackTrace();
         }
     }

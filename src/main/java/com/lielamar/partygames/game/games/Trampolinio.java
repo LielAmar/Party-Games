@@ -7,6 +7,7 @@ import com.lielamar.partygames.game.GameState;
 import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.game.Minigame;
 import com.lielamar.partygames.modules.CustomPlayer;
+import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
 import com.lielamar.partygames.modules.objects.TrampolinioScore;
 import com.lielamar.partygames.utils.Parameters;
 import org.bukkit.Bukkit;
@@ -73,7 +74,7 @@ public class Trampolinio extends Minigame implements Listener {
                     new IntValidation(one_score_percentage, "[Trampolinio] One Score Percentage must be greater than/equals to 0 and less than/equals to 100", 1, 100),
                     new IntValidation(three_score_percentage, "[Trampolinio] Three Score Percentage must be greater than/equals to 0 and less than/equals to 100", 1, 100),
                     new IntValidation(ten_score_percentage, "[Trampolinio] Ten Score Percentage must be greater than/equals to 0 and less than/equals to 100", 1, 100));
-        } catch(Exception e) {
+        } catch(MinigameConfigurationException e) {
             e.printStackTrace();
         }
     }

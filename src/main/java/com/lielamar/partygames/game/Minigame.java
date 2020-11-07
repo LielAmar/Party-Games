@@ -188,6 +188,8 @@ public abstract class Minigame {
         MinigameEndEvent event = new MinigameEndEvent(this, players[0], players[1], players[2], players);
         Bukkit.getPluginManager().callEvent(event);
 
+        if(event.isCancelled()) return;
+
         if(this.startMinigameTask != null) this.startMinigameTask.cancel();
         if(this.runMinigameTask != null) this.runMinigameTask.cancel();
 
@@ -337,20 +339,24 @@ public abstract class Minigame {
 
         if(this.getFinishedPlayers()[0] == null) {
             Bukkit.getPluginManager().callEvent(event);
+            if(event.isCancelled()) return;
+
             this.getFinishedPlayers()[0] = cp;
         } else if(this.getFinishedPlayers()[1] == null) {
             Bukkit.getPluginManager().callEvent(event);
-            this.getFinishedPlayers()[1] = cp;
+            if(event.isCancelled()) return;
 
+            this.getFinishedPlayers()[1] = cp;
             if(this.getGame().getAmountOfPlayers()-amountOfSpectators == 2) {
                 this.getFinishedPlayers()[0].setMinigameScore(3);
                 cp.setMinigameScore(2);
                 this.stopMinigame();
             }
         } else if(this.getFinishedPlayers()[2] == null) {
+            Bukkit.getPluginManager().callEvent(event);
+            if(event.isCancelled()) return;
 
             this.getFinishedPlayers()[2] = cp;
-
             if(this.getGame().getAmountOfPlayers() > 3) {
                 for(CustomPlayer player : this.getGame().getPlayers()) {
                     if(player == null) continue;

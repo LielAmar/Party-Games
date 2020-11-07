@@ -6,6 +6,7 @@ import com.lielamar.partygames.game.GameState;
 import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.game.Minigame;
 import com.lielamar.partygames.modules.CustomPlayer;
+import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
 import com.lielamar.partygames.utils.Parameters;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -54,7 +55,7 @@ public class FrozenFloor extends Minigame implements Listener {
         try {
             super.validateVariables(
                             new IntValidation(radius, "[Frozen Floor] Radius must be greater than 0", 1));
-        } catch(Exception e) {
+        } catch(MinigameConfigurationException e) {
             e.printStackTrace();
         }
     }

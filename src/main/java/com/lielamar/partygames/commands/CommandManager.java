@@ -13,7 +13,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class PartyGames implements CommandExecutor, TabCompleter {
+public class CommandManager implements CommandExecutor, TabCompleter {
 
     private Main main;
 
@@ -30,7 +30,7 @@ public class PartyGames implements CommandExecutor, TabCompleter {
     private final String setminigamescoreCommand = "setminigamescore";
     private final String helpCommand = "help";
 
-    public PartyGames(Main main) {
+    public CommandManager(Main main) {
         this.main = main;
         main.getCommand(mainCommand).setTabCompleter(this);
         main.getCommand(mainCommand).setExecutor(this);

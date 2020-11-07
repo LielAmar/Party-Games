@@ -54,13 +54,13 @@ public class SetNextMinigame extends Command {
             return;
         }
 
-        String gameName = fixName(args[0]);
+        String nextMinigameName = fixName(args[0]);
         try {
-            GameType gameType = GameType.valueOf(gameName);
+            GameType gameType = GameType.valueOf(nextMinigameName);
             main.getGame().getMinigames()[main.getGame().getCurrentGameId()] = gameType;
-            cs.sendMessage(ChatColor.GRAY + gameName + ChatColor.GREEN + " will be the next minigame!");
+            cs.sendMessage(ChatColor.GRAY + nextMinigameName + ChatColor.GREEN + " will be the next minigame!");
         } catch(IllegalArgumentException e) {
-            cs.sendMessage(ChatColor.GRAY + gameName + ChatColor.RED + " is not a valid minigame!");
+            cs.sendMessage(ChatColor.GRAY + nextMinigameName + ChatColor.RED + " is not a valid minigame!");
         }
     }
 

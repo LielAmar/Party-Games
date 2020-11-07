@@ -7,6 +7,7 @@ import com.lielamar.partygames.game.Game;
 import com.lielamar.partygames.game.GameState;
 import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.game.Minigame;
+import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
 import com.lielamar.partygames.modules.objects.Laser;
 import com.lielamar.partygames.utils.Parameters;
 import org.bukkit.ChatColor;
@@ -56,7 +57,7 @@ public class FireLeapers extends Minigame {
                     new DoubleValidation(start_difficulty, "[Fire Leapers] Start Difficulty must be greater than/equals to 0", 0),
                     new DoubleValidation(default_distance, "[Fire Leapers] Default Distance must be greater than 0", 1),
                     new IntValidation(particles_per_square, "[Fire Leapers] Particles Per Square must be greater than 0", 1));
-        } catch(Exception e) {
+        } catch(MinigameConfigurationException e) {
             e.printStackTrace();
         }
     }

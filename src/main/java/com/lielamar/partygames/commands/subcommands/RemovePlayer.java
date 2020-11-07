@@ -74,9 +74,8 @@ public class RemovePlayer extends Command {
         main.getScoreboardManager().getScoreboard(player).setScoreboard(main.getGame().getStaffScoreboard());
         player.setFlying(true);
         player.setAllowFlight(true);
-        for(Player pl : Bukkit.getOnlinePlayers()) {
-            if(!pl.hasPermission("partygames.seespectators") || main.getGame().containsPlayer(pl))
-                pl.hidePlayer(player);
-        }
+        Bukkit.getOnlinePlayers().stream()
+                .filter(pl ->!pl.hasPermission("partygames.seespectators") || main.getGame().containsPlayer(pl))
+                .forEach(pl -> pl.hidePlayer(player));
     }
 }

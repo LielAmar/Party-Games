@@ -8,6 +8,7 @@ import com.lielamar.partygames.game.GameState;
 import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.game.Minigame;
 import com.lielamar.partygames.modules.CustomPlayer;
+import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
 import com.lielamar.partygames.utils.Parameters;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -61,7 +62,7 @@ public class AnvilSpleef extends Minigame implements Listener {
                     new DoubleValidation(max_distance_from_middle, "[Anvil Spleef] Max Distance From Middle must be greater than 0", 1),
                     new IntValidation(amount_of_anvils, "[Anvil Spleef] Amount of Anvils must be greater than 0", 1),
                     new IntValidation(player_spleef_delay, "[Anvil Spleef] Player Spleef Delay must be greater than/equals to 0", 0));
-        } catch(Exception e) {
+        } catch(MinigameConfigurationException e) {
             e.printStackTrace();
         }
     }

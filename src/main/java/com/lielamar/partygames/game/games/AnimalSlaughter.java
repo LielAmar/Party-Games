@@ -8,6 +8,7 @@ import com.lielamar.partygames.game.GameState;
 import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.game.Minigame;
 import com.lielamar.partygames.modules.CustomPlayer;
+import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
 import com.lielamar.partygames.utils.Parameters;
 import com.packetmanager.lielamar.PacketManager;
 import org.bukkit.Bukkit;
@@ -78,7 +79,7 @@ public class AnimalSlaughter extends Minigame implements Listener {
                     new IntValidation(minimum_amount_of_animals, "[Animal Slaughter] Min Amount of Animals must be greater than 0", 1),
                     new IntValidation(negative_animals_percentage, "[Animal Slaughter] Negative Animals Percentage must be greater than/equals to 0 and less than/equals to 100", 0, 100),
                     new IntValidation(negative_points_loss_percentage, "[Animal Slaughter] Negative Point Loss Percentage must be greater than/equals to 0 and less than/equals to 100", 0, 100));
-        } catch(Exception e) {
+        } catch(MinigameConfigurationException e) {
             e.printStackTrace();
         }
     }

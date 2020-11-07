@@ -8,6 +8,7 @@ import com.lielamar.partygames.game.GameState;
 import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.game.Minigame;
 import com.lielamar.partygames.modules.CustomPlayer;
+import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
 import com.lielamar.partygames.modules.objects.Canvas;
 import com.lielamar.partygames.utils.Parameters;
 import org.bukkit.Bukkit;
@@ -62,7 +63,7 @@ public class JigsawRush extends Minigame implements Listener {
         try {
             super.validateVariables(
                     new IntValidation(block_types.size(), "[Jigsaw Rush] Amount of Blocks must be equals to 9", 9, 9));
-        } catch(Exception e) {
+        } catch(MinigameConfigurationException e) {
             e.printStackTrace();
         }
     }

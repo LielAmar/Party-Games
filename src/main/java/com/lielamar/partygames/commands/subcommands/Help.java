@@ -40,12 +40,12 @@ public class Help extends Command {
         }
 
         cs.sendMessage(ChatColor.GRAY + "---- " + ChatColor.AQUA + "Party Games Help" + ChatColor.GRAY + " ----");
-        for(Command cmd : this.commands) {
+        this.commands.forEach(cmd -> {
             if(cmd.hasPermissions(cs)) {
                 cs.sendMessage(ChatColor.AQUA + "• " + cmd.getName() + ChatColor.GRAY + ": " + cmd.getDescription());
                 cs.sendMessage(ChatColor.AQUA + "Aliases " + Arrays.toString(cmd.getAliases()));
             }
-        }
+        });
         cs.sendMessage(ChatColor.GRAY + "---- --------------- ----");
     }
 }

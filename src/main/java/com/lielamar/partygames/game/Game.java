@@ -348,6 +348,8 @@ public class Game {
         GameEndEvent event = new GameEndEvent(this, topPlayers[0], topPlayers[1], topPlayers[2], topPlayers);
         Bukkit.getPluginManager().callEvent(event);
 
+        if(event.isCancelled()) return;
+
         this.state = GameState.GAME_END;
 
         this.bossbarPlayers(null);

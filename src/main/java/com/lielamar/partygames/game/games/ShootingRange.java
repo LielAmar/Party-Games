@@ -3,7 +3,7 @@ package com.lielamar.partygames.game.games;
 import com.lielamar.lielsutils.SpigotUtils;
 import com.lielamar.lielsutils.modules.Pair;
 import com.lielamar.lielsutils.validation.IntValidation;
-import com.lielamar.partygames.Main;
+import com.lielamar.partygames.PartyGames;
 import com.lielamar.partygames.game.*;
 import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.modules.entities.custom.ShootingRangeSkeleton;
@@ -114,7 +114,7 @@ public class ShootingRange extends Minigame implements Listener {
      */
     public void spawnMobs() {
         new BukkitRunnable() {
-            int randomValue = Main.rnd.nextInt(5)-2;
+            int randomValue = PartyGames.rnd.nextInt(5)-2;
 
             @Override
             public void run() {
@@ -133,9 +133,9 @@ public class ShootingRange extends Minigame implements Listener {
      * @return   Spawned mob
      */
     public Entity spawnMob() {
-        int percentage = Main.rnd.nextInt(normal_zombie_percentage + normal_skeleton_percentage + golden_zombie_percentage + tnt_zombie_percentage);
+        int percentage = PartyGames.rnd.nextInt(normal_zombie_percentage + normal_skeleton_percentage + golden_zombie_percentage + tnt_zombie_percentage);
 
-        Pair<Location,Location> randomPair = mobSpawnLocations.get(Main.rnd.nextInt(mobSpawnLocations.size()));
+        Pair<Location,Location> randomPair = mobSpawnLocations.get(PartyGames.rnd.nextInt(mobSpawnLocations.size()));
         if(System.currentTimeMillis()%2 == 0) { // Swapping locations
             Location tmp = randomPair.getKey();
             randomPair.setKey(randomPair.getValue());

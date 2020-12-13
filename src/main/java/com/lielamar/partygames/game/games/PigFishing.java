@@ -3,7 +3,7 @@ package com.lielamar.partygames.game.games;
 import com.lielamar.lielsutils.SpigotUtils;
 import com.lielamar.lielsutils.validation.DoubleValidation;
 import com.lielamar.lielsutils.validation.IntValidation;
-import com.lielamar.partygames.Main;
+import com.lielamar.partygames.PartyGames;
 import com.lielamar.partygames.game.*;
 import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
@@ -112,7 +112,7 @@ public class PigFishing extends Minigame implements Listener {
     public void startAdditionalTimer() {
         new BukkitRunnable() {
             int i = getGameType().getGameDuration();
-            int randomValue = Main.rnd.nextInt(5)-2;
+            int randomValue = PartyGames.rnd.nextInt(5)-2;
 
             @Override
             public void run() {
@@ -141,7 +141,7 @@ public class PigFishing extends Minigame implements Listener {
         Pig pig;
 
         for(int i = 0; i < amount; i++) {
-            percentage = Main.rnd.nextInt(normal_pig_percentage + baby_percentage + special_percentage);
+            percentage = PartyGames.rnd.nextInt(normal_pig_percentage + baby_percentage + special_percentage);
 
             pig = (Pig) pigtile.getWorld().spawnEntity(pigtile, EntityType.PIG);
             pig.setSaddle(true);

@@ -9,8 +9,5 @@
         <module name="PartyGames" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="Party Games" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
 </project>

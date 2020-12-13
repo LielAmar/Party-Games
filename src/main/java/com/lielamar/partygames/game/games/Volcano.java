@@ -2,7 +2,7 @@ package com.lielamar.partygames.game.games;
 
 import com.lielamar.lielsutils.SpigotUtils;
 import com.lielamar.lielsutils.validation.IntValidation;
-import com.lielamar.partygames.Main;
+import com.lielamar.partygames.PartyGames;
 import com.lielamar.partygames.game.*;
 import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
@@ -85,8 +85,8 @@ public class Volcano extends Minigame implements Listener {
                     for(int amount = 0; amount < i / random_break_delay; amount++) {
 
                         Block b;
-                        int x = Main.rnd.nextInt(radius * 2) - radius;
-                        int z = Main.rnd.nextInt(radius * 2) - radius;
+                        int x = PartyGames.rnd.nextInt(radius * 2) - radius;
+                        int z = PartyGames.rnd.nextInt(radius * 2) - radius;
                         b = middle.clone().add(x, yFixer, z).getBlock();
 
                         if(b == null) continue;
@@ -150,7 +150,7 @@ public class Volcano extends Minigame implements Listener {
                     }
                 }
             }
-        }.runTaskTimer(super.getGame().getMain(), 0L, (50 + Main.rnd.nextInt(21)));
+        }.runTaskTimer(super.getGame().getMain(), 0L, (50 + PartyGames.rnd.nextInt(21)));
     }
 
 

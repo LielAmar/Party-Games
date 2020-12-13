@@ -1,10 +1,10 @@
 package com.lielamar.partygames.modules.objects;
 
+import com.lielamar.packetmanager.PacketManager;
+import com.lielamar.packetmanager.ParticleEffect;
 import com.lielamar.partygames.game.Game;
 import com.lielamar.partygames.game.GameState;
 import com.lielamar.partygames.modules.CustomPlayer;
-import com.packetmanager.lielamar.PacketManager;
-import com.packetmanager.lielamar.ParticleEffect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.Sound;

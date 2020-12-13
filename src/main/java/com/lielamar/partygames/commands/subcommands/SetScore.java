@@ -1,7 +1,7 @@
 package com.lielamar.partygames.commands.subcommands;
 
 import com.lielamar.lielsutils.commands.Command;
-import com.lielamar.partygames.Main;
+import com.lielamar.partygames.PartyGames;
 import com.lielamar.partygames.game.GameState;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -10,9 +10,9 @@ import org.bukkit.entity.Player;
 
 public class SetScore extends Command {
 
-    private Main main;
+    private PartyGames main;
 
-    public SetScore(Main main, String name) {
+    public SetScore(PartyGames main, String name) {
         super(name);
 
         this.main = main;

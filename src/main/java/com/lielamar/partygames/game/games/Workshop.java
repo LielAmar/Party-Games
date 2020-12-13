@@ -3,7 +3,7 @@ package com.lielamar.partygames.game.games;
 import com.lielamar.lielsutils.SpigotUtils;
 import com.lielamar.lielsutils.TextUtils;
 import com.lielamar.lielsutils.modules.Pair;
-import com.lielamar.partygames.Main;
+import com.lielamar.partygames.PartyGames;
 import com.lielamar.partygames.game.Game;
 import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.game.Minigame;
@@ -125,9 +125,9 @@ public class Workshop extends Minigame implements Listener {
         List<Recipe.RecipeType> rem = new ArrayList<>();
 
         for(int i = 0; i < this.recipes.length; i++) {
-            Recipe.RecipeType recipe = Recipe.RecipeType.values()[Main.rnd.nextInt(Recipe.RecipeType.values().length)];
+            Recipe.RecipeType recipe = Recipe.RecipeType.values()[PartyGames.rnd.nextInt(Recipe.RecipeType.values().length)];
             while(rem.contains(recipe))
-                recipe = Recipe.RecipeType.values()[Main.rnd.nextInt(Recipe.RecipeType.values().length)];
+                recipe = Recipe.RecipeType.values()[PartyGames.rnd.nextInt(Recipe.RecipeType.values().length)];
 
             recipes[counter] = new Recipe(recipe);
             counter++;

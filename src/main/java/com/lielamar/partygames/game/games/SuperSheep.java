@@ -3,7 +3,7 @@ package com.lielamar.partygames.game.games;
 import com.lielamar.lielsutils.SpigotUtils;
 import com.lielamar.lielsutils.modules.Node;
 import com.lielamar.lielsutils.validation.IntValidation;
-import com.lielamar.partygames.Main;
+import com.lielamar.partygames.PartyGames;
 import com.lielamar.partygames.game.*;
 import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.modules.entities.custom.ControllableSheep;
@@ -52,7 +52,7 @@ public class SuperSheep extends Minigame implements Listener {
 
         this.assignedColors = new HashMap<>();
         this.nodes = new HashMap<>();
-        this.current_length = start_length + Main.rnd.nextInt(5)-2;
+        this.current_length = start_length + PartyGames.rnd.nextInt(5)-2;
 
         GameUtils.assignColorsToPlayers(super.getGame().getPlayers(), wool_colors, this.assignedColors);
         this.setupSheeps();

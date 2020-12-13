@@ -5,13 +5,13 @@ import com.lielamar.lielsutils.TextUtils;
 import com.lielamar.lielsutils.modules.Pair;
 import com.lielamar.lielsutils.scoreboard.ScoreboardManager;
 import com.lielamar.lielsutils.scoreboard.ScoreboardUtils;
-import com.lielamar.partygames.Main;
+import com.lielamar.packetmanager.PacketManager;
+import com.lielamar.partygames.PartyGames;
 import com.lielamar.partygames.events.GameEndEvent;
 import com.lielamar.partygames.game.games.*;
 import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.utils.GameUtils;
 import com.lielamar.partygames.utils.Parameters;
-import com.packetmanager.lielamar.PacketManager;
 import org.bukkit.*;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
@@ -21,7 +21,7 @@ import java.util.List;
 
 public class Game {
 
-    private Main main;
+    private PartyGames main;
     private GameState state;
     private int remainingTime;
     private Location gameLobby;
@@ -35,7 +35,7 @@ public class Game {
     private List<String> countdownscoreboardLines;
     private List<String> gamestatsscoreboardLines;
 
-    public Game(Main main) {
+    public Game(PartyGames main) {
         this.main = main;
         this.state = GameState.WAITING_FOR_PLAYERS;
         this.remainingTime = 0;
@@ -219,8 +219,9 @@ public class Game {
         boolean hasEnoughGames = (GameType.values().length >= this.minigames.length);
 
         int amount_of_games = 0;
+        GameType type;
         while(amount_of_games < Parameters.AMOUNT_OF_GAMES()) {
-            GameType type = GameType.values()[Main.rnd.nextInt(GameType.values().length)];
+            type = GameType.values()[PartyGames.rnd.nextInt(GameType.values().length)];
             if(!this.containsMinigame(type) || this.containsMinigame(type) && (allowDuplicateGames || !hasEnoughGames)) {
                 this.minigames[amount_of_games] = type;
                 amount_of_games++;
@@ -437,7 +438,7 @@ public class Game {
     }
 
 
-    public Main getMain() { return this.main; }
+    public PartyGames getMain() { return this.main; }
     public GameState getGameState() { return this.state; }
     public int getRemainingTime() { return this.remainingTime; }
 

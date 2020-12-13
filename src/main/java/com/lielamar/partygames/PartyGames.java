@@ -3,6 +3,7 @@ package com.lielamar.partygames;
 import com.lielamar.lielsutils.files.FileManager;
 import com.lielamar.lielsutils.map.MapManager;
 import com.lielamar.lielsutils.scoreboard.ScoreboardManager;
+import com.lielamar.packetmanager.PacketManager;
 import com.lielamar.partygames.commands.CommandManager;
 import com.lielamar.partygames.game.Game;
 import com.lielamar.partygames.listeners.*;
@@ -10,7 +11,6 @@ import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.modules.entities.ControllableEntitiesPacketReader;
 import com.lielamar.partygames.modules.entities.custom.*;
 import com.lielamar.partygames.utils.Parameters;
-import com.packetmanager.lielamar.PacketManager;
 import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
@@ -19,7 +19,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Random;
 
-public class Main extends JavaPlugin {
+public class PartyGames extends JavaPlugin {
 
     public static final Random rnd = new Random();
 
@@ -105,6 +105,13 @@ public class Main extends JavaPlugin {
                 cp.destroyBossBar();
             }
         }
+
+        this.fileManager = null;
+        this.scoreboardManager = null;
+        this.controllableEntitiesPacketReader = null;
+
+        this.game = null;
+        System.gc();
     }
 
 

@@ -1,6 +1,6 @@
 package com.lielamar.partygames.modules.entities.pathfindergoals;
 
-import com.lielamar.partygames.Main;
+import com.lielamar.partygames.PartyGames;
 import net.minecraft.server.v1_8_R3.Entity;
 import net.minecraft.server.v1_8_R3.EntityCreature;
 import net.minecraft.server.v1_8_R3.EntityLiving;
@@ -24,7 +24,7 @@ public class PathfinderGoalMeleeAttackPlayer extends PathfinderGoalMeleeAttack {
              * If the entity is within 2 blocks of the attacker, we want to have a 1/3 chance it will attack.
             */
             if(super.b.getGoalTarget().h(super.b) > 3) return false;
-            return Main.rnd.nextInt(3) == 0;
+            return PartyGames.rnd.nextInt(3) == 0;
         }
     }
 

@@ -2,7 +2,7 @@ package com.lielamar.partygames.game.games;
 
 import com.lielamar.lielsutils.validation.DoubleValidation;
 import com.lielamar.lielsutils.validation.IntValidation;
-import com.lielamar.partygames.Main;
+import com.lielamar.partygames.PartyGames;
 import com.lielamar.partygames.game.*;
 import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
@@ -96,14 +96,14 @@ public class AnvilSpleef extends Minigame implements Listener {
     public void spawnAnvil(int index) {
         Location anvilLoc;
         for(int i = 0; i < amount_of_anvils; i++) {
-            int x = Main.rnd.nextInt(radius * 2 + 1) - radius;
-            int z = Main.rnd.nextInt(radius * 2 + 1) - radius;
+            int x = PartyGames.rnd.nextInt(radius * 2 + 1) - radius;
+            int z = PartyGames.rnd.nextInt(radius * 2 + 1) - radius;
             anvilLoc = super.getMiddle().clone().add(x, 20, z);
 
             int locationSwaps = 0;
             while(this.anvilLocations.contains(anvilLoc)) {
-                x = Main.rnd.nextInt(radius * 2 + 1) - radius;
-                z = Main.rnd.nextInt(radius * 2 + 1) - radius;
+                x = PartyGames.rnd.nextInt(radius * 2 + 1) - radius;
+                z = PartyGames.rnd.nextInt(radius * 2 + 1) - radius;
                 anvilLoc = super.getMiddle().clone().add(x, 20, z);
                 locationSwaps++;
                 if(locationSwaps >= 10) break;

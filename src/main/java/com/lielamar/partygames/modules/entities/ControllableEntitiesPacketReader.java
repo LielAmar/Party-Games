@@ -1,5 +1,7 @@
 package com.lielamar.partygames.modules.entities;
 
+import com.lielamar.packetmanager.PacketManager;
+import com.lielamar.packetmanager.ParticleEffect;
 import com.lielamar.partygames.game.games.ChickenRings;
 import com.lielamar.partygames.game.games.LawnMoower;
 import com.lielamar.partygames.game.games.PigJousting;
@@ -8,8 +10,6 @@ import com.lielamar.partygames.modules.entities.custom.ControllableChicken;
 import com.lielamar.partygames.modules.entities.custom.ControllableCow;
 import com.lielamar.partygames.modules.entities.custom.ControllablePig;
 import com.lielamar.partygames.modules.entities.custom.ControllableSheep;
-import com.packetmanager.lielamar.PacketManager;
-import com.packetmanager.lielamar.ParticleEffect;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageDecoder;

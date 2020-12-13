@@ -1,7 +1,7 @@
 package com.lielamar.partygames.commands;
 
 import com.lielamar.lielsutils.commands.Command;
-import com.lielamar.partygames.Main;
+import com.lielamar.partygames.PartyGames;
 import com.lielamar.partygames.commands.subcommands.*;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandExecutor;
@@ -15,7 +15,7 @@ import java.util.Set;
 
 public class CommandManager implements CommandExecutor, TabCompleter {
 
-    private Main main;
+    private PartyGames main;
 
     private final Set<Command> commands;
 
@@ -30,7 +30,7 @@ public class CommandManager implements CommandExecutor, TabCompleter {
     private final String setminigamescoreCommand = "setminigamescore";
     private final String helpCommand = "help";
 
-    public CommandManager(Main main) {
+    public CommandManager(PartyGames main) {
         this.main = main;
         main.getCommand(mainCommand).setTabCompleter(this);
         main.getCommand(mainCommand).setExecutor(this);

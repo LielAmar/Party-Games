@@ -1,6 +1,6 @@
 package com.lielamar.partygames.modules.objects;
 
-import com.lielamar.partygames.Main;
+import com.lielamar.partygames.PartyGames;
 import com.lielamar.partygames.game.Game;
 import com.lielamar.partygames.modules.CustomPlayer;
 import org.bukkit.ChatColor;
@@ -89,7 +89,7 @@ public class RPG {
 
             if(p.getHealth() - 2 <= 0) {
                 p.playSound(ent.getLocation(), Sound.HURT_FLESH, 1F, 1F);
-                p.teleport(this.game.getCurrentGame().getLocations()[Main.rnd.nextInt(this.game.getCurrentGame().getLocations().length)]);
+                p.teleport(this.game.getCurrentGame().getLocations()[PartyGames.rnd.nextInt(this.game.getCurrentGame().getLocations().length)]);
                 p.setHealth(6);
 
                 if(this.cpShooter.getPlayer() != null) this.cpShooter.addMinigameScore(1);

@@ -3,7 +3,7 @@ package com.lielamar.partygames.game.games;
 import com.lielamar.lielsutils.SpigotUtils;
 import com.lielamar.lielsutils.modules.Pair;
 import com.lielamar.lielsutils.validation.DoubleValidation;
-import com.lielamar.partygames.Main;
+import com.lielamar.partygames.PartyGames;
 import com.lielamar.partygames.game.*;
 import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
 import com.lielamar.partygames.modules.objects.Bomb;
@@ -149,9 +149,9 @@ public class Bombardment extends Minigame implements Listener {
                     return;
                 }
 
-                int bound = Main.rnd.nextInt(cannons.length);
+                int bound = PartyGames.rnd.nextInt(cannons.length);
                 Location from = cannons[bound];
-                Location to = shootLocations.get(Main.rnd.nextInt(shootLocations.size()));
+                Location to = shootLocations.get(PartyGames.rnd.nextInt(shootLocations.size()));
 
                 new Bomb(getGame(), from, to, bomb_type, currentWave);
 

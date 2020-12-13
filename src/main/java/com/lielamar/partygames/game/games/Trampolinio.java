@@ -1,7 +1,7 @@
 package com.lielamar.partygames.game.games;
 
 import com.lielamar.lielsutils.validation.IntValidation;
-import com.lielamar.partygames.Main;
+import com.lielamar.partygames.PartyGames;
 import com.lielamar.partygames.game.*;
 import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
@@ -101,7 +101,7 @@ public class Trampolinio extends Minigame implements Listener {
      * Spawns an X amount of scores whereas X = AMOUNT_OF_SCORES-CURRENT_AMOUNT_OF_SCORES+random
      */
     public void spawnScores() {
-        int randomValue = Main.rnd.nextInt(5)-2;
+        int randomValue = PartyGames.rnd.nextInt(5)-2;
 
         if(scores.size() >= amount_of_points + randomValue)
             return;
@@ -115,7 +115,7 @@ public class Trampolinio extends Minigame implements Listener {
      * Spawns an X amount of boosts whereas X = AMOUNT_OF_BOOSTS-CURRENT_AMOUNT_OF_BOOSTS+random
      */
     public void spawnBoosts() {
-        int randomValue = Main.rnd.nextInt(2)-1;
+        int randomValue = PartyGames.rnd.nextInt(2)-1;
 
         if(boosts.size() >= amount_of_boosts + randomValue)
             return;
@@ -130,8 +130,8 @@ public class Trampolinio extends Minigame implements Listener {
      * @return   Generated location
      */
     public Location getRandomLocation() {
-        return super.getMiddle().clone().add(Main.rnd.nextInt(radius*2+1)-radius,
-                Main.rnd.nextInt(3)+6,Main.rnd.nextInt(radius*2+1)-radius);
+        return super.getMiddle().clone().add(PartyGames.rnd.nextInt(radius*2+1)-radius,
+                PartyGames.rnd.nextInt(3)+6,PartyGames.rnd.nextInt(radius*2+1)-radius);
     }
 
     /**
@@ -140,7 +140,7 @@ public class Trampolinio extends Minigame implements Listener {
      * @return   Random ItemStack of the score
      */
     public ItemStack getRandomItem() {
-        int percentage = Main.rnd.nextInt(one_score_percentage + three_score_percentage + ten_score_percentage);
+        int percentage = PartyGames.rnd.nextInt(one_score_percentage + three_score_percentage + ten_score_percentage);
 
         if(percentage < one_score_percentage)
             return new ItemStack(Material.WOOL, 1, (byte)5);

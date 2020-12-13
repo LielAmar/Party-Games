@@ -6,6 +6,7 @@ import com.lielamar.lielsutils.modules.Pair;
 import com.lielamar.lielsutils.scoreboard.ScoreboardManager;
 import com.lielamar.lielsutils.scoreboard.ScoreboardUtils;
 import com.lielamar.lielsutils.validation.Validation;
+import com.lielamar.packetmanager.PacketManager;
 import com.lielamar.partygames.events.MinigameEndEvent;
 import com.lielamar.partygames.events.PlayerFinishMinigameEvent;
 import com.lielamar.partygames.modules.CustomPlayer;
@@ -13,7 +14,6 @@ import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException
 import com.lielamar.partygames.utils.GameUtils;
 import com.lielamar.partygames.utils.Parameters;
 import com.lielamar.partygames.utils.ScoreboardType;
-import com.packetmanager.lielamar.PacketManager;
 import org.bukkit.*;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;

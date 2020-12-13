@@ -2,10 +2,10 @@ package com.lielamar.partygames.events;
 
 import com.lielamar.partygames.game.Minigame;
 import com.lielamar.partygames.modules.CustomPlayer;
-import org.bukkit.event.Event;
+import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;
 
-public class MinigameEndEvent extends Event {
+public class MinigameEndEvent extends PartyGamesEvent implements Cancellable {
 
     private Minigame minigame;
     private CustomPlayer first, second, third;
@@ -14,6 +14,7 @@ public class MinigameEndEvent extends Event {
     private boolean cancelled;
 
     public MinigameEndEvent(Minigame minigame, CustomPlayer first, CustomPlayer second, CustomPlayer third, CustomPlayer[] players) {
+        super(minigame.getGame());
         this.minigame = minigame;
         this.first = first;
         this.second = second;

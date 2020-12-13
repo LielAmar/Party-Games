@@ -1,7 +1,7 @@
 package com.lielamar.partygames.commands.subcommands;
 
 import com.lielamar.lielsutils.commands.Command;
-import com.lielamar.partygames.Main;
+import com.lielamar.partygames.PartyGames;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -9,9 +9,9 @@ import org.bukkit.entity.Player;
 
 public class AddPlayer extends Command {
 
-    private Main main;
+    private PartyGames main;
 
-    public AddPlayer(Main main, String name) {
+    public AddPlayer(PartyGames main, String name) {
         super(name);
 
         this.main = main;

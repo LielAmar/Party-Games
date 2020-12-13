@@ -1,12 +1,12 @@
 package com.lielamar.partygames.game.games;
 
 import com.lielamar.lielsutils.validation.IntValidation;
+import com.lielamar.packetmanager.PacketManager;
 import com.lielamar.partygames.game.*;
 import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
 import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.utils.GameUtils;
-import com.packetmanager.lielamar.PacketManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;

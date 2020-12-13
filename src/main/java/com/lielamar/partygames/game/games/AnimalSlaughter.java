@@ -2,12 +2,12 @@ package com.lielamar.partygames.game.games;
 
 import com.lielamar.lielsutils.SpigotUtils;
 import com.lielamar.lielsutils.validation.IntValidation;
-import com.lielamar.partygames.Main;
+import com.lielamar.packetmanager.PacketManager;
+import com.lielamar.partygames.PartyGames;
 import com.lielamar.partygames.game.*;
 import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
 import com.lielamar.partygames.game.GameType;
-import com.packetmanager.lielamar.PacketManager;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -105,7 +105,7 @@ public class AnimalSlaughter extends Minigame implements Listener {
      * X = 50-25+7 = 32 - The Function will spawn 32 animals
      */
     public void spawnAnimals() {
-        int amount_of_animals = maximum_amount_of_animals - animals.size() + Main.rnd.nextInt(11);
+        int amount_of_animals = maximum_amount_of_animals - animals.size() + PartyGames.rnd.nextInt(11);
 
         for(int i = 0; i < amount_of_animals; i++)
             this.spawnRandomAnimal();
@@ -116,8 +116,8 @@ public class AnimalSlaughter extends Minigame implements Listener {
      */
     public void spawnRandomAnimal() {
         Entity ent = super.getMiddle().getWorld().spawnEntity(
-                super.getMiddle().clone().add(Main.rnd.nextInt(radius*2+1)-radius,0, Main.rnd.nextInt(radius*2+1)-radius),
-                (EntityType) animal_types.keySet().toArray()[Main.rnd.nextInt(animal_types.size())]);
+                super.getMiddle().clone().add(PartyGames.rnd.nextInt(radius*2+1)-radius,0, PartyGames.rnd.nextInt(radius*2+1)-radius),
+                (EntityType) animal_types.keySet().toArray()[PartyGames.rnd.nextInt(animal_types.size())]);
 
         ent.setCustomNameVisible(true);
         if(ent instanceof Pig) ((Pig)ent).setSaddle(true);

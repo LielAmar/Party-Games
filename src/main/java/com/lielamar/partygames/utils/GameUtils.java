@@ -1,7 +1,7 @@
 package com.lielamar.partygames.utils;
 
 import com.lielamar.lielsutils.MathUtils;
-import com.lielamar.partygames.Main;
+import com.lielamar.partygames.PartyGames;
 import com.lielamar.partygames.game.Minigame;
 import com.lielamar.partygames.modules.CustomPlayer;
 import org.bukkit.ChatColor;
@@ -42,7 +42,7 @@ public class GameUtils {
                         playersCopy[j] = playersCopy[j+1];
                         playersCopy[j+1] = tmp;
                     }
-                    if(playersCopy[j].getMinigameScore() == playersCopy[j + 1].getMinigameScore() && (!randomizeEqualScore || Main.rnd.nextInt(2) == 0)) {
+                    if(playersCopy[j].getMinigameScore() == playersCopy[j + 1].getMinigameScore() && (!randomizeEqualScore || PartyGames.rnd.nextInt(2) == 0)) {
                         CustomPlayer tmp = playersCopy[j];
                         playersCopy[j] = playersCopy[j+1];
                         playersCopy[j+1] = tmp;
@@ -53,7 +53,7 @@ public class GameUtils {
                         playersCopy[j] = playersCopy[j+1];
                         playersCopy[j+1] = tmp;
                     }
-                    if(playersCopy[j].getScore() == playersCopy[j + 1].getScore() && (!randomizeEqualScore || Main.rnd.nextInt(2) == 0)) {
+                    if(playersCopy[j].getScore() == playersCopy[j + 1].getScore() && (!randomizeEqualScore || PartyGames.rnd.nextInt(2) == 0)) {
                         CustomPlayer tmp = playersCopy[j];
                         playersCopy[j] = playersCopy[j+1];
                         playersCopy[j+1] = tmp;

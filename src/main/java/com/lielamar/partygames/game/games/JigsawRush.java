@@ -2,7 +2,7 @@ package com.lielamar.partygames.game.games;
 
 import com.lielamar.lielsutils.SpigotUtils;
 import com.lielamar.lielsutils.validation.IntValidation;
-import com.lielamar.partygames.Main;
+import com.lielamar.partygames.PartyGames;
 import com.lielamar.partygames.game.*;
 import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
@@ -104,9 +104,9 @@ public class JigsawRush extends Minigame implements Listener {
 
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 3; j++) {
-                randomMaterial = block_types.get(Main.rnd.nextInt(block_types.size()));
+                randomMaterial = block_types.get(PartyGames.rnd.nextInt(block_types.size()));
                 while(bigCanvasContains(randomMaterial))
-                    randomMaterial = block_types.get(Main.rnd.nextInt(block_types.size()));
+                    randomMaterial = block_types.get(PartyGames.rnd.nextInt(block_types.size()));
                 this.canvas[i][j] = randomMaterial;
             }
         }

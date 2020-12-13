@@ -1,14 +1,14 @@
 package com.lielamar.partygames.listeners;
 
-import com.lielamar.partygames.Main;
+import com.lielamar.partygames.PartyGames;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 public class OnPlayerQuit implements Listener {
 
-    private Main main;
-    public OnPlayerQuit(Main main) {
+    private PartyGames main;
+    public OnPlayerQuit(PartyGames main) {
         this.main = main;
     }
 

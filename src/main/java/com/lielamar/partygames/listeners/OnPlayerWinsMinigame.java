@@ -1,6 +1,6 @@
 package com.lielamar.partygames.listeners;
 
-import com.lielamar.partygames.Main;
+import com.lielamar.partygames.PartyGames;
 import com.lielamar.partygames.events.GameEndEvent;
 import com.lielamar.partygames.events.MinigameEndEvent;
 import com.lielamar.partygames.modules.CustomPlayer;
@@ -17,10 +17,10 @@ import java.util.Random;
 
 public class OnPlayerWinsMinigame implements Listener {
 
-    private Main main;
+    private PartyGames main;
     private Random rnd;
 
-    public OnPlayerWinsMinigame(Main main) {
+    public OnPlayerWinsMinigame(PartyGames main) {
         this.main = main;
         this.rnd = new Random();
     }
@@ -78,7 +78,7 @@ public class OnPlayerWinsMinigame implements Listener {
                 }
                 Bukkit.getServer().reload();
                 // Developer Note:
-                // In production, this is to be changed to Bukkit.getServer().stop();, as well as setting a script to restart the server completele.y
+                // In production, this is to be changed to Bukkit.getServer().stop();, as well as setting a script to restart the server completely.
                 // Reloading is not to be trusted and may cause issues!
             }
         }.runTaskLater(e.getGame().getMain(), 200L);

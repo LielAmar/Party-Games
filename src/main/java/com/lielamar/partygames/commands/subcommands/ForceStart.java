@@ -1,7 +1,7 @@
 package com.lielamar.partygames.commands.subcommands;
 
 import com.lielamar.lielsutils.commands.Command;
-import com.lielamar.partygames.Main;
+import com.lielamar.partygames.PartyGames;
 import com.lielamar.partygames.game.GameState;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
@@ -9,9 +9,9 @@ import org.bukkit.entity.Player;
 
 public class ForceStart extends Command {
 
-    private Main main;
+    private PartyGames main;
 
-    public ForceStart(Main main, String name) {
+    public ForceStart(PartyGames main, String name) {
         super(name);
 
         this.main = main;

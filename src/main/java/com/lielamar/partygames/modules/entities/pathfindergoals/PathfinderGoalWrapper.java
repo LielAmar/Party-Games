@@ -1,7 +1,7 @@
 package com.lielamar.partygames.modules.entities.pathfindergoals;
 
 import com.lielamar.lielsutils.modules.Pair;
-import com.packetmanager.lielamar.PacketManager;
+import com.lielamar.packetmanager.PacketManager;
 import net.minecraft.server.v1_8_R3.*;
 import org.bukkit.event.entity.EntityTargetEvent;
 

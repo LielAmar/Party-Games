@@ -1,7 +1,7 @@
 package com.lielamar.partygames.game.games;
 
 import com.lielamar.lielsutils.validation.DoubleValidation;
-import com.lielamar.partygames.Main;
+import com.lielamar.partygames.PartyGames;
 import com.lielamar.partygames.game.*;
 import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
@@ -82,7 +82,7 @@ public class LabEscape extends Minigame implements Listener {
     public void setupPipes() {
         Material[] blocks = new Material[Math.abs(top_y-bottom_y)];
         for(int i = 0; i < blocks.length; i++)
-            blocks[i] = block_types.get(Main.rnd.nextInt(block_types.size()));
+            blocks[i] = block_types.get(PartyGames.rnd.nextInt(block_types.size()));
 
         Location tmpLocation;
         for(Location loc : super.getLocations()) {

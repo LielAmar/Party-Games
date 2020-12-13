@@ -3,7 +3,7 @@ package com.lielamar.partygames.game.games;
 import com.lielamar.lielsutils.MathUtils;
 import com.lielamar.lielsutils.modules.Pair;
 import com.lielamar.lielsutils.validation.IntValidation;
-import com.lielamar.partygames.Main;
+import com.lielamar.partygames.PartyGames;
 import com.lielamar.partygames.game.*;
 import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
 import com.lielamar.partygames.game.GameType;
@@ -153,8 +153,8 @@ public class Avalanche extends Minigame implements Listener {
 
                 for(int j = 0; j < 24; j++) {
                     spawn = true;
-                    double x = Main.rnd.nextInt(radius * 2 + 1) - radius + ((double)Main.rnd.nextInt(5)/10);
-                    double z = Main.rnd.nextInt(radius * 2 + 1) - radius + ((double) Main.rnd.nextInt(5)/10);
+                    double x = PartyGames.rnd.nextInt(radius * 2 + 1) - radius + ((double)PartyGames.rnd.nextInt(5)/10);
+                    double z = PartyGames.rnd.nextInt(radius * 2 + 1) - radius + ((double) PartyGames.rnd.nextInt(5)/10);
 
                     // Checks if the random location is above a safe point. If it is, we skip it
                     for(Location safePoint : safePoints) {
@@ -163,7 +163,7 @@ public class Avalanche extends Minigame implements Listener {
                     }
 
                     if(spawn)
-                        getMiddle().getWorld().spawnEntity(getMiddle().clone().add(x, 15 + ((double)Main.rnd.nextInt(5)/10), z), EntityType.SNOWBALL).getVelocity().setX(0).setZ(0);
+                        getMiddle().getWorld().spawnEntity(getMiddle().clone().add(x, 15 + ((double)PartyGames.rnd.nextInt(5)/10), z), EntityType.SNOWBALL).getVelocity().setX(0).setZ(0);
                 }
                 i--;
             }
@@ -178,8 +178,8 @@ public class Avalanche extends Minigame implements Listener {
         int counter = 0;
 
         while(counter < this.matchSafePoints(currentWave)) {
-            int x = Main.rnd.nextInt(radius * 2 + 1) - radius;
-            int z = Main.rnd.nextInt(radius * 2 + 1) - radius;
+            int x = PartyGames.rnd.nextInt(radius * 2 + 1) - radius;
+            int z = PartyGames.rnd.nextInt(radius * 2 + 1) - radius;
             safePoint = super.getMiddle().clone().add(x, 3, z);
 
             if(!safePoints.contains(safePoint)) {

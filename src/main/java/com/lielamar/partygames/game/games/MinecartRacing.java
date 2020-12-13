@@ -3,13 +3,13 @@ package com.lielamar.partygames.game.games;
 import com.lielamar.lielsutils.SpigotUtils;
 import com.lielamar.lielsutils.validation.CharValidation;
 import com.lielamar.lielsutils.validation.IntValidation;
-import com.lielamar.partygames.Main;
+import com.lielamar.packetmanager.PacketManager;
+import com.lielamar.partygames.PartyGames;
 import com.lielamar.partygames.game.*;
 import com.lielamar.partygames.modules.CustomPlayer;
 import com.lielamar.partygames.modules.exceptions.MinigameConfigurationException;
 import com.lielamar.partygames.game.GameType;
 import com.lielamar.partygames.utils.GameUtils;
-import com.packetmanager.lielamar.PacketManager;
 import net.minecraft.server.v1_8_R3.EntityArrow;
 import org.bukkit.*;
 import org.bukkit.block.Block;
@@ -155,7 +155,7 @@ public class MinecartRacing extends Minigame implements Listener {
                         for (int y = (int) start.getY(); (start.getY() > end.getY()) ? y >= end.getY() : y <= end.getY(); y += (start.getY() > end.getY()) ? -1 : 1) {
                             b = start.getWorld().getBlockAt((int) start.getX() + j * distance, y, z);
                             if (b.getType() != Material.WOOL) continue;
-                            b.setData(wool_colors[Main.rnd.nextInt(wool_colors.length)].byteValue(), true);
+                            b.setData(wool_colors[PartyGames.rnd.nextInt(wool_colors.length)].byteValue(), true);
                         }
                     }
                 }
@@ -166,7 +166,7 @@ public class MinecartRacing extends Minigame implements Listener {
                         for (int y = (int) start.getY(); (start.getY() > end.getY()) ? y >= end.getY() : y <= end.getY(); y += (start.getY() > end.getY()) ? -1 : 1) {
                             b = start.getWorld().getBlockAt(x, y, (int) start.getZ() + j * distance);
                             if (b.getType() != Material.WOOL) continue;
-                            b.setData(wool_colors[Main.rnd.nextInt(wool_colors.length)].byteValue(), true);
+                            b.setData(wool_colors[PartyGames.rnd.nextInt(wool_colors.length)].byteValue(), true);
                         }
                     }
                 }

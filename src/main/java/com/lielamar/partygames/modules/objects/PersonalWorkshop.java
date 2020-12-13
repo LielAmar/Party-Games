@@ -1,7 +1,7 @@
 package com.lielamar.partygames.modules.objects;
 
 import com.lielamar.lielsutils.modules.Pair;
-import com.lielamar.partygames.Main;
+import com.lielamar.partygames.PartyGames;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
@@ -123,7 +123,7 @@ public class PersonalWorkshop {
      * @return   The random material picked
      */
     public Material getRandomMaterial() {
-        return materials[Main.rnd.nextInt(materials.length)];
+        return materials[PartyGames.rnd.nextInt(materials.length)];
     }
 
     /**

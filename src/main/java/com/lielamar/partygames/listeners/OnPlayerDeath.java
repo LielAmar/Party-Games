@@ -1,6 +1,6 @@
 package com.lielamar.partygames.listeners;
 
-import com.lielamar.partygames.Main;
+import com.lielamar.partygames.PartyGames;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -9,9 +9,9 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 
 public class OnPlayerDeath implements Listener {
 
-    private Main main;
+    private PartyGames main;
 
-    public OnPlayerDeath(Main main) {
+    public OnPlayerDeath(PartyGames main) {
         this.main = main;
     }
 

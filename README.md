@@ -1,7 +1,6 @@
 # Party Games
 
-[<img alt="discord" src="https://lielamar.com/plugins/github_discord.png" size=1.5>](https://discord.gg/NzgBrqR)
-<br>
+[![Discord](https://img.shields.io/discord/416652224505184276?color=%235865F2&label=Join%20My%20Discord)](https://discord.gg/NzgBrqR)
 
 ## Information
 Party Games is a Spigot plugin, a fork of Hypixel's original Party Games Minigame.

@@ -1,7 +1,6 @@
 # Party Games
 
-[<img alt="discord" src="https://lielamar.com/other/github_discord.png" size=1.5>](https://discord.gg/NzgBrqR)
-<br>
+[![Discord](https://img.shields.io/discord/416652224505184276?color=%235865F2&label=Join%20My%20Discord)](https://discord.gg/NzgBrqR)
 
 ## Information
 Party Games is a Spigot plugin, a fork of Hypixel's original Party Games Minigame.
@@ -18,7 +17,7 @@ For more information contact support at https://support.hypixel.net
 
 ## Using Liel's Party Games
 Using this plugin, taking its code or using it for anything other than learning is disallowed.
-<br>However, if you want to test the plugin for yourself you can download a copy from [My Website](https://lielamar.com/other/PartyGames.jar).
+<br>However, if you want to test the plugin for yourself you can download a copy from [My Website](http://lielamar.com/plugins/PartyGames/PartyGames.jar).
 <br>* This plugin only works for Paper/Spigot version 1.8.8 (v1_8_R3)
 
 * As been said before, this plugin is a complete copy of Hypixel's Party Games and therefore can be used with Hypixel's permission only!
@@ -27,4 +26,4 @@ Using this plugin, taking its code or using it for anything other than learning 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## License
-[GNU 3](https://choosealicense.com/licenses/agpl-3.0/)
+[GPL 3](https://choosealicense.com/licenses/agpl-3.0/)

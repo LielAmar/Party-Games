@@ -1,8 +1,8 @@
 name: PartyGames
 author: Liel Amar
-version: 1.0.6
+version: 1.0.7
 description: A Hypixel Party Games Fork
-main: com.lielamar.partygames.Main
+main: com.lielamar.partygames.PartyGames
 website: lielamar.com
 
 commands:
